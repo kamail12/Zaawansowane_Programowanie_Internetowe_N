@@ -6,5 +6,5 @@ public class StationaryStore
 {
    public Address Address {get; set;} 
    public IList<Order> Orders {get; set;} 
-   
+   public StationaryStoreEmployee numerUmowy {get; set;} 
 }

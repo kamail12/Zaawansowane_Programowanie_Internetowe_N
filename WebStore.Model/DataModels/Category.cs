@@ -4,9 +4,11 @@ namespace WebStore.Model.DataModels;
 
 public class Category
 {
-   public string Amortyzatory {get; set;} 
-   public string Opony {get; set;} 
-   public string Akumulatory {get; set;} 
-   public string swieceZaplonowe {get; set;} 
+   public string Amortyzatory {get; set;} = default!;
+   public string Opony {get; set;} = default!;
+   public string Akumulatory {get; set;} = default!;
+   public string swieceZaplonowe {get; set;} = default!;
+
+   public IList<Product> Products {get; set; }  = default!;
 
 }

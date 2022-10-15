@@ -6,8 +6,10 @@ namespace WebStore.Model.DataModels;
 
 public class Customer
 {
-   public Address BillingAddress {get; set;} 
-   public IList<Order> Orders {get; set;} 
-   public Address ShippingAddress {get; set;} 
-
+   
+   public Address BillingAddress {get; set;} = default!;
+   public IList<Order> Orders {get; set;} = default!;
+   public Address ShippingAddress {get; set;} = default!;
+   public IList<Address> Addresses {get; set;} = default!;
+   
 }

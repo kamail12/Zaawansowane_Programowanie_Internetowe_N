@@ -8,5 +8,6 @@ namespace WebStore.Model.DataModel
         public IList<Order> Orders { get; set; } = default!;
         public Address ShippingAddress { get; set; } = default!;
 
+      
     }
 }

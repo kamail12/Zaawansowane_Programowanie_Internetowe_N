@@ -1,0 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using WebStore.Model.Models;
+
+namespace WebStore.DAL.Configuration;
+public class ShippingAddressConfiguration : IEntityTypeConfiguration<ShippingAddress>
+{
+    public void Configure(EntityTypeBuilder<ShippingAddress> builder)
+    {
+        builder.ToTable("ShippingAddress");
+
+        builder.HasOne(x => x.Customer)
+            .WithOne(y => y.ShippingAddress)
+            .HasForeignKey<ShippingAddress>(x => x.Id);
+    }
+}

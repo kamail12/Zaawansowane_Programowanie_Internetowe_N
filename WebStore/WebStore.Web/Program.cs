@@ -1,4 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using WebStore.DAL.DatabaseContext;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add data context
+builder.Services.AddDbContext<WSDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WSDatabaseConntection"));
+});
+
 
 // Add services to the container.
 
@@ -22,6 +32,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html");;
+app.MapFallbackToFile("index.html"); ;
 
 app.Run();

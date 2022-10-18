@@ -4,9 +4,9 @@ namespace WebStore.Model.DataModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-public class StationaryStoreEmployee
+public class StationaryStoreEmployee : User
 {
-   public int numerUmowy {get; set;} 
+   public int AggreementNumber {get; set;} 
    public DateTime Zatrudnienie {get; set;} 
    public string Stanowisko {get; set;} = default!;
    public string Wynagrodzenie {get; set;} = default!;

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WebStore.Model.DataModels;
 
-public class Customer
+public class Customer : User
 {
    
    public Address BillingAddress {get; set;} = default!;

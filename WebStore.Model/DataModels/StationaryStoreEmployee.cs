@@ -7,9 +7,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class StationaryStoreEmployee : User
 {
    public int AggreementNumber {get; set;} 
-   public DateTime Zatrudnienie {get; set;} 
-   public string Stanowisko {get; set;} = default!;
-   public string Wynagrodzenie {get; set;} = default!;
+   public DateTime Employment {get; set;} 
+   public string Position {get; set;} = default!;
+   public string Salary {get; set;} = default!;
    public StationaryStore StationaryStore {get; set;} = default!;
    [ForeignKey("StationaryStore")]
    public int StationaryStoreId {get; set;} = default!;

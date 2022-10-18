@@ -6,7 +6,7 @@ public class StationaryStore
 {
    public Address Address {get; set;} = default!;
    public IList<Order> Orders {get; set;} = default!;
-   public StationaryStoreEmployee numerUmowy {get; set;} = default!;
+   public StationaryStoreEmployee ArrangementNumber {get; set;} = default!;
    public IList<Address> Addresses {get; set;} = default!;
    public IList<StationaryStoreEmployee> StationaryStoreEmployees {get; set; } = default!;
 }

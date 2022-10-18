@@ -7,6 +7,9 @@ namespace WebStore.Model.DataModels
 {
     public class Address
     {
-        public string NewAddress { get; set; } = default!;
+        public string Country { get; set; } = default!;
+        public string City { get; set; } = default!;
+        public int BuildingNumber { get; set; }
+        public string PostalCode { get; set; } = default!;
     }
 }

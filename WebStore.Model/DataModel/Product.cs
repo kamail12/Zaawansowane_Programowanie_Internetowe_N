@@ -13,6 +13,7 @@ namespace WebStore.Model.DataModel
         public int Id { get; set; }
         public byte[] ImageBytes { get; set; } = default!;
         public string Name { get; set; } = default!;
+         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
         public virtual Supplier Supplier { get; set; } = default!;
         [ForeignKey("Supplier")]

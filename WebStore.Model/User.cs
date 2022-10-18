@@ -1,4 +1,6 @@
-namespace WebStore.Model
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+namespace WebStore.Model;
 public class User : IdentityUser<int>
 {
     public string FirstName { get; set; }

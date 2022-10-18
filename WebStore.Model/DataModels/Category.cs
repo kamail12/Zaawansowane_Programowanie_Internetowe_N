@@ -1,14 +1,15 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
 namespace WebStore.Model.DataModels;
 
-public class Category
-{
-   public string Damper {get; set;} = default!;
-   public string Tires {get; set;} = default!;
-   public string Batteries {get; set;} = default!;
-   public string SparkPlugs {get; set;} = default!;
+public class Category {
+   public int Id { get; set; }
 
-   public virtual IList<Product> Products {get; set; }  = default!;
+   [Required]
+   public string Name { get; set; } = default !;
 
+   [Required]
+   public string Tag { get; set; } = default !;
+   public virtual IList<Product>? Products { get; set; }
 }

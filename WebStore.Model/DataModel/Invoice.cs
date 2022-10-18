@@ -2,10 +2,8 @@ namespace WebStore.Model.DataModel;
 
 public class Invoice
 {
-
-    public DateTime DeliveryDate { get; set; } = default!;
-    public DateTime OrderDate { get; set; } = default!;
-    public decimal TotalAmount { get; set; } = default!;
-    public long TrackingNumber { get; set; } = default!;
-    public IList<Order> Orders { get; set; } = default!;
+    public int invoiceID { get; set; }
+    public decimal totalPrice { get; set; }
+    public DateTime invoiceDate { get; set; }
+    public virtual IList<Order> Orders { get; set; } = default!;
 }

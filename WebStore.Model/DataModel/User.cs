@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 namespace WebStore.Model.DataModel
 {
@@ -5,7 +7,9 @@ namespace WebStore.Model.DataModel
     {
         public string FirstName { get; set; } = default!;
         public string LastName { get; set; } = default!;
-        public DateTime RegistrationDate { get; set; } = default!;
+        // Register with current timeStamp
+        public DateTime RegistrationDate { get; set; } = DateTime.Now;
+
 
     }
 }

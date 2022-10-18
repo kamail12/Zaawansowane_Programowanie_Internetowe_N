@@ -6,7 +6,8 @@ namespace WebStore.Model.DataModels;
 
 public class Address
 {
-    public Customer Customer {get; set;} = default!;
+    [NotMapped]
+    public virtual Customer Customer {get; set;} = default!;
     [ForeignKey("Customer")]
 
     public int CustomerId {get; set;}
@@ -15,7 +16,7 @@ public class Address
     public string City {get; set;} = default!;
     public string PostCode {get; set;} = default!;
 
-    public StationaryStore StationaryStore {get; set;} = default!;
+    public virtual StationaryStore StationaryStore {get; set;} = default!;
     [ForeignKey("StationaryStore")]
     public int StationaryStoreId {get; set; } 
 

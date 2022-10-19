@@ -632,7 +632,7 @@ namespace WebStore.DAL.Migrations
                     b.HasOne("WebStore.Model.DataModel.Product", "Product")
                         .WithMany("OrderProducts")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Order");

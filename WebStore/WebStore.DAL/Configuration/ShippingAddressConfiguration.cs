@@ -10,7 +10,8 @@ public class ShippingAddressConfiguration : IEntityTypeConfiguration<ShippingAdd
         builder.ToTable("ShippingAddress");
 
         builder.HasOne(x => x.Customer)
-            .WithOne(y => y.ShippingAddress)
-            .HasForeignKey<ShippingAddress>(x => x.Id);
+            .WithMany(y => y.ShippingAddresses)
+            .HasForeignKey(x => x.CustomerId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

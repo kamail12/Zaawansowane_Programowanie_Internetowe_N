@@ -12,19 +12,14 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
             .HasForeignKey(y => y.CustomerId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        // builder.HasMany(x => x.Adresses)
-        //     .WithOne(y => y.Customer)
-        //     .HasForeignKey(y => y.CustomerId)
-        //     .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasOne(x => x.BillingAddress)
+        builder.HasMany(x => x.BillingAddresses)
             .WithOne(y => y.Customer)
-            .HasForeignKey<Customer>(x => x.BillingAddressId)
+            .HasForeignKey(x => x.CustomerId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasOne(x => x.ShippingAddress)
+        builder.HasMany(x => x.ShippingAddresses)
             .WithOne(y => y.Customer)
-            .HasForeignKey<Customer>(x => x.ShippingAddressId)
+            .HasForeignKey(x => x.CustomerId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

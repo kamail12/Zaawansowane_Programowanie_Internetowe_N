@@ -1,5 +1,6 @@
 namespace WebStore.Model.Models;
-public sealed class BillingAddress : Address
+public class BillingAddress : Address
 {
-
+    public int CustomerId { get; set; }
+    public virtual Customer Customer { get; set; } = default!;
 }

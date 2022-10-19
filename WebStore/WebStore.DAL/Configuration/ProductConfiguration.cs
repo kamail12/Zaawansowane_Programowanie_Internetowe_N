@@ -28,6 +28,8 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .WithOne(y => y.Product)
             .HasForeignKey(y => y.ProductId)
             .OnDelete(DeleteBehavior.Restrict);
-    }
 
+        builder.Property(x => x.Price)
+             .HasPrecision(18, 2);
+    }
 }

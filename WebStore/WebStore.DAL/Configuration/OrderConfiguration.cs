@@ -23,5 +23,8 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
             .WithMany(y => y.Orders)
             .HasForeignKey(x => x.Invoiceid)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Property(x => x.TotalAmount)
+            .HasPrecision(18, 2);
     }
 }

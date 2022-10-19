@@ -10,7 +10,8 @@ public class BillingAddressConfiguration : IEntityTypeConfiguration<BillingAddre
         builder.ToTable("BillingAddress");
 
         builder.HasOne(x => x.Customer)
-            .WithOne(y => y.BillingAddress)
-            .HasForeignKey<BillingAddress>(x => x.Id);
+            .WithMany(y => y.BillingAddresses)
+            .HasForeignKey(x => x.CustomerId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

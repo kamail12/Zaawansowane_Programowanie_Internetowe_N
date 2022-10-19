@@ -3,16 +3,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WebStore.Model.Models;
 
 namespace WebStore.DAL.Configuration;
-public class StationaryStoreEmployeeConfiguration : IEntityTypeConfiguration<StationaryStoreEmployee>
+public class StationaryStoreAddressConfiguration : IEntityTypeConfiguration<StationaryStoreAddress>
 {
-    public void Configure(EntityTypeBuilder<StationaryStoreEmployee> builder)
+    public void Configure(EntityTypeBuilder<StationaryStoreAddress> builder)
     {
+        builder.ToTable("StationaryStoreAddress");
+
         builder.HasOne(x => x.StationaryStore)
-            .WithMany(y => y.StationaryStoreEmployees)
+            .WithMany(y => y.Addresses)
             .HasForeignKey(x => x.StationaryStoreId)
             .OnDelete(DeleteBehavior.Restrict);
-
-        builder.Property(x => x.Salary)
-            .HasPrecision(18, 2);
     }
 }

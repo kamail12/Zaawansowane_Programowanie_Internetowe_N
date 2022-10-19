@@ -20,5 +20,8 @@ public class InvoiceConfiguration : IEntityTypeConfiguration<Invoice>
             .WithMany(y => y.Invoices)
             .HasForeignKey(y => y.StationaryStoreId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Property(x => x.TotalPrice)
+            .HasPrecision(18, 2);
     }
 }

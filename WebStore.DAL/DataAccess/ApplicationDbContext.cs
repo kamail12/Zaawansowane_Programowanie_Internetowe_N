@@ -38,37 +38,11 @@ namespace WebStore.DAL.DataAccess
                 .HasValue<Supplier>(2)
                 .HasValue<StationaryStoreEmployee>(3);
 
-
-
-            builder.Entity<ProductStock>()
-                .HasOne(p => p.Product)
-                .WithMany(op => op.ProductStocks)
-                .HasForeignKey(ord => ord.ProductId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-
             builder.Entity<OrderProduct>()
-                .HasOne(p => p.Product)
-                .WithMany(op => op.OrderProducts)
-                .HasForeignKey(ord => ord.ProductId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-
-            // builder.Entity<OrderProduct>()
-            //     .HasKey(sg => new {sg.OrderId, sg.ProductId});
-
-            // builder.Entity<OrderProduct>()
-            //     .HasOne(g => g.Product)
-            //     .WithMany(sg => sg.OrderProducts)
-            //     .HasForeignKey(g => g.ProductId);
-
-            // builder.Entity<OrderProduct>()
-            //     .HasOne(g => g.Order)
-            //     .WithMany(sg => sg.OrderProducts)
-            //     .HasForeignKey(g => g.OrderId)
-            //     .OnDelete(DeleteBehavior.Restrict);
-
-
+                 .HasOne(o => o.Order)
+                 .WithMany(op => op.OrderProducts)
+                 .HasForeignKey(ord => ord.OrderId)
+                 .OnDelete(DeleteBehavior.Restrict);
 
         }
     }

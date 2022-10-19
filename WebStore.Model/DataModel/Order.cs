@@ -8,6 +8,7 @@ namespace WebStore.Model.DataModel;
 
 public class Order
 {
+
     public virtual Customer Customer { get; set; } = default!;
     [ForeignKey("Customer")]
     public int? CustomerId { get; set; }

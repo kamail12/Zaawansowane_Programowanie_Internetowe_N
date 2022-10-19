@@ -32,6 +32,23 @@ namespace WebStore.DAL.EF {
                 .HasValue<Customer> (1)
                 .HasValue<Supplier> (2)
                 .HasValue<StationaryStoreEmployee> (3);
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasKey(sg => new {sg.OrderId, sg.ProductId});
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(g => g.Product)
+                .WithMany(sg => sg.OrderProducts)
+                .HasForeignKey(g => g.ProductId);
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(g => g.Order)
+                .WithMany(sg => sg.OrderProducts)
+                .HasForeignKey(g => g.OrderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+
         }
     }
 }

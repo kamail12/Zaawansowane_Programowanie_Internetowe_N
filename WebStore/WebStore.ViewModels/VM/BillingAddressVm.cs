@@ -1,4 +1,4 @@
-namespace WebStore.Model.Models;
+namespace WebStore.ViewModels.VM;
 public class BillingAddressVm : AddressVm
 {
     public int CustomerId { get; set; }

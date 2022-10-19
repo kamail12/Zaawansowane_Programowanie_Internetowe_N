@@ -9,5 +9,6 @@ namespace WebStore.Model.DataModels
     {
         public DateTime EmploymentDate { get; set; }
         public string Position { get; set; } = default!;
+        public virtual StationaryStore StationaryStore { get; set; } = default!;
     }
 }

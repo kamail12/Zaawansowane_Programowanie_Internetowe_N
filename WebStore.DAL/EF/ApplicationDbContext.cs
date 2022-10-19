@@ -36,20 +36,47 @@ namespace WebStore.DAL.EF
         {
             base.OnModelCreating(builder);
             builder.Entity<User>()
-                .ToTable("tbl_Users")
+                .ToTable("Users")
                 .HasDiscriminator<int>("UserType")
                 .HasValue<User>(0)
                 .HasValue<Customer>(1)
                 .HasValue<Supplier>(2)
                 .HasValue<StationeryStoreEmployee>(3);
-            builder.Entity<Address>().ToTable("tbl_Adresses");
-            builder.Entity<Category>().ToTable("tbl_Categories");
-            builder.Entity<Invoice>().ToTable("tbl_Invoices");
-            builder.Entity<Order>().ToTable("tbl_Orders");
-            builder.Entity<OrderProduct>().ToTable("tbl_OrderProducts");
-            builder.Entity<Product>().ToTable("tbl_Product");
-            builder.Entity<ProductStock>().ToTable("tbl_ProductStocks");
-            builder.Entity<StationaryStore>().ToTable("tbl_StationaryStore");
+
+            // builder.Entity<Customer>()
+            //     .ToTable("Customer")
+            //     .HasMany(c => c.Orders)
+            //     .WithOne(o => o.Customer)
+            //     .HasForeignKey(x => x.CustomerId);
+
+            // builder.Entity<Customer>()
+            //     .HasMany(a => a.BillingAddress)
+            //     .WithOne()
+            // builder.Entity<Order>()
+            //     .ToTable("Order")
+            //     .HasOne(c => c.Customer)
+            //     .WithMany(o => o.Orders)
+            //     .HasForeignKey(x => x.Id);
+
+            // builder.Entity<Supplier>()
+            //     .ToTable("Supplier")
+            //     .HasMany(s => s.Products)
+            //     .WithOne(p => p.Supplier)
+            //     .HasForeignKey(x => x.Id);
+
+            // builder.Entity<Product>()
+            //     .ToTable("Product")
+            //     .HasMany(x => x.ProductStocks)
+            //     .WithOne(s => s.Product)
+            //     .HasPrincipalKey(x => x.Id);
+            // builder.Entity<Address>().ToTable("tbl_Adresses");
+            // builder.Entity<Category>().ToTable("tbl_Categories");
+            // builder.Entity<Invoice>().ToTable("tbl_Invoices");
+            // builder.Entity<Order>().ToTable("tbl_Orders");
+            // builder.Entity<OrderProduct>().ToTable("tbl_OrderProducts");
+            // builder.Entity<Product>().ToTable("tbl_Product");
+            // builder.Entity<ProductStock>().ToTable("tbl_ProductStocks");
+            // builder.Entity<StationaryStore>().ToTable("tbl_StationaryStore");
 
         }
 

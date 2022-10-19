@@ -73,7 +73,6 @@ public class ProductService : BaseService, IProductService
             {
                 Logger.LogError(ex, ex.Message);
                 throw;
-                ok
             }
         }
     }

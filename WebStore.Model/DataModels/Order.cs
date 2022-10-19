@@ -20,6 +20,6 @@ namespace WebStore.Model.DataModels
         public Invoice Invoice { get; set; } = default!;
         [ForeignKey("Invoice")]
         public int? InvoiceId { get; set; }
-        public virtual IList<OrderProduct> OrderProducts { get; set; }
+        public virtual IList<OrderProduct> OrderProducts { get; set; } = default!;
     }
 }

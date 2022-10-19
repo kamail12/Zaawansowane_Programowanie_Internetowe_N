@@ -13,8 +13,9 @@ public class Order
    public DateTime DeliveryDate {get; set;}  
    public int Id {get; set; }
    public DateTime OrderDate {get; set;}
-   
+
    public decimal TotalAmount {get; set;} 
+   [Column(TypeName = "decimal(18,2)")]
    public long TrackingNumber {get; set; }
    public virtual Invoice Invoice {get; set; } = default!;
    [ForeignKey("Invoice")]

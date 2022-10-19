@@ -14,6 +14,7 @@ public class Product
    public byte[] ImageBytes {get; set;} = default!;
    public string Name {get; set;} = default!;
    public decimal Price {get; set;} 
+   [Column(TypeName = "decimal(18,2)")]
    public virtual Supplier Supplier {get; set;} = default!;
    [ForeignKey("Supplier")]
    public int SupplierId {get; set; }

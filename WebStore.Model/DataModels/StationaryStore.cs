@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WebStore.Model.DataModels;
 
-public class StationaryStore
+public class StationaryStore : Order
 {
    public virtual Address Address {get; set;} = default!;
    

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebStore.Model.DataModels;
 
-public class ProductStock
+public class ProductStock : Product
 {
     
     public virtual Product Product {get; set;} = default!;

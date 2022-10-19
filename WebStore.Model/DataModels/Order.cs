@@ -17,7 +17,7 @@ namespace WebStore.Model.DataModels
         public DateTime OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
         public long TrackingNumber { get; set; }
-        public Invoice Invoice { get; set; } = default!;
+        public virtual Invoice Invoice { get; set; } = default!;
         [ForeignKey("Invoice")]
         public int? InvoiceId { get; set; }
         public virtual IList<OrderProduct> OrderProducts { get; set; } = default!;

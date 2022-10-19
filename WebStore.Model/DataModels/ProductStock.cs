@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebStore.Model.DataModels
 {
-    public class ProductStock
+    public class ProductStock : Product
     {
         public int Quantity { get; set; }
 

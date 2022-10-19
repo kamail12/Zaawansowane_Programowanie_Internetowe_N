@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.Extensions.Logging;
 using WebStore.DAL.DatabaseContext;
 using WebStore.Model.Models;
+using WebStore.Services.Interfaces;
 using WebStore.ViewModels.VM;
 
 namespace WebStore.Services.ConcreteServices;

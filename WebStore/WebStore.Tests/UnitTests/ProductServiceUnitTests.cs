@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebStore.Model.Models;
+using WebStore.DAL.DatabaseContext;
 using WebStore.Services.Interfaces;
 using WebStore.ViewModels.VM;
+using Xunit;
 
 namespace WebStore.Tests.UnitTests;
 public class ProductServiceUnitTests : BaseUnitTests

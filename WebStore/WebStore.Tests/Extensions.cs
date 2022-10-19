@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using WebStore.DAL.DatabaseContext;
 using WebStore.Model.Models;
 
 namespace WebStore.Tests

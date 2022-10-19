@@ -43,11 +43,37 @@ public class ProductService : BaseService, IProductService
 
     public ProductVm GetProduct(Expression<Func<Product, bool>> filterExpression)
     {
-        throw new NotImplementedException();
-    }
+        try
+        {
+            if (filterExpression == null)
+                throw new ArgumentNullException("Filter expression parameter is null");
+            var productEntity = DbContext.Products.FirstOrDefault(filterExpression);
+            var productVm = Mapper.Map<ProductVm>(productEntity);
+            return productVm;
+        }
+        catch (Exception ex)
+        {
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
 
-    public IEnumerable<ProductVm> GetProducts(Expression<Func<Product, bool>>? filterExpression = null)
-    {
-        throw new NotImplementedException();
+        public IEnumerable<ProductVm> GetProducts(Expression<Func<Product, bool>>? filterExpression = null)
+        {
+            try
+            {
+                var productsQuery = DbContext.Products.AsQueryable();
+                if (filterExpression != null)
+                    productsQuery = productsQuery.Where(filterExpression);
+                var productVms = Mapper.Map<IEnumerable<ProductVm>>(productsQuery);
+                return productVms;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace WebStore.Model.DataModel {
 
         public virtual Address ShippingAddress { get; set; } = default !;
         [ForeignKey ("ShippingAddress")]
-        public int ShippingAddressId { get; set; }
+        public int? ShippingAddressId { get; set; }
 
     }
 }

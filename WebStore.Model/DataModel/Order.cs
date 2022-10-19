@@ -10,7 +10,7 @@ public class Order
 {
     public virtual Customer Customer { get; set; } = default!;
     [ForeignKey("Customer")]
-    public int CustomerId { get; set; }
+    public int? CustomerId { get; set; }
     public DateTime DeliveryDate { get; set; }
     public int Id { get; set; }
     public DateTime OrderDate { get; set; }
@@ -22,7 +22,7 @@ public class Order
     public long TrackingNumber { get; set; }
     public virtual Invoice Invoice { get; set; } = default!;
     [ForeignKey("Invoice")]
-    public int Invoiceid { get; set; } = default!;
+    public int? Invoiceid { get; set; } = default!;
     public virtual IList<OrderProduct> OrderProducts { get; set; } = default!;
 
 }

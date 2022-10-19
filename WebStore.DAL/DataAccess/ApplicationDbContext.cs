@@ -26,11 +26,11 @@ namespace WebStore.DAL.DataAccess
             optionsBuilder.UseLazyLoadingProxies();
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(builder);
 
-            modelBuilder.Entity<User>()
+            builder.Entity<User>()
                 .ToTable("AspNetUsers")
                 .HasDiscriminator<int>("UserType")
                 .HasValue<User>(0)
@@ -39,6 +39,18 @@ namespace WebStore.DAL.DataAccess
                 .HasValue<StationaryStoreEmployee>(3);
 
           
+
+            // builder.Entity<Product>()
+            // .HasRequired(c => c.ProductStock)
+            // .WithMany()
+            // .WillCascadeOnDelete(false);
+
+            // builder.Entity<Side>()
+            //     .HasRequired(s => s.Stage)
+            //     .WithMany()
+            //     .WillCascadeOnDelete(false);
+
+
         }
     }
 }

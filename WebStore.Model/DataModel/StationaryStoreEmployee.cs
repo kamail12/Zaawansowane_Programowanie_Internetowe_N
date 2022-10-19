@@ -10,5 +10,5 @@ public class StationaryStoreEmployee : Supplier
     public string Salary { get; set; } = default!;
     public virtual StationaryStore StationaryStore { get; set; } = default!;
     [ForeignKey("StationaryStoreId")]
-    public int StationaryStoreId { get; set; } = default!;
+    public int? StationaryStoreId { get; set; } = default!;
 }

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
+namespace WebStore.Model.DataModels;
 
-namespace WebStore.Model;
 public class User : IdentityUser<int>
 {
     public string FirstName { get; set; } = default!;

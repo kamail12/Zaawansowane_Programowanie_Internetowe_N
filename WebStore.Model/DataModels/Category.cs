@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-namespace WebStore.Model;
+namespace WebStore.Model.DataModels;
 
 public class Category
 {

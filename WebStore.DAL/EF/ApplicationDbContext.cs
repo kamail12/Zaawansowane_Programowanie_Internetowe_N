@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using WebStore.Model;
+using WebStore.Model.DataModels;
 
 namespace WebStore.DAL.EF
 {
     public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public virtual DbSet<OrderProduct> OrderProduct { get; set; } = default!;
-        public virtual DbSet<Product> Product { get; set; } = default!;
+        public virtual DbSet<Product> Products { get; set; } = default!;
         public virtual DbSet<ProductStock> ProductStock { get; set; } = default!;
         public virtual DbSet<Order> Order { get; set; } = default!;
         public virtual DbSet<Address> Addresses { get; set; } = default!;

@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
-
-namespace WebStore.Model;
+namespace WebStore.Model.DataModels;
 
 public class StationaryStoreEmployee : User
 {

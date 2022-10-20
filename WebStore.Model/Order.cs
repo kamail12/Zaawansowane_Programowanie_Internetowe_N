@@ -2,7 +2,7 @@ namespace WebStore.Model;
 
 public class Order
 {
-    public virtual Customer Customer { get; set; }
+    public virtual Customer Customer { get; set; } = default!;
     public DateTime DeliveryDate { get; set; }
     public int Id { get; set; }
     public DateTime OrderDate { get; set; }

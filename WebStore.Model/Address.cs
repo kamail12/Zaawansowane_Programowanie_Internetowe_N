@@ -2,10 +2,10 @@ namespace WebStore.Model;
 
 public class Address
 {
-    public string StreetName { get; set; }
-    public string BuildingNumber { get; set; }
+    public int Id { get; set; }
+    public string BuildingNumber { get; set; } = default!;
     public int? ApartmentNumber { get; set; }
-    public string Town { get; set; }
-    public string ZipCode { get; set; }
-    public string Country { get; set; }
+    public string Town { get; set; } = default!;
+    public string ZipCode { get; set; } = default!;
+    public string Country { get; set; } = default!;
 }

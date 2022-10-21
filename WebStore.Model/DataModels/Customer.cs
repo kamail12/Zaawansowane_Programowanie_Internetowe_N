@@ -5,15 +5,24 @@ namespace WebStore.Model.DataModels
 {
     public class Customer : User
     {
-        public virtual IList<Order> Orders {get; set;} = default !;
-        public virtual IList<Address> Addresses {get; set;} = default !;
-        public virtual Address? BillingAddress {get; set;}
         
-        [ForeignKey ("BillingAddress")]
-        public int? BillingAddressId {get; set;}
-        public virtual Address ShippingAddress {get; set;} = default !;
 
-        [ForeignKey ("ShippingAddress")]
-        public int ShippingAddressId {get; set;}
+        public virtual IList<Order> Orders { get; set; } = default!;
+
+        
+        public virtual IList<Address> Address { get; set; } = default!;
+        
+        public virtual Address? BillingAddress { get; set; }
+
+        
+
+        [ForeignKey("BillingAddress")]
+        public int? BillingAddressId { get; set; }
+
+       
+        public virtual Address ShippingAddress { get; set; } = default!;
+
+        [ForeignKey("ShippingAddress")]
+        public int ShippingAddressId { get; set; }
     }
 }

@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +7,7 @@ using WebStore.Model.DataModels;
 namespace WebStore.DAL.EF {
     public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int> {
         public virtual DbSet<Order> Orders { get; set; } = default!;
+        public virtual DbSet<User> User => Set<User>();
         public virtual DbSet<Address> Addresses { get; set; } = default!;
         public virtual DbSet<Category> Categories { get; set; } = default!;
         public virtual DbSet<Invoice> Invoices { get; set; } = default!;
@@ -29,8 +27,10 @@ namespace WebStore.DAL.EF {
 
         protected override void OnModelCreating (ModelBuilder modelBuilder) {
             base.OnModelCreating (modelBuilder);
+            
 
             modelBuilder.Entity<User> ()
+                
                 .ToTable ("AspNetUsers")
                 .HasDiscriminator<int> ("UserType")
                 .HasValue<User> (0)
@@ -38,10 +38,11 @@ namespace WebStore.DAL.EF {
                 .HasValue<Supplier> (2)
                 .HasValue<StationaryStoreEmployee> (3);
 
-            modelBuilder.Entity<OrderProduct>()
+           /* modelBuilder.Entity<OrderProduct>()
                 .HasKey(sg => new {sg.OrderId, sg.ProductId});
 
             modelBuilder.Entity<OrderProduct>()
+                
                 .HasOne(g => g.Product)
                 .WithMany(sg => sg.OrderProducts)
                 .HasForeignKey(g => g.ProductId);
@@ -50,10 +51,13 @@ namespace WebStore.DAL.EF {
                 .HasOne(g => g.Order)
                 .WithMany(sg => sg.OrderProducts)
                 .HasForeignKey(g => g.OrderId)
-                .OnDelete(DeleteBehavior.Restrict);
-
+                .OnDelete(DeleteBehavior.Restrict);*/
+            modelBuilder.Entity<Address>()
+                .HasNoKey();
 
 
         }
+
+        
     }
 }

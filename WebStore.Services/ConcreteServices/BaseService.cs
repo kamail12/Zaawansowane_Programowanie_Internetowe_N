@@ -1,6 +1,6 @@
 using AutoMapper;
 using Microsoft.Extensions.Logging;
-using WebStore.DAL.EF;
+using WebStore.DAL.DataAccess;
 namespace WebStore.Services.ConcreteServices
 {
     public abstract class BaseService

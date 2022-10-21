@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebStore.Model.DataModels;
 
-namespace WebStore.DAL.EF
+namespace WebStore.DAL.DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {

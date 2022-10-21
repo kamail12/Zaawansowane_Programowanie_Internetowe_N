@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using WebStore.DAL.EF;
+using WebStore.DAL.DataAccess;
 using WebStore.Model.DataModels;
 namespace WebStore.Tests
 {

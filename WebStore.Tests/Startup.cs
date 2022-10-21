@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using WebStore.DAL.EF;
+using WebStore.DAL.DataAccess;
 using WebStore.Model.DataModels;
 using WebStore.Services.ConcreteServices;
 using WebStore.Services.Configuration.Profiles;

@@ -1,10 +1,12 @@
-using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebStore.Model.DataModels;
 
-public class OrderProduct
+public class OrderProduct : Order
 {
-   public Order Order {get; set;} = default!;
-   public Product Product {get; set;} = default!;
-   public int Quantity {get; set;} 
+    public virtual Order Order { get; set; } = default!;
+    public int OrderId { get; set; } = default!;
+    public virtual Product Product { get; set; } = default!;
+    public int ProductId { get; set; } = default!;
+    public int Quantity { get; set; }
 }

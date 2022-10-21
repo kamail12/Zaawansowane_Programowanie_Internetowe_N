@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WebStore.Model.DataModels;
 
-public class Supplier
+public class Supplier : User 
 {
-   public IList<Product> Products {get; set;} = default!;
+   public virtual IList<Product> Products {get; set;} = default!;
 }

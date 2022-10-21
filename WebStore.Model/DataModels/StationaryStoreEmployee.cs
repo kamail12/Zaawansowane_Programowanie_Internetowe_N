@@ -1,9 +1,14 @@
-using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebStore.Model.DataModels;
 
-public class StationaryStoreEmployee
+public class StationaryStoreEmployee : Supplier
 {
-   public string FirstName {get; set;} = default!;
-   public string LastName {get; set;} = default!;
+    public int agreementNumber { get; set; }
+    public DateTime Employment { get; set; }
+    public string JobLevel { get; set; } = default!;
+    public string Salary { get; set; } = default!;
+    public virtual StationaryStore StationaryStore { get; set; } = default!;
+    [ForeignKey("StationaryStoreId")]
+    public int? StationaryStoreId { get; set; } = default!;
 }

@@ -1,10 +1,16 @@
 using Microsoft.AspNetCore.Identity;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace WebStore.Model.DataModels;
 
-public class Customer
+public class Customer : User
 {
-   public Address BillingAddress {get; set;} = default!;
-   public IList<Order> Orders {get; set;} = default!;
-   public Address ShippingAddress {get; set;} = default!;
+    public virtual Address? BillingAddress { get; set; }
+
+    [ForeignKey("BillingAddress")]
+    public int? BillingAddressId { get; set; }
+    public virtual IList<Order> Orders { get; set; } = default!;
+    public virtual Address ShippingAddress { get; set; } = default!;
+    [ForeignKey("ShippingAddress")]
+    public int? ShippingAddressId { get; set; }
+
 }

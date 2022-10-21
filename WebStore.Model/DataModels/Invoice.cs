@@ -1,10 +1,13 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace WebStore.Model.DataModels;
 
 public class Invoice
 {
-    public DateTime DeliveryDate { get; set; } = default!;
-    public DateTime OrderDate { get; set; } = default!;
-    public decimal TotalAmount { get; set; } = default!;
-    public long TrackingNumber { get; set; } = default!;
-    public IList<Order> Orders { get; set; } = default!;
+    public int InvoiceId { get; set; }
+    
+    [NotMapped]
+    public decimal TotalAmount => Orders == null ? 0 : Orders.Sum(ord => ord.TotalAmount); 
+    public DateTime InvoiceDate { get; set; }
+    public virtual IList<Order> Orders { get; set; } = default!;
 }

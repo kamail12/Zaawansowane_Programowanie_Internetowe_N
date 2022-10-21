@@ -16,7 +16,6 @@ namespace WebStore.Model.DataModels
         [ForeignKey("Address")]
         public int? AddressId { get; set; }
         public virtual IList<StationeryStoreEmployee> StationeryStoreEmployees { get; set; } = default!;
-        [ForeignKey("StationaryStoreEmployee")]
-        public int? StationaryStoreEmployeeId { get; set; }
+        
     }
 }

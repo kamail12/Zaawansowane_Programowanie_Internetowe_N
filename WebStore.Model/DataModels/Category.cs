@@ -1,12 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 
-
 namespace WebStore.Model.DataModels;
 
 public class Category
 {
-    public int CategoryId { get; set; }
-    public string CategoryType { get; set; } = default!;
-    public string CategoryName { get; set; } = default!;
+
+    public int Id { get; set; }
+    public string Name { get; set; } = default!;
+    public string Tag { get; set; } = default!;
     public virtual IList<Product> Products { get; set; } = default!;
+
 }

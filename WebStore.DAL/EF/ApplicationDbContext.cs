@@ -38,7 +38,7 @@ namespace WebStore.DAL.EF {
                 .HasValue<Supplier> (2)
                 .HasValue<StationaryStoreEmployee> (3);
 
-           /* modelBuilder.Entity<OrderProduct>()
+            modelBuilder.Entity<OrderProduct>()
                 .HasKey(sg => new {sg.OrderId, sg.ProductId});
 
             modelBuilder.Entity<OrderProduct>()
@@ -51,9 +51,11 @@ namespace WebStore.DAL.EF {
                 .HasOne(g => g.Order)
                 .WithMany(sg => sg.OrderProducts)
                 .HasForeignKey(g => g.OrderId)
-                .OnDelete(DeleteBehavior.Restrict);*/
+                .OnDelete(DeleteBehavior.Restrict);
+                
             modelBuilder.Entity<Address>()
                 .HasNoKey();
+            modelBuilder.Ignore<Address>();
 
 
         }

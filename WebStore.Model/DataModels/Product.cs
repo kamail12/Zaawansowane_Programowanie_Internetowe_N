@@ -2,7 +2,7 @@ namespace WebStore.Model.DataModels;
 
 public class Product
 {
-    public string Category { get; set; }
+    public Category Category { get; set; }
     public string Description { get; set; }
     public int Id { get; set; }
     public byte[] ImageBytes { get; set; }

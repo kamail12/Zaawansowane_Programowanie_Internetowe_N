@@ -3,9 +3,9 @@ using WebStore.Model.DataModels;
 using WebStore.ViewModels.VM;
 
 namespace WebStore.Services.Configuration;
-public class AutoMapperProfile : Profile
+public class MainProfile : Profile
 {
-    public AutoMapperProfile()
+    public MainProfile()
     {
         CreateMap<AddOrUpdateProductVm, Product>();
         CreateMap<AddressVm, Address>();

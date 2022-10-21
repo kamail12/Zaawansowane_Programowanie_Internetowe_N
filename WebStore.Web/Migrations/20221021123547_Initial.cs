@@ -166,8 +166,8 @@ namespace WebStore.Web.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: true),
                     OrderId = table.Column<int>(type: "int", nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: true),
-                    AddressId = table.Column<int>(type: "int", nullable: true),
                     AddressesId = table.Column<int>(type: "int", nullable: true),
+                    AddressId = table.Column<int>(type: "int", nullable: true),
                     StationaryStoreEmployeeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -183,8 +183,7 @@ namespace WebStore.Web.Migrations
                         name: "FK_Orders_Addresses_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Orders_Invoices_InvoiceId",
                         column: x => x.InvoiceId,
@@ -196,7 +195,7 @@ namespace WebStore.Web.Migrations
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Orders_Orders_StationaryStoreId",
                         column: x => x.StationaryStoreId,
@@ -439,7 +438,7 @@ namespace WebStore.Web.Migrations
                 column: "ProductId",
                 principalTable: "Products",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Orders_Users_CustomerId",

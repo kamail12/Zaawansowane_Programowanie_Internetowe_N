@@ -12,7 +12,7 @@ using WebStore.DAL.EF;
 namespace WebStore.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221021084606_Initial")]
+    [Migration("20221021123547_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -462,7 +462,7 @@ namespace WebStore.Web.Migrations
                 {
                     b.HasBaseType("WebStore.Model.DataModels.Order");
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<int>("AddressesId")
@@ -619,13 +619,13 @@ namespace WebStore.Web.Migrations
                     b.HasOne("WebStore.Model.DataModels.Order", "Order")
                         .WithMany("OrderProducts")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("WebStore.Model.DataModels.Product", "Product")
                         .WithMany("OrderProducts")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Order");
@@ -648,9 +648,7 @@ namespace WebStore.Web.Migrations
                 {
                     b.HasOne("WebStore.Model.DataModels.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AddressId");
 
                     b.HasOne("WebStore.Model.DataModels.Address", "Addresses")
                         .WithMany()

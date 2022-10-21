@@ -13,7 +13,6 @@ namespace WebStore.Model.DataModels
         [ForeignKey("BillingAdress")]
         public int? BillingAddressId { get; set; }
         public virtual IList<Order> Orders { get; set; } = default!;
-
         public int? OrderId { get; set; }
         public virtual Address ShippingAddress { get; set; } = default!;
         [ForeignKey("ShippingAddress")]

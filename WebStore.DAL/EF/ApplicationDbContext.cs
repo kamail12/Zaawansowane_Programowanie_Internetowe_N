@@ -44,6 +44,17 @@ namespace WebStore.DAL.EF
                 .HasValue<Customer>(1)
                 .HasValue<Supplier>(2)
                 .HasValue<StationeryStoreEmployee>(3);
+            builder.Entity<OrderProduct>()
+            .HasOne(p => p.Product)
+            .WithMany(op => op.OrderProducts)
+            .HasForeignKey(ord => ord.ProductId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<OrderProduct>()
+            .HasOne(o => o.Order)
+            .WithMany(op => op.OrderProducts)
+            .HasForeignKey(ord => ord.OrderId)
+            .OnDelete(DeleteBehavior.Restrict);
 
             // builder.Entity<Customer>()
             //     .ToTable("Customer")

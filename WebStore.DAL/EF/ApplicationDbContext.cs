@@ -2,36 +2,39 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebStore.Model.DataModels;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace WebStore.DAL.EF {
-    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int> {
-        public virtual DbSet<OrderProduct> OrderProducts { get; set; } = default!;
-        public virtual DbSet<Product> Products { get; set; } = default!;
-        public virtual DbSet<ProductStock> ProductStocks { get; set; } = default!;
-        public virtual DbSet<Order> Orders { get; set; } = default!;
-        public virtual DbSet<Address> Addresses { get; set; } = default!;
-        public virtual DbSet<Category> Categories { get; set; } = default!;
-        public virtual DbSet<Invoice> Invoices { get; set; } = default!;
-        public virtual DbSet<StationaryStore> StationaryStores { get; set; } = default!;
+namespace WebStore.DAL.EF
+{
+    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
+    {
+        public DbSet<User> User => Set<User>();
+        public DbSet<BillingAddress> BillingAddress => Set<BillingAddress>();
+        public DbSet<ShippingAddress> ShippingAddress => Set<ShippingAddress>();
+        public DbSet<Customer> Customer => Set<Customer>();
+        public DbSet<Supplier> Supplier => Set<Supplier>();
+        public DbSet<Category> Category => Set<Category>();
+        public DbSet<Invoice> Invoice => Set<Invoice>();
+        public DbSet<Order> Order => Set<Order>();
+        public DbSet<OrderProduct> OrderProduct => Set<OrderProduct>();
+        public DbSet<Product> Product => Set<Product>();
+        public DbSet<StationaryStore> StationaryStore => Set<StationaryStore>();
 
-        public ApplicationDbContext (DbContextOptions<ApplicationDbContext> options) : base (options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder) {
-            base.OnConfiguring (optionsBuilder);
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseLazyLoadingProxies ();
+            optionsBuilder.UseLazyLoadingProxies();
         }
 
-        protected override void OnModelCreating (ModelBuilder modelBuilder) {
-            base.OnModelCreating (modelBuilder);
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
-            modelBuilder.Entity<User> ()
-                .ToTable ("AspNetUsers")
-                .HasDiscriminator<int> ("UserType")
-                .HasValue<User> (0)
-                .HasValue<Customer> (1)
-                .HasValue<Supplier> (2)
-                .HasValue<StationaryStoreEmployee> (3);
         }
+
     }
 }

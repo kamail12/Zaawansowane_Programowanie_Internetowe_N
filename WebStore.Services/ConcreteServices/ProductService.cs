@@ -21,9 +21,9 @@ public class ProductService : BaseService, IProductService {
                 throw new ArgumentNullException ("View model parameter is null");
             var productEntity = Mapper.Map<Product> (addOrUpdateProductVm);
             if (addOrUpdateProductVm.Id.HasValue || addOrUpdateProductVm.Id == 0)
-                DbContext.Products.Update (productEntity);
+                DbContext.Product.Update (productEntity);
             else
-                DbContext.Products.Add (productEntity);
+                DbContext.Product.Add (productEntity);
             DbContext.SaveChanges ();
             var productVm = Mapper.Map<ProductVm> (productEntity);
             return productVm;
@@ -37,7 +37,7 @@ public class ProductService : BaseService, IProductService {
         try {
             if (filterExpression == null)
                 throw new ArgumentNullException ("Filter expression parameter is null");
-            var productEntity = DbContext.Products.FirstOrDefault (filterExpression);
+            var productEntity = DbContext.Product.FirstOrDefault (filterExpression);
             var productVm = Mapper.Map<ProductVm> (productEntity);
             return productVm;
         } catch (Exception ex) {
@@ -49,7 +49,7 @@ public class ProductService : BaseService, IProductService {
     }
     public IEnumerable<ProductVm> GetProducts (Expression<Func<Product, bool>> ? filterExpression = null) {
         try {
-            var productsQuery = DbContext.Products.AsQueryable ();
+            var productsQuery = DbContext.Product.AsQueryable ();
             if (filterExpression != null)
                 productsQuery = productsQuery.Where (filterExpression);
             var productVms = Mapper.Map<IEnumerable<ProductVm>> (productsQuery);

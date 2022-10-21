@@ -29,8 +29,6 @@ namespace WebStore.DAL.EF
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-
-            optionsBuilder.UseSqlServer(b => b.MigrationsAssembly("WebStore.Web"));
             optionsBuilder.UseLazyLoadingProxies();
         }
 

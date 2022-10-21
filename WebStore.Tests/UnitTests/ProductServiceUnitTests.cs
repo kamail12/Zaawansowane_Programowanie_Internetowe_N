@@ -23,8 +23,8 @@ public class ProductServiceUnitTests : BaseUnitTests
     [Fact]
     public void GetProductTest()
     {
-        //var product = _productService.GetProduct(p => p.Name == "Monitor Dell 32");
-        //Assert.NotNull(product);
+        var product = _productService.GetProduct(p => p.Name == "Monitor Dell 32");
+        Assert.NotNull(product);
     }
 
     [Fact]

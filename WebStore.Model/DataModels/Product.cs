@@ -19,6 +19,7 @@ namespace WebStore.Model.DataModels
         public decimal Price { get; set; }
         public virtual Supplier Supplier { get; set; } = default!;
         [ForeignKey("Supplier")]
+        public int SupplierId { get; set; }
         public float Weight { get; set; }
         public virtual IList<ProductStock> ProductStocks { get; set; } = default!;
 

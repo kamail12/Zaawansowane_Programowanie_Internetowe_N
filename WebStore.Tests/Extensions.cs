@@ -1,7 +1,9 @@
+using System;
 using Microsoft.AspNetCore.Identity; 
 using Microsoft.Extensions.DependencyInjection; 
 using WebStore.DAL.EF; 
 using WebStore.Model.DataModels; 
+using WebStore.Services.Configuration;
 namespace WebStore.Tests { 
     public static class Extensions {
         // Create sample data 

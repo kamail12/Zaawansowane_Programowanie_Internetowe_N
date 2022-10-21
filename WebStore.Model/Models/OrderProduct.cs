@@ -1,4 +1,5 @@
-namespace WebStore.Model;
+namespace WebStore.Model.Models;
+
 public class OrderProduct
 {
     public virtual Order Order {get; set;} = default!;

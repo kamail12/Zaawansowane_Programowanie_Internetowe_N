@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebStore.Model.DataModels;
+using WebStore.DAL.EF;
 
 namespace WebStore.DAL.EF
 {
@@ -29,6 +30,7 @@ namespace WebStore.DAL.EF
         {
             base.OnConfiguring(optionsBuilder);
 
+            optionsBuilder.UseSqlServer(b => b.MigrationsAssembly("WebStore.Web"));
             optionsBuilder.UseLazyLoadingProxies();
         }
 

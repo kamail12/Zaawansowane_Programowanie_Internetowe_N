@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore.Model", "WebStore.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore.DAL", "WebStore.DAL\WebStore.DAL.csproj", "{06A7E857-8649-4D4C-9694-0B210D1098F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore.Tests", "WebStore.Tests\WebStore.Tests.csproj", "{2C66FE8C-5C37-48EE-A3F3-35F7F72DAF9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{06A7E857-8649-4D4C-9694-0B210D1098F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06A7E857-8649-4D4C-9694-0B210D1098F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06A7E857-8649-4D4C-9694-0B210D1098F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C66FE8C-5C37-48EE-A3F3-35F7F72DAF9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C66FE8C-5C37-48EE-A3F3-35F7F72DAF9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C66FE8C-5C37-48EE-A3F3-35F7F72DAF9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C66FE8C-5C37-48EE-A3F3-35F7F72DAF9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

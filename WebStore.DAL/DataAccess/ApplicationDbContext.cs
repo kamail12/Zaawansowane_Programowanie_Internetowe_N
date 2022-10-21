@@ -16,9 +16,7 @@ namespace WebStore.DAL.DataAccess
         public virtual DbSet<Invoice> Invoices { get; set; } = default!;
         public virtual DbSet<StationaryStore> StationaryStores { get; set; } = default!;
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -39,10 +37,18 @@ namespace WebStore.DAL.DataAccess
                 .HasValue<StationaryStoreEmployee>(3);
 
             builder.Entity<OrderProduct>()
-                 .HasOne(o => o.Order)
-                 .WithMany(op => op.OrderProducts)
-                 .HasForeignKey(ord => ord.OrderId)
-                 .OnDelete(DeleteBehavior.Restrict);
+                .ToTable("OrderProduct")
+                .HasKey(x => new { x.OrderId, x.ProductId });
+            builder.Entity<OrderProduct>()
+                .HasOne(x => x.Order)
+                .WithMany(y => y.OrderProducts)
+                .HasForeignKey(x => x.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<OrderProduct>()
+                .HasOne(x => x.Product)
+                .WithMany(y => y.OrderProducts)
+                .HasForeignKey(x => x.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

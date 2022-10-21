@@ -8,17 +8,14 @@ namespace WebStore.DAL.DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
-        public DbSet<User> User => Set<User>();
-        public DbSet<BillingAddress> BillingAddress => Set<BillingAddress>();
-        public DbSet<ShippingAddress> ShippingAddress => Set<ShippingAddress>();
-        public DbSet<Customer> Customer => Set<Customer>();
-        public DbSet<Supplier> Supplier => Set<Supplier>();
-        public DbSet<Category> Category => Set<Category>();
-        public DbSet<Invoice> Invoice => Set<Invoice>();
-        public DbSet<Order> Order => Set<Order>();
-        public DbSet<OrderProduct> OrderProduct => Set<OrderProduct>();
-        public DbSet<Product> Product => Set<Product>();
-        public DbSet<StationaryStore> StationaryStore => Set<StationaryStore>();
+        public DbSet<BillingAddress> BillingAddress {get;set;} = default!; //=> Set<BillingAddress>();
+        public DbSet<ShippingAddress> ShippingAddress {get;set;} = default!;
+        public DbSet<Category> Category {get;set;} = default!;
+        public DbSet<Invoice> Invoice {get;set;} = default!;
+        public DbSet<Order> Order {get;set;} = default!;
+        public DbSet<OrderProduct> OrderProduct {get;set;} = default!;
+        public DbSet<Product> Product {get;set;} = default!;
+        public DbSet<StationaryStore> StationaryStore {get;set;} = default!;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
@@ -32,8 +29,7 @@ namespace WebStore.DAL.DataAccess
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-
+            // please define here the TPH 
         }
 
     }

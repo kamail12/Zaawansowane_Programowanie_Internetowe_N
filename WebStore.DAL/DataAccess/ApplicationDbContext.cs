@@ -7,21 +7,20 @@ namespace WebStore.DAL.DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
-        public virtual DbSet<OrderProduct> OrderProduct { get; set; } = default!;
-        public virtual DbSet<Product> Products { get; set; } = default!;
-        public virtual DbSet<ProductStock> ProductStock { get; set; } = default!;
-        public virtual DbSet<Order> Order { get; set; } = default!;
-        public virtual DbSet<Address> Addresses { get; set; } = default!;
-        public virtual DbSet<Category> Categories { get; set; } = default!;
-        public virtual DbSet<Invoice> Invoices { get; set; } = default!;
-        public virtual DbSet<StationaryStore> StationaryStores { get; set; } = default!;
+        public DbSet<User> User => Set<User>();
+        public DbSet<CustomerAddress> CustomerAddresses => Set<CustomerAddress>();
+        public DbSet<OrderProduct> OrderProduct => Set<OrderProduct>();
+        public DbSet<Product> Product => Set<Product>()!;
+        public DbSet<ProductStock> ProductStock => Set<ProductStock>();
+        public DbSet<Order> Order => Set<Order>();
+        public DbSet<Category> Category => Set<Category>();
+        public DbSet<Invoice> Invoice => Set<Invoice>();
+        public DbSet<StationaryStore> StationaryStores => Set<StationaryStore>();
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-
-            optionsBuilder.UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

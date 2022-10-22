@@ -13,6 +13,6 @@ namespace WebStore.ViewModels.VM
         public int? CustomerId { get; set; }
         public virtual StationaryStoreVm StationaryStore { get; set; } = default!;
         public int? StationaryStoreId { get; set; }
-        public virtual IList<OrderProductVm> OrderProducts { get; set; } = default!;
+        public virtual IList<ProductVm> Products { get; set; } = default!;
     }
 }

@@ -11,8 +11,7 @@ public class Order
     public DateTime DeliveryDate { get; set; }
     public DateTime OrderDate { get; set; }
     [NotMapped]
-    public decimal TotalAmount => OrderProducts == null ? 0 :
-                                  OrderProducts.Sum(op => op.Product != null ? op.Product.Price : 0);
+    public decimal TotalAmount { get; set; }
     public long TrackingNumber { get; set; }
     public virtual Invoice Invoice { get; set; } = default!;
     [ForeignKey("Invoice")]

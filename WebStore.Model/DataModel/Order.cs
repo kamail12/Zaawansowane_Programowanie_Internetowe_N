@@ -9,7 +9,7 @@ namespace WebStore.Model.DataModel;
 public class Order
 {
     public int Id { get; set; }
-    public decimal TotalPrice { get; set; }
+    public decimal TotalPrice => OrderProducts == null ? 0 : OrderProducts.Sum(op => op.Product != null ? op.Product.Price : 0);
     public long TrackingNumber { get; set; }
     public DateTime DeliveryDate { get; set; }
     public DateTime OrderDate { get; set; }

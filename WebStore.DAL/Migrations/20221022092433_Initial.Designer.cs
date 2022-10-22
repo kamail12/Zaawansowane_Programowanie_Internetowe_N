@@ -12,8 +12,8 @@ using WebStore.DAL.DataAccess;
 namespace WebStore.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221021130548_Inital")]
-    partial class Inital
+    [Migration("20221022092433_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,6 +169,10 @@ namespace WebStore.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PostCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -183,6 +187,8 @@ namespace WebStore.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Address");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Address");
                 });
 
             modelBuilder.Entity("WebStore.Model.DataModel.Category", b =>
@@ -203,7 +209,7 @@ namespace WebStore.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category", (string)null);
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("WebStore.Model.DataModel.Invoice", b =>
@@ -220,15 +226,11 @@ namespace WebStore.DAL.Migrations
                     b.Property<int>("StationaryStoreId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("StationaryStoreId");
 
-                    b.ToTable("Invoice", (string)null);
+                    b.ToTable("Invoice");
                 });
 
             modelBuilder.Entity("WebStore.Model.DataModel.Order", b =>
@@ -254,10 +256,6 @@ namespace WebStore.DAL.Migrations
                     b.Property<int>("StationaryStoreId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<long>("TrackingNumber")
                         .HasColumnType("bigint");
 
@@ -269,7 +267,7 @@ namespace WebStore.DAL.Migrations
 
                     b.HasIndex("StationaryStoreId");
 
-                    b.ToTable("Order", (string)null);
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("WebStore.Model.DataModel.OrderProduct", b =>
@@ -287,7 +285,7 @@ namespace WebStore.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderProduct", (string)null);
+                    b.ToTable("OrderProduct");
                 });
 
             modelBuilder.Entity("WebStore.Model.DataModel.Product", b =>
@@ -299,7 +297,6 @@ namespace WebStore.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("CategoryId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -315,11 +312,9 @@ namespace WebStore.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("SupplierId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<float>("Weight")
@@ -331,7 +326,7 @@ namespace WebStore.DAL.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("WebStore.Model.DataModel.ProductStock", b =>
@@ -370,7 +365,7 @@ namespace WebStore.DAL.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.ToTable("StationaryStore", (string)null);
+                    b.ToTable("StationaryStore");
                 });
 
             modelBuilder.Entity("WebStore.Model.DataModel.User", b =>
@@ -466,7 +461,7 @@ namespace WebStore.DAL.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("BillingAddress", (string)null);
+                    b.HasDiscriminator().HasValue("BillingAddress");
                 });
 
             modelBuilder.Entity("WebStore.Model.DataModel.Customer", b =>
@@ -481,11 +476,12 @@ namespace WebStore.DAL.Migrations
                     b.HasBaseType("WebStore.Model.DataModel.Address");
 
                     b.Property<int>("CustomerId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ShippingAddress_CustomerId");
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("ShippingAddress", (string)null);
+                    b.HasDiscriminator().HasValue("ShippingAddress");
                 });
 
             modelBuilder.Entity("WebStore.Model.DataModel.StationaryStoreAddress", b =>
@@ -497,7 +493,7 @@ namespace WebStore.DAL.Migrations
 
                     b.HasIndex("StationaryStoreId");
 
-                    b.ToTable("StationaryStoreAddress", (string)null);
+                    b.HasDiscriminator().HasValue("StationaryStoreAddress");
                 });
 
             modelBuilder.Entity("WebStore.Model.DataModel.StationaryStoreEmployee", b =>
@@ -509,7 +505,6 @@ namespace WebStore.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Salary")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("StationaryStoreId")
@@ -583,7 +578,7 @@ namespace WebStore.DAL.Migrations
                     b.HasOne("WebStore.Model.DataModel.StationaryStore", "StationaryStore")
                         .WithMany("Invoices")
                         .HasForeignKey("StationaryStoreId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("StationaryStore");
@@ -600,13 +595,13 @@ namespace WebStore.DAL.Migrations
                     b.HasOne("WebStore.Model.DataModel.Invoice", "Invoice")
                         .WithMany("Orders")
                         .HasForeignKey("Invoiceid")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebStore.Model.DataModel.StationaryStore", "StationaryStore")
                         .WithMany("Orders")
                         .HasForeignKey("StationaryStoreId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -621,13 +616,13 @@ namespace WebStore.DAL.Migrations
                     b.HasOne("WebStore.Model.DataModel.Order", "Order")
                         .WithMany("OrderProducts")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("WebStore.Model.DataModel.Product", "Product")
                         .WithMany("OrderProducts")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Order");
@@ -639,15 +634,11 @@ namespace WebStore.DAL.Migrations
                 {
                     b.HasOne("WebStore.Model.DataModel.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("WebStore.Model.DataModel.Supplier", "Supplier")
                         .WithMany("Products")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("SupplierId");
 
                     b.Navigation("Category");
 
@@ -659,7 +650,7 @@ namespace WebStore.DAL.Migrations
                     b.HasOne("WebStore.Model.DataModel.Product", "Product")
                         .WithMany("ProductStocks")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
@@ -681,13 +672,7 @@ namespace WebStore.DAL.Migrations
                     b.HasOne("WebStore.Model.DataModel.Customer", "Customer")
                         .WithMany("BillingAddresses")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("WebStore.Model.DataModel.Address", null)
-                        .WithOne()
-                        .HasForeignKey("WebStore.Model.DataModel.BillingAddress", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -698,13 +683,7 @@ namespace WebStore.DAL.Migrations
                     b.HasOne("WebStore.Model.DataModel.Customer", "Customer")
                         .WithMany("ShippingAddresses")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("WebStore.Model.DataModel.Address", null)
-                        .WithOne()
-                        .HasForeignKey("WebStore.Model.DataModel.ShippingAddress", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -712,16 +691,10 @@ namespace WebStore.DAL.Migrations
 
             modelBuilder.Entity("WebStore.Model.DataModel.StationaryStoreAddress", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.Address", null)
-                        .WithOne()
-                        .HasForeignKey("WebStore.Model.DataModel.StationaryStoreAddress", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
                     b.HasOne("WebStore.Model.DataModel.StationaryStore", "StationaryStore")
                         .WithMany("Addresses")
                         .HasForeignKey("StationaryStoreId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("StationaryStore");
@@ -732,7 +705,7 @@ namespace WebStore.DAL.Migrations
                     b.HasOne("WebStore.Model.DataModel.StationaryStore", "StationaryStore")
                         .WithMany("StationaryStoreEmployees")
                         .HasForeignKey("StationaryStoreId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("StationaryStore");

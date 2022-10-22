@@ -2,11 +2,15 @@ namespace WebStore.Model.DataModels;
 public class Order
 {
     public int Id { get; set; }
-    public string Category { get; set; } = default!;
-    public string Description { get; set; } = default!;
-    public byte[] ImageBytes { get; set; } = default!;
-    public string Name { get; set; } = default!;
-    public decimal Price { get; set; }
-    public virtual Supplier Supplier { get; set; } = default!;
-    public float Weight { get; set; } = default!;
+    public decimal TotalAmount { get; set; }
+    public long TrackingNumber { get; set; }
+    public DateTime DeliveryDate { get; set; }
+    public DateTime OrderDate { get; set; }
+    public int StationaryStoreId { get; set; }
+    public virtual StationaryStore StationaryStore { get; set; } = default!;
+    public int CustomerId { get; set; }
+    public virtual Customer Customer { get; set; } = default!;
+    public int Invoiceid { get; set; } = default!;
+    public virtual Invoice Invoice { get; set; } = default!;
+    public virtual IList<OrderProduct> OrderProducts { get; set; } = default!;
 }

@@ -2,5 +2,5 @@ namespace WebStore.Model;
 
 public class Supplier: User
 {
-    public IList<Product> Products { get; set; } = default!;
+    public virtual IList<Product> Products { get; set; } = default!;
 }

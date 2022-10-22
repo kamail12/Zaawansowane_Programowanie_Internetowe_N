@@ -1,6 +1,10 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace WebStore.Model;
 
-public class StationaryStoreEmployee: Supplier
+public class StationaryStoreEmployee : User
 {
-    public Address Address { get; set; } = default!;
+    public virtual StationaryStore StationaryStore { get; set; } = default!;
+    [ForeignKey("StationaryStore")]
+    public int StationaryStoreId { get; set; }
 }

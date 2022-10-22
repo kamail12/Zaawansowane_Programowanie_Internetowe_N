@@ -3,8 +3,8 @@ namespace WebStore.Tests.UnitTests
 {
     public abstract class BaseUnitTests
     {
-        protected readonly WSDbContext DbContext;
-        public BaseUnitTests(WSDbContext dbContext)
+        protected readonly ApplicationDbContext DbContext;
+        public BaseUnitTests(ApplicationDbContext dbContext)
         {
             DbContext = dbContext; ;
         }

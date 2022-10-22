@@ -13,7 +13,7 @@ using WebStore.ViewModels.VM;
 namespace WebStore.Services.ConcreteServices;
 
 public class ProductService : BaseService, IProductService {
-    public ProductService (WSDbContext dbContext, IMapper mapper, ILogger logger) : base (dbContext, mapper, logger) { }
+    public ProductService (ApplicationDbContext dbContext, IMapper mapper, ILogger logger) : base (dbContext, mapper, logger) { }
 
     public ProductVm AddOrUpdateProduct (AddOrUpdateProductVm addOrUpdateProductVm) {
         try {

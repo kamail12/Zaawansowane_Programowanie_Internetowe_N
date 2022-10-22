@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using WebStore.Model.DataModels;
 
 namespace WebStore.DAL.DatabaseContext;
-public class WSDbContext : IdentityDbContext<User, IdentityRole<int>, int>
+public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
-    public WSDbContext(DbContextOptions<WSDbContext> options) : base(options) { }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     public DbSet<User> User => Set<User>();
     public DbSet<BillingAddress> BillingAddress => Set<BillingAddress>();
@@ -25,6 +25,6 @@ public class WSDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(WSDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 }

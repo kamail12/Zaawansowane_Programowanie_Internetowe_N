@@ -13,7 +13,7 @@ namespace WebStore.Tests.UnitTests
     public class ProductServiceUnitTests : BaseUnitTests
     {
         private readonly IProductService _productService;
-        public ProductServiceUnitTests(WSDbContext dbContext,
+        public ProductServiceUnitTests(ApplicationDbContext dbContext,
         IProductService productService) : base(dbContext)
         {
             _productService = productService;

@@ -10,10 +10,10 @@ namespace WebStore.Services.ConcreteServices
 {
     public abstract class BaseService
     {
-        protected readonly WSDbContext DbContext; 
+        protected readonly ApplicationDbContext DbContext; 
         protected readonly ILogger Logger;
         protected readonly IMapper Mapper;
-        public BaseService(WSDbContext dbContext,
+        public BaseService(ApplicationDbContext dbContext,
         IMapper mapper, ILogger logger)
         {
             DbContext = dbContext;

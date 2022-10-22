@@ -16,7 +16,7 @@ public class Startup
         services.AddAutoMapper(typeof(AutoMapperProfile));
 
         services.AddEntityFrameworkInMemoryDatabase()
-            .AddDbContext<WSDbContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
+            .AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
 
         services.AddIdentity<User, IdentityRole<int>>(options =>
         {
@@ -27,7 +27,7 @@ public class Startup
         })
             .AddRoleManager<RoleManager<IdentityRole<int>>>()
             .AddUserManager<UserManager<User>>()
-            .AddEntityFrameworkStores<WSDbContext>();
+            .AddEntityFrameworkStores<ApplicationDbContext>();
 
         services.AddTransient(typeof(ILogger), typeof(Logger<Startup>));
 

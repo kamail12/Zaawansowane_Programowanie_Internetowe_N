@@ -1,0 +1,12 @@
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\bin\Debug\net6.0\WebStore.Model.deps.json
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\bin\Debug\net6.0\WebStore.Model.dll
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\bin\Debug\net6.0\WebStore.Model.pdb
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\obj\Debug\net6.0\WebStore.Model.csproj.AssemblyReference.cache
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\obj\Debug\net6.0\WebStore.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\obj\Debug\net6.0\WebStore.Model.AssemblyInfoInputs.cache
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\obj\Debug\net6.0\WebStore.Model.AssemblyInfo.cs
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\obj\Debug\net6.0\WebStore.Model.csproj.CoreCompileInputs.cache
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\obj\Debug\net6.0\WebStore.Model.dll
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\obj\Debug\net6.0\refint\WebStore.Model.dll
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\obj\Debug\net6.0\WebStore.Model.pdb
+C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Model\obj\Debug\net6.0\ref\WebStore.Model.dll

@@ -73,6 +73,19 @@ namespace WebStore.Tests
                 Invoiceid = 1
             };
             await dbContext.AddAsync(o1);
+
+            var o2 = new Order()
+            {
+                Id = 2,
+                TotalAmount = 3,
+                TrackingNumber = 1244,
+                DeliveryDate = new DateTime(2010, 1, 1),
+                OrderDate = new DateTime(2010, 1, 2),
+                StationaryStoreId = 1,
+                CustomerId = 1,
+                Invoiceid = 1
+            };
+            await dbContext.AddAsync(o2);
             // save changes
             await dbContext.SaveChangesAsync();
         }

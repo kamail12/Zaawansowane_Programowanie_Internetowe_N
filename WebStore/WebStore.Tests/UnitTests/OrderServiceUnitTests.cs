@@ -24,4 +24,13 @@ public class OrderServiceUnitTests : BaseUnitTests
         Assert.NotEmpty(orders);
         Assert.Equal(orders.Count(), orders.Count());
     }
+
+    [Fact]
+    public void GetOrderById()
+    {
+        int id = 2;
+        var order = _orderService.GetOrderById(id);
+        Assert.NotNull(order);
+        Assert.Equal(order.Result.Id, id);
+    }
 }

@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebStore.DAL.DatabaseContext;
 using WebStore.Model.Models;
@@ -30,6 +31,28 @@ public class OrderService : BaseService, IOrderService
             var orderVms = _mapper.Map<IEnumerable<OrderVm>>(ordersQuery);
 
             return orderVms;
+        }
+
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ex.Message);
+            throw;
+        }
+    }
+
+    public async Task<OrderVm> GetOrderById(int id)
+    {
+        try
+        {
+            var order = await _context.Order
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (order == null)
+            {
+                throw new Exception(message: "Not found");
+            }
+
+            return Mapper.Map<OrderVm>(order);
         }
 
         catch (Exception ex)

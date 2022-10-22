@@ -1,4 +1,4 @@
-﻿namespace WebStore.ViewModels;
+﻿namespace WebStore.VievModels;
 public class Class1
 {
 

@@ -1,11 +1,10 @@
-using Microsoft.AspNetCore.Identity;
-using System;
-
 namespace WebStore.Model.DataModels
 {
     public class ProductStock
     {
-        public virtual Product? Product { get; set; }
+        public int Id { get; set; }
+        public virtual Product Product { get; set; } = default!;
         public int Quantity { get; set; }
+        public int ProductId { get; set; }
     }
 }

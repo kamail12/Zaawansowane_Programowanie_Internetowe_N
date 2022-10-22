@@ -11,7 +11,7 @@ namespace WebStore.Model.DataModels
     {
         public virtual Category Category { get; set; } = default!;
         [ForeignKey("Category")]
-        public int? CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public string Description { get; set; } = default!;
         public int Id { get; set; }
         public byte[] ImageBytes { get; set; } = default!;

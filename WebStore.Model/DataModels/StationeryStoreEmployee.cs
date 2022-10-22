@@ -12,6 +12,6 @@ namespace WebStore.Model.DataModels
         public string Position { get; set; } = default!;
         public virtual StationaryStore StationaryStore { get; set; } = default!;
         [ForeignKey("StationaryStoreEmployee")]
-        public int? StationaryStoreEmployeeId { get; set; }
+        public int StationaryStoreEmployeeId { get; set; }
     }
 }

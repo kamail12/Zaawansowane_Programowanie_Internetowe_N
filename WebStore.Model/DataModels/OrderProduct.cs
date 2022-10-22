@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebStore.Model.DataModels
 {
-    public class OrderProduct : Order
+    public class OrderProduct
     {
         public int ProductId { get; set; }
         public virtual Order Order { get; set; } = default!;

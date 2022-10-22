@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.ViewModels\\WebStore.ViewModels.csproj": {}
+    "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.ViewModels\\WebStore.ViewModels.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\WebStore.Model.csproj": {
+    "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\WebStore.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\WebStore.Model.csproj",
+        "projectUniqueName": "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\WebStore.Model.csproj",
         "projectName": "WebStore.Model",
-        "projectPath": "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\WebStore.Model.csproj",
+        "projectPath": "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\WebStore.Model.csproj",
         "packagesPath": "C:\\Users\\Adam\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\obj\\",
+        "outputPath": "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Adam\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,14 +65,14 @@
         }
       }
     },
-    "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.ViewModels\\WebStore.ViewModels.csproj": {
+    "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.ViewModels\\WebStore.ViewModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.ViewModels\\WebStore.ViewModels.csproj",
+        "projectUniqueName": "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.ViewModels\\WebStore.ViewModels.csproj",
         "projectName": "WebStore.ViewModels",
-        "projectPath": "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.ViewModels\\WebStore.ViewModels.csproj",
+        "projectPath": "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.ViewModels\\WebStore.ViewModels.csproj",
         "packagesPath": "C:\\Users\\Adam\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.ViewModels\\obj\\",
+        "outputPath": "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.ViewModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Adam\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -89,8 +89,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\WebStore.Model.csproj": {
-                "projectPath": "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\WebStore.Model.csproj"
+              "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\WebStore.Model.csproj": {
+                "projectPath": "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Model\\WebStore.Model.csproj"
               }
             }
           }

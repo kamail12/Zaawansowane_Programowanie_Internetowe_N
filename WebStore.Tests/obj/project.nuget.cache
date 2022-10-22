@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "a7RU9L4psUdYjl41OkrST2Xf6WnUxVWcgAwhgjM3yTQ98GLbILLK8lMENmp9F6gXj+iBZm+TI3vFy27eKEsRsQ==",
+  "dgSpecHash": "54Q/MwPLoxrhRyfLpI1WYlUjQCGOqckRA/bIJ78Mvb3IztUlGBSnHWzIgQ2Bx+2ZsGYAHPJ0ZtEMcNAtgUCjCQ==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Tests\\WebStore.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Adam\\ZPI\\Zaawansowane_Programowanie_Internetowe_N\\WebStore.Tests\\WebStore.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Adam\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Adam\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

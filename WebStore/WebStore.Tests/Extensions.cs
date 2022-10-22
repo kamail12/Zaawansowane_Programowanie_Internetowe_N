@@ -61,6 +61,18 @@ namespace WebStore.Tests
                 Weight = 0.5f,
             };
             await dbContext.AddAsync(p2);
+            var o1 = new Order()
+            {
+                Id = 1,
+                TotalAmount = 1,
+                TrackingNumber = 1233,
+                DeliveryDate = new DateTime(2010, 1, 1),
+                OrderDate = new DateTime(2010, 1, 2),
+                StationaryStoreId = 1,
+                CustomerId = 1,
+                Invoiceid = 1
+            };
+            await dbContext.AddAsync(o1);
             // save changes
             await dbContext.SaveChangesAsync();
         }

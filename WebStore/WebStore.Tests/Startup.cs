@@ -33,6 +33,7 @@ public class Startup
 
         // service binding
         services.AddTransient<IProductService, ProductService>();
+        services.AddTransient<IOrderService, OrderService>();
 
         // ... other bindings...
         services.SeedData();

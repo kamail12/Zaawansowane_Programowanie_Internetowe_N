@@ -7,15 +7,15 @@ namespace WebStore.DAL.DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
-        public DbSet<User> User => Set<User>();
-        public DbSet<CustomerAddress> CustomerAddresses => Set<CustomerAddress>();
-        public DbSet<OrderProduct> OrderProduct => Set<OrderProduct>();
-        public DbSet<Product> Product => Set<Product>()!;
-        public DbSet<ProductStock> ProductStock => Set<ProductStock>();
-        public DbSet<Order> Order => Set<Order>();
-        public DbSet<Category> Category => Set<Category>();
-        public DbSet<Invoice> Invoice => Set<Invoice>();
-        public DbSet<StationaryStore> StationaryStores => Set<StationaryStore>();
+        public virtual DbSet<User> User { get; set; } = default!;
+        public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; } = default!;
+        public virtual DbSet<OrderProduct> OrderProduct { get; set; } = default!;
+        public virtual DbSet<Product> Product { get; set; } = default!;
+        public virtual DbSet<ProductStock> ProductStock { get; set; } = default!;
+        public virtual DbSet<Order> Order { get; set; } = default!;
+        public virtual DbSet<Category> Category { get; set; } = default!;
+        public virtual DbSet<Invoice> Invoice { get; set; } = default!;
+        public virtual DbSet<StationaryStore> StationaryStores { get; set; } = default!;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

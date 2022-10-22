@@ -1,14 +1,15 @@
-using Microsoft.AspNetCore.Identity;
-using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebStore.Model.DataModels
 {
-    public class Address
+    public abstract class Address
     {
-        public string? Conutry { get; set; }
-        public string? City { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public string Conutry { get; set; } = default!;
+        public string City { get; set; } = default!;
         public int PostCode { get; set; }
-        public string? Street { get; set; }
+        public string Street { get; set; } = default!;
         public int BuildingNumber { get; set; }
     }
 

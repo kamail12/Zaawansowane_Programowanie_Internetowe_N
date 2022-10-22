@@ -7,10 +7,10 @@ public class OrderVm
     public DateTime DeliveryDate { get; set; }
     public DateTime OrderDate { get; set; }
     public int StationaryStoreId { get; set; }
-    public virtual StationaryStoreVm StationaryStore { get; set; } = default!;
+    public StationaryStoreVm StationaryStore { get; set; } = default!;
     public int CustomerId { get; set; }
-    public virtual CustomerVm Customer { get; set; } = default!;
+    public CustomerVm Customer { get; set; } = default!;
     public int Invoiceid { get; set; } = default!;
-    public virtual InvoiceVm Invoice { get; set; } = default!;
-    public virtual IList<ProductVm> Products { get; set; } = default!;
+    public InvoiceVm Invoice { get; set; } = default!;
+    public IList<ProductVm> Products { get; set; } = default!;
 }

@@ -1,7 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using WebStore.DAL.DatabaseContext;
+using WebStore.Services.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+// Add auto mapper
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 // Add data context
 builder.Services.AddDbContext<WSDbContext>(options =>
@@ -13,6 +18,7 @@ builder.Services.AddDbContext<WSDbContext>(options =>
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 

@@ -7,19 +7,30 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
-        CreateMap<AddOrUpdateProductVm, Product>();
         CreateMap<CategoryVm, Category>();
-        CreateMap<CustomerVm, Customer>();
         CreateMap<InvoiceVm, Invoice>();
         CreateMap<OrderVm, Order>();
         CreateMap<ProductStockVm, ProductStock>();
         CreateMap<ProductVm, Product>();
-        CreateMap<UserVm, User>();
         CreateMap<ShippingAddressVm, ShippingAddress>();
-        CreateMap<StationaryStoreVm, StationaryStore>();
-        CreateMap<StationaryStoreEmployeeVm, StationaryStore>();
         CreateMap<SupplierVm, Supplier>();
+        CreateMap<Category, CategoryVm>();
+        CreateMap<Customer, CustomerVm>();
+        CreateMap<Invoice, InvoiceVm>();
 
+        CreateMap<Order, OrderVm>()
+            .ForMember(dest => dest.Products, x => x
+            .MapFrom(src => src.OrderProducts
+            .Select(y => y.Product != null ? y.Product : null)));
+
+        CreateMap<ProductStock, ProductStockVm>();
+        CreateMap<Product, ProductVm>()
+            .ForMember(dest => dest.Orders, x => x
+            .MapFrom(src => src.OrderProducts
+            .Select(y => y.Order != null ? y.Order : null)));
+
+        CreateMap<Product, AddOrUpdateProductVm>();
+        CreateMap<AddOrUpdateProductVm, Product>();
+        CreateMap<ShippingAddress, ShippingAddressVm>();
     }
-
 }

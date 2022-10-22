@@ -180,7 +180,7 @@ namespace WebStore.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address");
+                    b.ToTable("Address", (string)null);
                 });
 
             modelBuilder.Entity("WebStore.Model.Models.Category", b =>
@@ -350,7 +350,7 @@ namespace WebStore.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductStock");
+                    b.ToTable("ProductStock", (string)null);
                 });
 
             modelBuilder.Entity("WebStore.Model.Models.StationaryStore", b =>

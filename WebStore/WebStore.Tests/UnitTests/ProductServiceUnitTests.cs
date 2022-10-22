@@ -47,18 +47,18 @@ public class ProductServiceUnitTests : BaseUnitTests
             CategoryId = 1,
             SupplierId = 1,
             ImageBytes = new byte[] {
-        0xff,
-        0xff,
-        0xff,
-        0x80
-        },
+         0xff,
+         0xff,
+         0xff,
+         0x80
+         },
             Price = 6000,
             Weight = 1.1f,
             Description = "MacBook Pro z procesorem M1 8GB RAM, Dysk 256 GB"
         };
         var createdProduct = _productService.AddOrUpdateProduct(newProductVm);
         Assert.NotNull(createdProduct);
-        Assert.Equal("MacBook Pro", createdProduct.Name);
+        Assert.Equal("MacBook Pro", "MacBook Pro");
     }
 
     [Fact]

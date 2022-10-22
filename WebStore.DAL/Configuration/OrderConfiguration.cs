@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WebStore.Model.DataModel;
+using WebStore.Model.DataModels;
 
 namespace WebStore.DAL.Configuration;
 public class OrderConfiguration : IEntityTypeConfiguration<Order>
@@ -24,7 +24,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
             .HasForeignKey(x => x.Invoiceid)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.Property(x => x.TotalPrice)
+        builder.Property(x => x.TotalAmount)
             .HasPrecision(18, 2);
     }
 }

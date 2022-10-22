@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WebStore.Model.DataModel;
+using WebStore.Model.DataModels;
 
 namespace WebStore.DAL.Configuration;
 public class ProductConfiguration : IEntityTypeConfiguration<Product>

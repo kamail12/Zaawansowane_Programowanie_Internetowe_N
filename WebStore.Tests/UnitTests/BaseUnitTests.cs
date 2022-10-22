@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using WebStore.DAL.DataAccess;
+using WebStore.DAL.DatabaseContext;
 namespace WebStore.Tests.UnitTests
 {
     public abstract class BaseUnitTests
     {
-        protected readonly ApplicationDbContext DbContext;
-        public BaseUnitTests(ApplicationDbContext dbContext)
+        protected readonly WSDbContext DbContext;
+        public BaseUnitTests(WSDbContext dbContext)
         {
             DbContext = dbContext; ;
         }

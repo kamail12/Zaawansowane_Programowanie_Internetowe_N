@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using WebStore.DAL.DataAccess;
+using WebStore.DAL.DatabaseContext;
 using WebStore.Services.Configuration;
-using WebStore.Model.DataModel;
+using WebStore.Model.DataModels;
 using WebStore.Services.ConcreteServices;
 using WebStore.Services.Interfaces;
 
@@ -16,7 +16,7 @@ public class Startup
         services.AddAutoMapper(typeof(AutoMapperProfile));
 
         services.AddEntityFrameworkInMemoryDatabase()
-            .AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
+            .AddDbContext<WSDbContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
 
         services.AddIdentity<User, IdentityRole<int>>(options =>
         {
@@ -27,7 +27,7 @@ public class Startup
         })
             .AddRoleManager<RoleManager<IdentityRole<int>>>()
             .AddUserManager<UserManager<User>>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
+            .AddEntityFrameworkStores<WSDbContext>();
 
         services.AddTransient(typeof(ILogger), typeof(Logger<Startup>));
 

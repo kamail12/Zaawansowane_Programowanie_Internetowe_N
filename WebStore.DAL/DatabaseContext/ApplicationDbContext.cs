@@ -8,15 +8,16 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    public DbSet<User> User => Set<User>();
-    public DbSet<BillingAddress> BillingAddress => Set<BillingAddress>();
-    public DbSet<ShippingAddress> ShippingAddress => Set<ShippingAddress>();
-    public DbSet<Category> Category => Set<Category>();
-    public DbSet<Invoice> Invoice => Set<Invoice>();
-    public DbSet<Order> Order => Set<Order>();
-    public DbSet<OrderProduct> OrderProduct => Set<OrderProduct>();
-    public DbSet<Product> Product => Set<Product>();
-    public DbSet<StationaryStore> StationaryStore => Set<StationaryStore>();
+    // chnages address not split chnage to Address enitiyt
+    // join BillingAddress and ShippingAddress
+    public DbSet<BillingAddress> BillingAddress { get; set; } = default!;
+    public DbSet<ShippingAddress> ShippingAddress { get; set; } = default!;
+    public DbSet<Category> Category { get; set; } = default!;
+    public DbSet<Invoice> Invoice { get; set; } = default!;
+    public DbSet<Order> Order { get; set; } = default!;
+    public DbSet<OrderProduct> OrderProduct { get; set; } = default!;
+    public DbSet<Product> Product { get; set; } = default!;
+    public DbSet<StationaryStore> StationaryStore { get; set; } = default!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -26,5 +27,6 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
     }
 }

@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace WebStore.Model.DataModels
 {
@@ -10,6 +7,6 @@ namespace WebStore.Model.DataModels
     {
         public string FirstName { get; set; } = default!;
         public string LastName { get; set; } = default!;
-        public DateTime RegistrationDate { get; set; }
+        public DateTime RegistrationDate { get; set; } 
     }
 }

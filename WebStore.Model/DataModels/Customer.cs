@@ -1,21 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
-namespace WebStore.Model.DataModels
-{
-    public class Customer : User
-    {
-        public virtual Address BillingAddress { get; set; } = default!;
-        [ForeignKey("BillingAdress")]
-        public int? BillingAddressId { get; set; }
-        public virtual IList<Order> Orders { get; set; } = default!;
-        public int? OrderId { get; set; }
-        public virtual Address ShippingAddress { get; set; } = default!;
-        [ForeignKey("ShippingAddress")]
-        public int? ShippingAddressId { get; set; }
-    }
+namespace WebStore.Model.DataModels;
+
+public class Customer : User {
+
+   public virtual IList<Order> Orders { get; set; } = default !;
+   public virtual IList<Address> Addresses { get; set; } = default !;
+
+   public virtual Address? BillingAddress { get; set; }
+
+   [ForeignKey ("BillingAddress")]
+   public int? BillingAddressId { get; set; }
+
+   public virtual Address ShippingAddress { get; set; } = default !;
+
+   [ForeignKey ("ShippingAddress")]
+   public int ShippingAddressId { get; set; }
+
 }

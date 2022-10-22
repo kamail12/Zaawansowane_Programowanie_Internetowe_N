@@ -1,16 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebStore.Model.DataModels
+namespace WebStore.Model.DataModels;
+
+public class Address
 {
-    public class Address
-    {
-        public int Id { get; set; }
-        public string Country { get; set; } = default!;
-        public string City { get; set; } = default!;
-        public int BuildingNumber { get; set; }
-        public string PostalCode { get; set; } = default!;
-    }
+     public int Id { get; set; }
+    public string StreetName {get; set;} = default!;
+    public int StreetNumber {get; set;} = default!;
+    public string City {get; set;} = default!;
+    public string PostCode {get; set;} = default!;
 }

@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
-namespace WebStore.Model.DataModels
+namespace WebStore.Model.DataModels;
+
+public class Supplier : User
 {
-    public class Supplier : User
-    {
-        public virtual IList<Product> Products { get; set; } = default!;
-
-    }
+   public virtual IList<Product> Products {get; set;} = default!;
 }

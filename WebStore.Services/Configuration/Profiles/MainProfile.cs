@@ -2,7 +2,7 @@ using AutoMapper;
 using WebStore.Model.DataModels;
 using WebStore.ViewModels.VM;
 
-namespace WebStore.Services.Configuration;
+namespace WebStore.Services.Configuration.Profiles;
 public class MainProfile : Profile
 {
     public MainProfile()

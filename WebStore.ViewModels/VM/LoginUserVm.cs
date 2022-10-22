@@ -21,8 +21,3 @@ public class LoginUserVm
     [DataType(DataType.Password)]
     public string Password { get; set; } = default!;
 }
-6) Kolejny krok dotyczy kontrolerów.Analogicznie jak poprzednio proszę w projekcie
-WebStore.Web/Controllers stworzyć kontroler bazowy BaseApiController.cs a następnie wkleić
-poniższy kod:
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;

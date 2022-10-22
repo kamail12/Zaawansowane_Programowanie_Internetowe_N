@@ -54,4 +54,22 @@ new Claim (JwtRegisteredClaimNames.Exp,
 0)).TotalSeconds)).ToString ())
 };
             claims.AddRange(userRoles.Select(ur => new Claim(ClaimTypes.Role, ur)));
-            var token = new JwtSecurityToken(
+            var token = new JwtSecurityToken(new JwtHeader(new SigningCredentials(
+new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SecretKey)),
+SecurityAlgorithms.HmacSha256)),
+new JwtPayload(claims));
+            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(token);
+            var response = new
+            {
+                access_token = encodedJwt,
+                expires_in = token.ValidTo.ToString("yyyy-MM-ddTHH:mm:ss")
+            };
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, ex.Message);
+            return BadRequest("Error occurred");
+        }
+    }
+}

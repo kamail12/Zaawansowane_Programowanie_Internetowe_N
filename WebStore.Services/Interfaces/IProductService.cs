@@ -8,4 +8,5 @@ public interface IProductService
     public ProductVm AddOrUpdateProduct(AddOrUpdateProductVm addOrUpdateProductVm);
     public ProductVm GetProduct(Expression<Func<Product, bool>> filterExpression);
     public IEnumerable<ProductVm> GetProducts(Expression<Func<Product, bool>>? filterExpression = null);
+    object DeleteProduct(Func<object, bool> value);
 }

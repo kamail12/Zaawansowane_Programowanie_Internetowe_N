@@ -10,6 +10,8 @@ namespace WebStore.Services.Configuration{
         {
             CreateMap<AddOrUpdateProductVm, Product>();
             CreateMap<ProductVm, Product>();
+            CreateMap<Product, ProductVm>();
+        
             
         }
     }

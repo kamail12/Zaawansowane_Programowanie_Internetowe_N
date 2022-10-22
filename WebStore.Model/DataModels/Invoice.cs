@@ -1,7 +1,4 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace WebStore.Model.DataModels;
-
 public class Invoice
 {
     public int Id { get; set; }

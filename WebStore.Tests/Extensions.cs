@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using WebStore.DAL.EF;
+using WebStore.DAL.DatabaseContext;
 using WebStore.Model.DataModels;
 namespace WebStore.Tests
 {
@@ -10,7 +10,7 @@ namespace WebStore.Tests
         public static async void SeedData(this IServiceCollection services)
         {
             var serviceProvider = services.BuildServiceProvider();
-            var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<WSDbContext>();
             var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
             var roleManager = serviceProvider
             .GetRequiredService<RoleManager<IdentityRole<int>>>();
@@ -21,8 +21,8 @@ namespace WebStore.Tests
                 Id = 1,
                 FirstName = "Adam",
                 LastName = "Bednarski",
-                UserName = "supp1@eg.eg",
-                Email = "supp1@eg.eg",
+                //UserName = "supp1@eg.eg",
+                //Email = "supp1@eg.eg",
                 RegistrationDate = new DateTime(2010, 1, 1),
             };
             await userManager.CreateAsync(supplier1, "User1234");

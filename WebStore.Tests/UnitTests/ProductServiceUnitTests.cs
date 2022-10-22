@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebStore.DAL.EF;
+using WebStore.DAL.DatabaseContext;
 using WebStore.Model.DataModels;
 using WebStore.Services.Interfaces;
 using WebStore.ViewModels.VM;
@@ -13,7 +13,7 @@ namespace WebStore.Tests.UnitTests
     public class ProductServiceUnitTests : BaseUnitTests
     {
         private readonly IProductService _productService;
-        public ProductServiceUnitTests(ApplicationDbContext dbContext,
+        public ProductServiceUnitTests(WSDbContext dbContext,
         IProductService productService) : base(dbContext)
         {
             _productService = productService;

@@ -1,11 +1,5 @@
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 namespace WebStore.Model.DataModels;
-
-public class Address
+public abstract class Address
 {
     public int Id { get; set; }
     public string City { get; set; } = default!;

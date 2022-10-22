@@ -1,8 +1,4 @@
-using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 namespace WebStore.Model.DataModels;
-
 public class Product
 {
     public int Id { get; set; }
@@ -18,4 +14,3 @@ public class Product
     public virtual IList<ProductStock> ProductStocks { get; set; } = default!;
     public virtual IList<OrderProduct> OrderProducts { get; set; } = default!;
 }
-

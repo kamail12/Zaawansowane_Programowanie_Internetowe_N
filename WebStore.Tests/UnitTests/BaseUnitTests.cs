@@ -1,10 +1,10 @@
-using WebStore.DAL.EF;
+using WebStore.DAL.DatabaseContext;
 namespace WebStore.Tests.UnitTests
 {
     public abstract class BaseUnitTests
     {
-        protected readonly ApplicationDbContext DbContext;
-        public BaseUnitTests(ApplicationDbContext dbContext)
+        protected readonly WSDbContext DbContext;
+        public BaseUnitTests(WSDbContext dbContext)
         {
             DbContext = dbContext; ;
         }

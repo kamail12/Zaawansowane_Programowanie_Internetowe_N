@@ -5,21 +5,21 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebStore.DAL.EF;
+using WebStore.DAL.DatabaseContext;
 
 #nullable disable
 
 namespace WebStore.DAL.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221021130548_Inital")]
-    partial class Inital
+    [DbContext(typeof(WSDbContext))]
+    [Migration("20221019181310_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -157,7 +157,7 @@ namespace WebStore.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Address", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -185,7 +185,7 @@ namespace WebStore.DAL.Migrations
                     b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Category", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -197,16 +197,12 @@ namespace WebStore.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tag")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Category", (string)null);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Invoice", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Invoice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -231,7 +227,7 @@ namespace WebStore.DAL.Migrations
                     b.ToTable("Invoice", (string)null);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Order", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -254,7 +250,7 @@ namespace WebStore.DAL.Migrations
                     b.Property<int>("StationaryStoreId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalPrice")
+                    b.Property<decimal>("TotalAmount")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
@@ -272,7 +268,7 @@ namespace WebStore.DAL.Migrations
                     b.ToTable("Order", (string)null);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.OrderProduct", b =>
+            modelBuilder.Entity("WebStore.Model.Models.OrderProduct", b =>
                 {
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
@@ -290,7 +286,7 @@ namespace WebStore.DAL.Migrations
                     b.ToTable("OrderProduct", (string)null);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Product", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -334,7 +330,7 @@ namespace WebStore.DAL.Migrations
                     b.ToTable("Product", (string)null);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.ProductStock", b =>
+            modelBuilder.Entity("WebStore.Model.Models.ProductStock", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -355,7 +351,7 @@ namespace WebStore.DAL.Migrations
                     b.ToTable("ProductStock");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.StationaryStore", b =>
+            modelBuilder.Entity("WebStore.Model.Models.StationaryStore", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -373,7 +369,7 @@ namespace WebStore.DAL.Migrations
                     b.ToTable("StationaryStore", (string)null);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.User", b =>
+            modelBuilder.Entity("WebStore.Model.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -457,9 +453,9 @@ namespace WebStore.DAL.Migrations
                     b.HasDiscriminator<int>("UserType").HasValue(0);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.BillingAddress", b =>
+            modelBuilder.Entity("WebStore.Model.Models.BillingAddress", b =>
                 {
-                    b.HasBaseType("WebStore.Model.DataModel.Address");
+                    b.HasBaseType("WebStore.Model.Models.Address");
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
@@ -469,16 +465,16 @@ namespace WebStore.DAL.Migrations
                     b.ToTable("BillingAddress", (string)null);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Customer", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Customer", b =>
                 {
-                    b.HasBaseType("WebStore.Model.DataModel.User");
+                    b.HasBaseType("WebStore.Model.Models.User");
 
                     b.HasDiscriminator().HasValue(1);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.ShippingAddress", b =>
+            modelBuilder.Entity("WebStore.Model.Models.ShippingAddress", b =>
                 {
-                    b.HasBaseType("WebStore.Model.DataModel.Address");
+                    b.HasBaseType("WebStore.Model.Models.Address");
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
@@ -488,9 +484,9 @@ namespace WebStore.DAL.Migrations
                     b.ToTable("ShippingAddress", (string)null);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.StationaryStoreAddress", b =>
+            modelBuilder.Entity("WebStore.Model.Models.StationaryStoreAddress", b =>
                 {
-                    b.HasBaseType("WebStore.Model.DataModel.Address");
+                    b.HasBaseType("WebStore.Model.Models.Address");
 
                     b.Property<int>("StationaryStoreId")
                         .HasColumnType("int");
@@ -500,9 +496,9 @@ namespace WebStore.DAL.Migrations
                     b.ToTable("StationaryStoreAddress", (string)null);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.StationaryStoreEmployee", b =>
+            modelBuilder.Entity("WebStore.Model.Models.StationaryStoreEmployee", b =>
                 {
-                    b.HasBaseType("WebStore.Model.DataModel.User");
+                    b.HasBaseType("WebStore.Model.Models.User");
 
                     b.Property<string>("Position")
                         .IsRequired()
@@ -520,9 +516,9 @@ namespace WebStore.DAL.Migrations
                     b.HasDiscriminator().HasValue(3);
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Supplier", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Supplier", b =>
                 {
-                    b.HasBaseType("WebStore.Model.DataModel.User");
+                    b.HasBaseType("WebStore.Model.Models.User");
 
                     b.HasDiscriminator().HasValue(2);
                 });
@@ -538,7 +534,7 @@ namespace WebStore.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.User", null)
+                    b.HasOne("WebStore.Model.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -547,7 +543,7 @@ namespace WebStore.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.User", null)
+                    b.HasOne("WebStore.Model.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -562,7 +558,7 @@ namespace WebStore.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebStore.Model.DataModel.User", null)
+                    b.HasOne("WebStore.Model.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -571,16 +567,16 @@ namespace WebStore.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.User", null)
+                    b.HasOne("WebStore.Model.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Invoice", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Invoice", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.StationaryStore", "StationaryStore")
+                    b.HasOne("WebStore.Model.Models.StationaryStore", "StationaryStore")
                         .WithMany("Invoices")
                         .HasForeignKey("StationaryStoreId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -589,21 +585,21 @@ namespace WebStore.DAL.Migrations
                     b.Navigation("StationaryStore");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Order", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Order", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.Customer", "Customer")
+                    b.HasOne("WebStore.Model.Models.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebStore.Model.DataModel.Invoice", "Invoice")
+                    b.HasOne("WebStore.Model.Models.Invoice", "Invoice")
                         .WithMany("Orders")
                         .HasForeignKey("Invoiceid")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("WebStore.Model.DataModel.StationaryStore", "StationaryStore")
+                    b.HasOne("WebStore.Model.Models.StationaryStore", "StationaryStore")
                         .WithMany("Orders")
                         .HasForeignKey("StationaryStoreId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -616,15 +612,15 @@ namespace WebStore.DAL.Migrations
                     b.Navigation("StationaryStore");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.OrderProduct", b =>
+            modelBuilder.Entity("WebStore.Model.Models.OrderProduct", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.Order", "Order")
+                    b.HasOne("WebStore.Model.Models.Order", "Order")
                         .WithMany("OrderProducts")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebStore.Model.DataModel.Product", "Product")
+                    b.HasOne("WebStore.Model.Models.Product", "Product")
                         .WithMany("OrderProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -635,15 +631,15 @@ namespace WebStore.DAL.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Product", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Product", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.Category", "Category")
+                    b.HasOne("WebStore.Model.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("WebStore.Model.DataModel.Supplier", "Supplier")
+                    b.HasOne("WebStore.Model.Models.Supplier", "Supplier")
                         .WithMany("Products")
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -654,9 +650,9 @@ namespace WebStore.DAL.Migrations
                     b.Navigation("Supplier");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.ProductStock", b =>
+            modelBuilder.Entity("WebStore.Model.Models.ProductStock", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.Product", "Product")
+                    b.HasOne("WebStore.Model.Models.Product", "Product")
                         .WithMany("ProductStocks")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -665,9 +661,9 @@ namespace WebStore.DAL.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.StationaryStore", b =>
+            modelBuilder.Entity("WebStore.Model.Models.StationaryStore", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.Address", "Address")
+                    b.HasOne("WebStore.Model.Models.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -676,49 +672,49 @@ namespace WebStore.DAL.Migrations
                     b.Navigation("Address");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.BillingAddress", b =>
+            modelBuilder.Entity("WebStore.Model.Models.BillingAddress", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.Customer", "Customer")
+                    b.HasOne("WebStore.Model.Models.Customer", "Customer")
                         .WithMany("BillingAddresses")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("WebStore.Model.DataModel.Address", null)
+                    b.HasOne("WebStore.Model.Models.Address", null)
                         .WithOne()
-                        .HasForeignKey("WebStore.Model.DataModel.BillingAddress", "Id")
+                        .HasForeignKey("WebStore.Model.Models.BillingAddress", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.ShippingAddress", b =>
+            modelBuilder.Entity("WebStore.Model.Models.ShippingAddress", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.Customer", "Customer")
+                    b.HasOne("WebStore.Model.Models.Customer", "Customer")
                         .WithMany("ShippingAddresses")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("WebStore.Model.DataModel.Address", null)
+                    b.HasOne("WebStore.Model.Models.Address", null)
                         .WithOne()
-                        .HasForeignKey("WebStore.Model.DataModel.ShippingAddress", "Id")
+                        .HasForeignKey("WebStore.Model.Models.ShippingAddress", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.StationaryStoreAddress", b =>
+            modelBuilder.Entity("WebStore.Model.Models.StationaryStoreAddress", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.Address", null)
+                    b.HasOne("WebStore.Model.Models.Address", null)
                         .WithOne()
-                        .HasForeignKey("WebStore.Model.DataModel.StationaryStoreAddress", "Id")
+                        .HasForeignKey("WebStore.Model.Models.StationaryStoreAddress", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
-                    b.HasOne("WebStore.Model.DataModel.StationaryStore", "StationaryStore")
+                    b.HasOne("WebStore.Model.Models.StationaryStore", "StationaryStore")
                         .WithMany("Addresses")
                         .HasForeignKey("StationaryStoreId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -727,9 +723,9 @@ namespace WebStore.DAL.Migrations
                     b.Navigation("StationaryStore");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.StationaryStoreEmployee", b =>
+            modelBuilder.Entity("WebStore.Model.Models.StationaryStoreEmployee", b =>
                 {
-                    b.HasOne("WebStore.Model.DataModel.StationaryStore", "StationaryStore")
+                    b.HasOne("WebStore.Model.Models.StationaryStore", "StationaryStore")
                         .WithMany("StationaryStoreEmployees")
                         .HasForeignKey("StationaryStoreId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -738,29 +734,29 @@ namespace WebStore.DAL.Migrations
                     b.Navigation("StationaryStore");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Category", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Invoice", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Invoice", b =>
                 {
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Order", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Order", b =>
                 {
                     b.Navigation("OrderProducts");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Product", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Product", b =>
                 {
                     b.Navigation("OrderProducts");
 
                     b.Navigation("ProductStocks");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.StationaryStore", b =>
+            modelBuilder.Entity("WebStore.Model.Models.StationaryStore", b =>
                 {
                     b.Navigation("Addresses");
 
@@ -771,7 +767,7 @@ namespace WebStore.DAL.Migrations
                     b.Navigation("StationaryStoreEmployees");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Customer", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Customer", b =>
                 {
                     b.Navigation("BillingAddresses");
 
@@ -780,7 +776,7 @@ namespace WebStore.DAL.Migrations
                     b.Navigation("ShippingAddresses");
                 });
 
-            modelBuilder.Entity("WebStore.Model.DataModel.Supplier", b =>
+            modelBuilder.Entity("WebStore.Model.Models.Supplier", b =>
                 {
                     b.Navigation("Products");
                 });

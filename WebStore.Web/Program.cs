@@ -39,4 +39,57 @@ builder.Services.AddIdentity<User, IdentityRole<int>>(o =>
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme; 
             }) 
             .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
-{
+            { 
+
+                options.TokenValidationParameters = new TokenValidationParameters 
+
+            { 
+
+                    ValidateAudience = false, 
+                    ValidateIssuer = false, 
+                    ValidateIssuerSigningKey = true, 
+                    IssuerSigningKey = new 
+SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtOptions:SecretKey"])), 
+
+                    ValidateLifetime = true, 
+                    ClockSkew = TimeSpan.FromMinutes(5) 
+
+            }; 
+
+        }); 
+
+builder.Services.AddControllersWithViews() 
+    .AddNewtonsoftJson(options => 
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore 
+
+            ); 
+
+builder.Services.AddSwaggerGen(c => 
+{ 
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebStore API", Version = "v1" }); 
+}); 
+var app = builder.Build(); 
+app.UseSwagger(); 
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebStore API v1")); 
+// Configure the HTTP request pipeline. 
+if (!app.Environment.IsDevelopment()) 
+{ 
+ app.UseDeveloperExceptionPage(); 
+ app.UseHsts(); 
+} 
+app.UseHttpsRedirection(); 
+app.UseStaticFiles(); 
+app.UseRouting(); 
+app.UseAuthentication(); 
+app.UseAuthorization(); 
+
+app.MapControllerRoute( 
+
+    name: "default", 
+    pattern: "{controller}/{action=Index}/{id?}"); 
+
+ 
+
+app.MapFallbackToFile("index.html"); ; 
+app.Run(); 
+

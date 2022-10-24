@@ -15,7 +15,7 @@ namespace WebStore.Services.ConcreteServices
     {
         public AddressService(ApplicationDbContext dbContext, IMapper mapper, ILogger logger)
         : base(dbContext, mapper, logger) { }
-        public AddressVm AddOrUpdateAddressVm(AddOrUpdateAddressVm addOrUpdateAddressVm)
+        public AddressVm AddOrUpdateAddress(AddOrUpdateAddressVm addOrUpdateAddressVm)
         {
             try
             {
@@ -52,8 +52,7 @@ namespace WebStore.Services.ConcreteServices
                 throw;
             }
         }
-        public IEnumerable<AddressVm> GetAddresses
-        (Expression<Func<Address, bool>>? filterExpressions = null)
+        public IEnumerable<AddressVm> GetAddresses(Expression<Func<Address, bool>>? filterExpressions = null)
         {
             try
             {

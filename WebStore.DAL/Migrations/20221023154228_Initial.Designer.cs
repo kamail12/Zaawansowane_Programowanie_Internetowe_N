@@ -12,7 +12,7 @@ using WebStore.DAL.EF;
 namespace WebStore.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221022124109_Initial")]
+    [Migration("20221023154228_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -194,6 +194,10 @@ namespace WebStore.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tag")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

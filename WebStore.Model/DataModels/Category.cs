@@ -9,5 +9,7 @@ namespace WebStore.Model.DataModels
     {
         public string Name { get; set; } = default!;
         public int Id { get; set; }
+        public string Tag { get; set; } = default!;
+
     }
 }

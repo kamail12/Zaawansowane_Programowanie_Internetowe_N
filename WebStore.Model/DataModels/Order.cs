@@ -1,16 +1,20 @@
-using Microsoft.AspNetCore.Identity;
-using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace WebStore.Model.DataModels;
 
 public class Order
 {
-    public Customer Customer { get; set; }
+    [ForeignKey("Customer")]
+    public int CustomerId { get; set; }
+    public virtual Customer Customer { get; set; }
     public DateTime DeliveryDate { get; set; }
-    public int OrderId { get; set; }
+    [Key]
+    public int Id { get; set; }
     public DateTime OrderDate { get; set; }
     public decimal TotalAmount { get; }
     public long TrackingNumber { get; set; }
-    public Invoice Invoice { get; set; }
+    public int InvoiceID { get; set;}
+    [ForeignKey("Invoice")]
+    public int InvoiceId { get; set; }
     public virtual IList<OrderProduct> OrderProducts { get; set; }
-
 }

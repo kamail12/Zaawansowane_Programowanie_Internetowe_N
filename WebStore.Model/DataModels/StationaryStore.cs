@@ -4,7 +4,7 @@ namespace WebStore.Model.DataModels
 {
     public class StationaryStore
     {
-        public virtual IList<Address> Addresses { get; set; }
-        public virtual IList<StationaryStoreEmployee> StationaryStoreEmployees { get; set; }
+        public virtual Address Address { get; set; }
+        public virtual IList<StationaryStoreEmployee> Employees { get; set; }
     }
 }

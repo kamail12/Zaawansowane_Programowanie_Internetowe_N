@@ -11,9 +11,9 @@ namespace WebStore.Model.DataModels
     {
         [Key]
         public int Id { get; set; }
+        public string Name { get; set; } = default!;
         public virtual Address Address { get; set; } = default!;
         public virtual IList<Order> Orders { get; set; } = default!;
-
         [ForeignKey("Address")]
         public int AddressId { get; set; }
         public virtual IList<StationeryStoreEmployee> StationeryStoreEmployees { get; set; } = default!;

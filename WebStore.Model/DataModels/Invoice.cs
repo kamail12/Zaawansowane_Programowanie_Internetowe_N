@@ -11,7 +11,6 @@ namespace WebStore.Model.DataModels
     {
         public int Id { get; set; }
         public DateTime DateOfIssue { get; set; }
-
         public virtual IList<Order> Orders { get; set; } = default!;
 
     }

@@ -67,6 +67,77 @@ namespace WebStore.Tests
             };
             await dbContext.AddAsync(p2);
 
+            //Address
+
+            var a1 = new Address()
+            {
+                Id = 1,
+                City = "Uć",
+                Country = "Polska",
+                BuildingNumber = 23,
+                PostalCode = "99-712"
+
+            };
+            await dbContext.AddAsync(a1);
+            var a2 = new Address()
+            {
+                Id = 1,
+                City = "Berlin",
+                Country = "Anglia",
+                BuildingNumber = 14,
+                PostalCode = "99-712"
+
+            };
+            await dbContext.AddAsync(a2);
+            var a3 = new Address()
+            {
+                Id = 3,
+                City = "Czikago",
+                Country = "USA",
+                BuildingNumber = 1,
+                PostalCode = "90-210"
+
+            };
+            await dbContext.AddAsync(a3);
+            //Invoice
+            var i1 = new Invoice()
+            {
+                Id = 1,
+                DateOfIssue = new DateTime()
+            };
+            await dbContext.AddAsync(i1);
+            var i2 = new Invoice()
+            {
+                Id = 2,
+                DateOfIssue = new DateTime()
+            };
+            await dbContext.AddAsync(i2);
+
+            //Order
+
+            var o1 = new Order()
+            {
+                Id = 1,
+                OrderDate = new DateTime(),
+                TotalAmount = 1997.99m,
+                TrackingNumber = 334222,
+                InvoiceId = 1,
+                CustomerId = 1
+            };
+            await dbContext.AddAsync(o1);
+
+            var o2 = new Order()
+            {
+                Id = 2,
+                OrderDate = new DateTime(),
+                TotalAmount = 887.99m,
+                TrackingNumber = 12312432423,
+                InvoiceId = 2,
+                CustomerId = 2
+            };
+            await dbContext.AddAsync(o2);
+
+
             // save changes 
 
             await dbContext.SaveChangesAsync();

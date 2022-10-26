@@ -17,6 +17,18 @@ namespace WebStore.Services.Configuration
             CreateMap<ProductVm, Product>();
             CreateMap<Product, ProductVm>();
 
+            CreateMap<AddOrUpdateInvoiceVm, Invoice>();
+            CreateMap<InvoiceVm, Invoice>();
+            CreateMap<Invoice, InvoiceVm>();
+
+            CreateMap<AddOrUpdateOrderVm, Order>();
+            CreateMap<OrderVm, Order>();
+            CreateMap<Order, OrderVm>();
+
+            CreateMap<AddOrUpdateAddressVm, Address>();
+            CreateMap<AddressVm, Address>();
+            CreateMap<Address, AddressVm>();
+
         }
     }
 }

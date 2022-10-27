@@ -12,7 +12,8 @@ namespace WebStore.Services.ConcreteServices
     {
         public InvoiceService(ApplicationDbContext dbContext, IMapper mapper, ILogger logger) : base(dbContext, mapper, logger) { }
 
-        public InvoiceVm AddOrUpdateInvoice(AddOrUpdateInvoiceVm addOrUpdateInvoiceVm)
+
+        public InvoiceVm AddorUpdateInvoice(AddOrUpdateInvoiceVm addOrUpdateInvoiceVm)
         {
             try
             {
@@ -32,11 +33,6 @@ namespace WebStore.Services.ConcreteServices
                 Logger.LogError(ex, ex.Message);
                 throw;
             }
-        }
-
-        public InvoiceVm AddorUpdateInvoice(AddOrUpdateInvoiceVm addOrUpdateInvoiceVm)
-        {
-            throw new NotImplementedException();
         }
 
         public InvoiceVm GetInvoice(Expression<Func<Invoice, bool>> fileterExpression)

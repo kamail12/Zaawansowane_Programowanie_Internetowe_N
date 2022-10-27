@@ -33,6 +33,12 @@ namespace WebStore.Services.ConcreteServices
                 throw;
             }
         }
+
+        public InvoiceVm AddorUpdateInvoice(AddOrUpdateInvoiceVm addOrUpdateInvoiceVm)
+        {
+            throw new NotImplementedException();
+        }
+
         public InvoiceVm GetInvoice(Expression<Func<Invoice, bool>> fileterExpression)
         {
             try

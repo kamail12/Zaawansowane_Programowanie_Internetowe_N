@@ -6,9 +6,9 @@ using WebStore.ViewModels.VM;
 
 namespace WebStore.Services.Interfaces { 
     public interface IInvoiceService {
-        InvoiceVm AddorUpdateInvoice (AddOrUpdateInvoiceVm addOrUpdateInvoiceVm);
-        InvoiceVm GetInvoice (Expression<Func<Invoice, bool>> filterExpression);
-        IEnumerable<InvoiceVm> GetInvoices (Expression<Func<Invoice, bool>> ? filterExpression = null);
+        InvoiceVm AddorUpdateInvoice(AddOrUpdateInvoiceVm addOrUpdateInvoiceVm);
+        InvoiceVm GetInvoice(Expression<Func<Invoice, bool>> filterExpression);
+        IEnumerable<InvoiceVm> GetInvoices(Expression<Func<Invoice, bool>> ? filterExpression = null);
         
     }
 }

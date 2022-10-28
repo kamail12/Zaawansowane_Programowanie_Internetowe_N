@@ -81,7 +81,7 @@ namespace WebStore.Tests
             await dbContext.AddAsync(a1);
             var a2 = new Address()
             {
-                Id = 1,
+                Id = 2,
                 City = "Berlin",
                 Country = "Anglia",
                 BuildingNumber = 14,

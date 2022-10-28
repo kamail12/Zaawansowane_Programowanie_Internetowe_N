@@ -11,5 +11,10 @@ namespace WebStore.ViewModels.VM
         public int StreetNumber { get; set; } = default!;
         public string City { get; set; } = default!;
         public int PostCode { get; set; } = default!;
+
+        public int Count()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

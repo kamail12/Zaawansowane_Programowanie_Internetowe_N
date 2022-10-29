@@ -67,6 +67,19 @@ namespace WebStore.Tests
             };
             await dbContext.AddAsync(p2);
 
+            var p3 = new Product()
+            {
+                Id = 3,
+                CategoryId = category1.Id,
+                SupplierId = supplier1.Id,
+                Description = "Konsola do grania w gry ",
+                ImageBytes = new byte[] { 0xff, 0xff, 0xff, 0x70 },
+                Name = "Konsola Iksboks",
+                Price = 1300,
+                Weight = 0.5f,
+            };
+            await dbContext.AddAsync(p3);
+
             //Address
 
             var a1 = new Address()

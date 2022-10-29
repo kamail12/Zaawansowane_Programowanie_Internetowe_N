@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace WebStore.Model.DataModels
 {
@@ -16,9 +17,13 @@ namespace WebStore.Model.DataModels
         [ForeignKey("Category")]                                                               //Foreign key attribute
         public virtual int? CategoryId {get; set;}                                             //Foreign key property
 
+        //Properties of relation 'Many-to-Many' - 'Order-to-Product'
+        public virtual IList<OrderProduct> OrderProducts {get; set;} = default!;
+
         //Model properties
         public string Description {get; set;} = default!;
-        public int Id {get; set;}
+        [Key]
+        public int? Id {get; set;}
         public byte[] ImageBytes {get; set;} = default!;
         public string Name {get; set;} = default!;
         public decimal Price {get; set;}

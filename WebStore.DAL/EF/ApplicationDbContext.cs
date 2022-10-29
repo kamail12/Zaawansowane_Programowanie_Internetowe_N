@@ -17,7 +17,7 @@ namespace WebStore.DAL.EF
         public virtual DbSet<Category> Categories {get; set;} =default!;
         public virtual DbSet<Invoice> Invoices {get; set;} =default!;
         public virtual DbSet<StationaryStore> StationaryStores {get; set;} =default!;
-        public virtual DbSet<StationaryStoreEmployee> StationaryStoreEmployees {get; set;} =default!;
+        
 
 
         //Constructor call commands from class IdnetityDbContext constructor
@@ -43,6 +43,20 @@ namespace WebStore.DAL.EF
                 .HasValue<User>("User")
                 .HasValue<Customer>("Customer")
                 .HasValue<Supplier>("Supplier");
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasKey(op => new {op.OrderId, op.ProductId});
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(o => o.Order)
+                .WithMany(op => op.OrderProducts)
+                .HasForeignKey(o => o.OrderId);
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(p => p.Product)
+                .WithMany(op => op.OrderProducts)
+                .HasForeignKey(p => p.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

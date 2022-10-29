@@ -4,8 +4,13 @@ namespace WebStore.Model.DataModels
 {
     public class OrderProduct
     {
-        public Order Order {get; set;} = default!;
-        public Product Product {get; set;} = default!;
+        //Properties of relatiorn 'Many-to-Many' - 'Order-to-Product' 
+        public virtual Order Order {get; set;} = default!;
+        public int? OrderId {get; set;}
+        public virtual Product Product {get; set;} = default!;
+        public int? ProductId {get; set;}
+
+        //Model properties
         public int Quantity {get; set;}
     }
 }

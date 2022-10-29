@@ -18,7 +18,10 @@ namespace WebStore.Model.DataModels
         [ForeignKey("Invoice")]                                             //"Foreign key attribute" 
         public int? InvoiceId {get; set;}                                   //"Foreign key property"
 
+        //Properties of relation 'Many-to-Many' - 'Order-to-Product'
+        public virtual IList<OrderProduct> OrderProducts {get; set;} = default!;
 
+        //Model Properties
         public DateTime DeliveryDate {get; set;}
         [Key]
         public int? Id {get; set;}                                          //"Main key"

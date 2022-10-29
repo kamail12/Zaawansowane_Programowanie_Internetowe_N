@@ -2,6 +2,7 @@ namespace WebStore.Model.Models;
 public class StationaryStore
 {
     public int Id { get; set; }
+    public string Name { get; set; } = default!;
     public virtual Address Address { get; set; } = default!;
     public virtual IList<Order> Orders { get; set; } = default!;
     public virtual IList<StationaryStoreAddress> Addresses { get; set; } = default!;

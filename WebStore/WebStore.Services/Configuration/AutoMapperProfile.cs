@@ -24,6 +24,7 @@ public class AutoMapperProfile : Profile
             .Select(y => y.Product != null ? y.Product : null)));
 
         CreateMap<ProductStock, ProductStockVm>();
+
         CreateMap<Product, ProductVm>()
             .ForMember(dest => dest.Orders, x => x
             .MapFrom(src => src.OrderProducts
@@ -32,5 +33,17 @@ public class AutoMapperProfile : Profile
         CreateMap<Product, AddOrUpdateProductVm>();
         CreateMap<AddOrUpdateProductVm, Product>();
         CreateMap<ShippingAddress, ShippingAddressVm>();
+
+        CreateMap<StationaryStore, StationaryStoreVm>()
+            .ForMember(dest => dest.Addresses, x => x
+            .MapFrom(src => src.Addresses))
+            .ForMember(dest => dest.Invoices, x => x
+            .MapFrom(src => src.Invoices))
+            .ForMember(dest => dest.Employees, x => x
+            .MapFrom(src => src.StationaryStoreEmployees))
+            .ForMember(dest => dest.Orders, x => x
+            .MapFrom(src => src.Orders));
+
+        CreateMap<StationaryStoreAddress, StationaryStoreAddressVm>();
     }
 }

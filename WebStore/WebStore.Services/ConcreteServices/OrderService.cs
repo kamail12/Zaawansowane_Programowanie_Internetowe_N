@@ -49,7 +49,7 @@ public class OrderService : BaseService, IOrderService
 
             if (order == null)
             {
-                throw new Exception(message: "Not found");
+                throw new Exception(message: "Order not found");
             }
 
             return Mapper.Map<OrderVm>(order);

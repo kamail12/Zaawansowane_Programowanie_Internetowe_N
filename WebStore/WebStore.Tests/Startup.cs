@@ -34,6 +34,7 @@ public class Startup
         // service binding
         services.AddTransient<IProductService, ProductService>();
         services.AddTransient<IOrderService, OrderService>();
+        services.AddTransient<IStoreService, StoreService>();
 
         // ... other bindings...
         services.SeedData();

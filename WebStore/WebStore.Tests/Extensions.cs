@@ -88,6 +88,106 @@ public static class Extensions
             Invoiceid = 1
         };
         await dbContext.AddAsync(o2);
+
+        var o3 = new Order()
+        {
+            Id = 3,
+            TotalAmount = 1,
+            TrackingNumber = 1234,
+            DeliveryDate = new DateTime(2023, 1, 1),
+            OrderDate = new DateTime(2020, 1, 1),
+            StationaryStoreId = 1,
+            CustomerId = 3,
+            Invoiceid = 1,
+        };
+        await dbContext.AddAsync(o3);
+
+        // stationary stores
+        var st1 = new StationaryStore()
+        {
+            Id = 1,
+            Name = "Store 1"
+        };
+
+        var st2 = new StationaryStore()
+        {
+            Id = 2,
+            Name = "Store 2"
+        };
+        await dbContext.AddRangeAsync(st1, st2);
+
+        // store addresses
+        var stA1 = new StationaryStoreAddress()
+        {
+            Id = 1,
+            StationaryStoreId = 1,
+            City = "StoreCity",
+            StreetName = "Szkolna",
+            StreetNumber = 5,
+            PostCode = "42-200"
+        };
+
+        var stA2 = new StationaryStoreAddress()
+        {
+            Id = 2,
+            StationaryStoreId = 2,
+            City = "StoreCity",
+            StreetName = "Główna",
+            StreetNumber = 15,
+            PostCode = "42-201"
+        };
+        await dbContext.AddRangeAsync(stA1, stA2);
+
+        // customers
+        var c1 = new Customer()
+        {
+            Id = 3,
+            FirstName = "Jan",
+            LastName = "Client",
+            UserName = "cs1@eg.eg",
+            Email = "cs1@eg.eg",
+            RegistrationDate = new DateTime(2020, 1, 1),
+        };
+        await userManager.CreateAsync(c1, "pass123");
+
+        // store employees
+        var stE1 = new StationaryStoreEmployee()
+        {
+            Id = 4,
+            StationaryStoreId = 1,
+            Position = "Worker",
+            Salary = 3000,
+            FirstName = "Jan",
+            LastName = "Kowalski",
+            UserName = "emp1@eg.eg",
+            Email = "emp1@eg.eg",
+            RegistrationDate = new DateTime(2020, 1, 1),
+        };
+        await userManager.CreateAsync(stE1, "pass123");
+
+        var stE2 = new StationaryStoreEmployee()
+        {
+            Id = 5,
+            StationaryStoreId = 1,
+            Position = "Manager",
+            Salary = 500,
+            FirstName = "Stanisław",
+            LastName = "Nowak",
+            UserName = "emp2@eg.eg",
+            Email = "emp2@eg.eg",
+            RegistrationDate = new DateTime(2020, 1, 1),
+        };
+        await userManager.CreateAsync(stE2, "pass123");
+
+        // invoices 
+        var i1 = new Invoice()
+        {
+            Id = 1,
+            Date = new DateTime(2022, 3, 1),
+            StationaryStoreId = 1
+        };
+        await dbContext.AddAsync(i1);
+
         // save changes
         await dbContext.SaveChangesAsync();
     }

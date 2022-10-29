@@ -8,8 +8,8 @@ namespace WebStore.Model.DataModels
         It must be virtual object*/
 
         //Properties of relation 'One-to-many' - 'Customer-to-Address'
-        public virtual Address BillingAddress {get; set;} = default!;
-        public virtual Address ShippingAddress {get; set;} = default!;
+        public virtual IList<BillingAddress> BillingAddress {get; set;} = default!;
+        public virtual IList<ShippingAddress> ShippingAddress {get; set;} = default!;
         
         //Properties of relation 'One-to-many' - 'Customer-to-Order'
         public virtual IList<Order> Orders {get; set;} = default!;

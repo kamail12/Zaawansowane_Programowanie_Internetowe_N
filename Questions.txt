@@ -1,3 +1,4 @@
 1. Why identityDbContext class must have 3 arguments?
 2. Why do we use "= default!;"
 3. How do work relation many to many
+4. Must use attribute [Key] to define  primary key?

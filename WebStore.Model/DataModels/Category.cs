@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 namespace WebStore.Model.DataModels
 {
     public class Category
@@ -6,6 +7,8 @@ namespace WebStore.Model.DataModels
         public virtual IList<Product>Products {get; set;} = default!;
 
         //Model properties
+        [Key]
+        public int? Id {get; set;}
         public string Name {get; set;} = default!;
         
     }

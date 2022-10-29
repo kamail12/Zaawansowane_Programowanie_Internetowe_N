@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace WebStore.Model.DataModels
 {
@@ -9,6 +10,8 @@ namespace WebStore.Model.DataModels
         public int? ProductId {get; set;}                               //Foreign Key property
 
         //Model properties
+        [Key]
+        public int? Id {get; set;}
         public int Quantity {get; set;}
     }
 } 

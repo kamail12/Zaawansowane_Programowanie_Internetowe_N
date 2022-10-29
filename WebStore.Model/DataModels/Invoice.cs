@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 namespace WebStore.Model.DataModels
 {
     public class Invoice
@@ -6,6 +7,8 @@ namespace WebStore.Model.DataModels
         public virtual IList<Order> Orders {get; set;} = default!;
 
         //Model propreties
+        [Key]
+        public int? Id {get; set;}
         public decimal TotalAmount {get; set;}
     }
 }

@@ -9,15 +9,15 @@ namespace WebStore.DAL.EF
     public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int> // using in brackets class which inherits for class IdentityUser
     {
         //Table Properties
-        public virtual DbSet<Order> Orders {get; set;} 
-        public virtual DbSet<OrderProduct> OrderProducts {get; set;}
-        public virtual DbSet<Product> Products {get; set;}
-        public virtual DbSet<ProductStock> ProductStocks {get; set;}
-        public virtual DbSet<Address> Addresses {get; set;}
-        public virtual DbSet<Category> Categories {get; set;}
-        public virtual DbSet<Invoice> Invoices {get; set;}
-        public virtual DbSet<StationaryStore> StationaryStores {get; set;}
-        public virtual DbSet<StationaryStoreEmployee> StationaryStoreEmployees {get; set;}
+        public virtual DbSet<Order> Orders {get; set;} =default!;
+        public virtual DbSet<OrderProduct> OrderProducts {get; set;} =default!;
+        public virtual DbSet<Product> Products {get; set;} =default!;
+        public virtual DbSet<ProductStock> ProductStocks {get; set;} =default!;
+        public virtual DbSet<Address> Addresses {get; set;} =default!;
+        public virtual DbSet<Category> Categories {get; set;} =default!;
+        public virtual DbSet<Invoice> Invoices {get; set;} =default!;
+        public virtual DbSet<StationaryStore> StationaryStores {get; set;} =default!;
+        public virtual DbSet<StationaryStoreEmployee> StationaryStoreEmployees {get; set;} =default!;
 
 
         //Constructor call commands from class IdnetityDbContext constructor

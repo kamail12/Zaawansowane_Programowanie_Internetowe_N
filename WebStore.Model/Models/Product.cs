@@ -15,4 +15,5 @@ public class Product
     public virtual Category Category { get; set; } = default!;
 
     public virtual IList<ProductStock> ProductStocks { get; set; } = default!;
+    public  virtual IList<OrderProduct> OrderProducts { get; set; } = default!;
 }

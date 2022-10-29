@@ -10,4 +10,5 @@ public class Order
     public long TractingkNumber {get; set;} = default!;  
     public int InvoiceId { get; set; }
     public virtual Invoice Invoice { get; set; } = default!;
+    public  virtual IList<OrderProduct> OrderProducts { get; set; } = default!;
 }

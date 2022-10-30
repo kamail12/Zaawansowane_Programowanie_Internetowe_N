@@ -11,6 +11,7 @@ namespace WebStore.Model.Models
         [ForeignKey("StationaryStore")]
         public int StoreId { get; set; }
         public virtual StationaryStore Store {get; set;} = default!; 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Salary {get; set;}
     }
 }

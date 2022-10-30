@@ -17,6 +17,7 @@ public class WSDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     public DbSet<OrderProduct> OrderProduct => Set<OrderProduct>();
     public DbSet<Product> Product => Set<Product>();
     public DbSet<StationaryStore> StationaryStore => Set<StationaryStore>();
+    public DbSet<StationaryStoreAddress> StationaryStoreAddress => Set<StationaryStoreAddress>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

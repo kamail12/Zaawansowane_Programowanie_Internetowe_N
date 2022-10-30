@@ -141,19 +141,19 @@ public static class Extensions
         // customers
         var c1 = new Customer()
         {
-            Id = 3,
             FirstName = "Jan",
             LastName = "Client",
             UserName = "cs1@eg.eg",
             Email = "cs1@eg.eg",
             RegistrationDate = new DateTime(2020, 1, 1),
         };
-        await userManager.CreateAsync(c1, "pass123");
+        var a = userManager.CreateAsync(c1, "pasS123").Result.Errors.ToList();
+
 
         // store employees
         var stE1 = new StationaryStoreEmployee()
         {
-            Id = 4,
+            Id = 3,
             StationaryStoreId = 1,
             Position = "Worker",
             Salary = 3000,
@@ -163,11 +163,11 @@ public static class Extensions
             Email = "emp1@eg.eg",
             RegistrationDate = new DateTime(2020, 1, 1),
         };
-        await userManager.CreateAsync(stE1, "pass123");
+        await userManager.CreateAsync(stE1, "pasS123");
 
         var stE2 = new StationaryStoreEmployee()
         {
-            Id = 5,
+            Id = 4,
             StationaryStoreId = 1,
             Position = "Manager",
             Salary = 500,
@@ -177,14 +177,13 @@ public static class Extensions
             Email = "emp2@eg.eg",
             RegistrationDate = new DateTime(2020, 1, 1),
         };
-        await userManager.CreateAsync(stE2, "pass123");
+        await userManager.CreateAsync(stE2, "pasS123");
 
         // invoices 
         var i1 = new Invoice()
         {
             Id = 1,
             Date = new DateTime(2022, 3, 1),
-            StationaryStoreId = 1
         };
         await dbContext.AddAsync(i1);
 

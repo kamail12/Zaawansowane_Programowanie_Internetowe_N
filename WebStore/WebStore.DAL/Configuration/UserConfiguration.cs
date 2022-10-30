@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WebStore.Model.Models;
+using Enums = WebStore.Model.Enums;
 
 namespace WebStore.DAL.Configuration;
 public class UserConfiguration : IEntityTypeConfiguration<User>
@@ -9,10 +10,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder.ToTable("AspNetUsers")
             .HasDiscriminator<int>("UserType")
-            .HasValue<User>(0)
-            .HasValue<Customer>(1)
-            .HasValue<Supplier>(2)
-            .HasValue<StationaryStoreEmployee>(3);
+            .HasValue<User>((int)Enums.Role.User)
+            .HasValue<Customer>((int)Enums.Role.Customer)
+            .HasValue<Supplier>((int)Enums.Role.Supplier)
+            .HasValue<StationaryStoreEmployee>((int)Enums.Role.StationaryStoreEmployee);
 
         builder.HasKey(x => x.Id);
     }

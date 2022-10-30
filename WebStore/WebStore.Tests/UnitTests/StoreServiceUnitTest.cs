@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebStore.DAL.DatabaseContext;
 using WebStore.Services.Interfaces;
+using WebStore.ViewModels.VM;
 using Xunit;
 
 namespace WebStore.Tests.UnitTests
@@ -25,9 +22,42 @@ namespace WebStore.Tests.UnitTests
         public async Task Handle_ShouldReturnStores(int storeId)
         {
             var store = await _storeService.GetStationaryStoreById(storeId);
-            System.Console.WriteLine(store.Id);
             Assert.NotNull(store);
             Assert.Equal(store.Id, storeId);
+        }
+
+        [Fact]
+        public async void GetAllStoresTest()
+        {
+            var stores = await _storeService.GetStationaryStores();
+
+            Assert.Equal(2, stores.Count());
+        }
+
+        [Fact]
+        public async void CheckIsAllDataIncluded()
+        {
+            var store = await _storeService.GetStationaryStoreById(1);
+
+            Assert.NotNull(store.Addresses);
+            Assert.NotNull(store.Employees);
+            Assert.NotNull(store.Invoices);
+
+            Assert.Equal(2, store.Employees.Count());
+        }
+
+        [Fact]
+        public async void ShouldAddStore()
+        {
+            AddStationaryStoreVm request = new()
+            {
+                Name = "test store"
+            };
+
+            var store = await _storeService.AddStationaryStore(request);
+
+            Assert.NotNull(store);
+            Assert.True(store.Id > 0);
         }
     }
 }

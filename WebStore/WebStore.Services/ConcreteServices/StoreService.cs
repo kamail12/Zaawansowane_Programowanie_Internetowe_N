@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebStore.DAL.DatabaseContext;
+using WebStore.Model.Models;
 using WebStore.Services.Interfaces;
 using WebStore.ViewModels.VM;
 
@@ -26,6 +27,8 @@ namespace WebStore.Services.ConcreteServices
             {
                 var stationaryStore = await _context.StationaryStore
                     .Include(x => x.Addresses)
+                    .Include(x => x.Invoices)
+                    .Include(x => x.Orders)
                     .Include(x => x.StationaryStoreEmployees)
                     .FirstOrDefaultAsync(x => x.Id == id);
 
@@ -36,6 +39,47 @@ namespace WebStore.Services.ConcreteServices
 
                 return _mapper.Map<StationaryStoreVm>(stationaryStore);
             }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<StationaryStoreVm>> GetStationaryStores()
+        {
+            try
+            {
+                var stationaryStores = await _context.StationaryStore
+                    .Include(x => x.Addresses)
+                    .Include(x => x.Invoices)
+                    .Include(x => x.StationaryStoreEmployees)
+                    .ToListAsync();
+
+                if (stationaryStores == null || stationaryStores.Count() == 0)
+                {
+                    throw new Exception(message: "Not found");
+                }
+
+                return _mapper.Map<IEnumerable<StationaryStoreVm>>(stationaryStores);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<StationaryStoreVm> AddStationaryStore(AddStationaryStoreVm request)
+        {
+            try
+            {
+                StationaryStore store = _mapper.Map<StationaryStore>(request);
+
+                await _context.AddAsync(store);
+                return _mapper.Map<StationaryStoreVm>(store);
+            }
+
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);

@@ -11,9 +11,9 @@ using WebStore.ViewModels.Vm;
 
 namespace WebStore.Services.ConcreteServices
 {
-    public class ProductServices : BaseService, IProductService
+    public class ProductService : BaseService, IProductService
     {
-        public ProductServices(ApplicationDbContext dbContext, IMapper mapper, ILogger logger) 
+        public ProductService(ApplicationDbContext dbContext, IMapper mapper, ILogger logger) 
         : base(dbContext, mapper, logger)
         {
         }

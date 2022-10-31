@@ -28,5 +28,6 @@ namespace WebStore.Model.DataModels
         public string Name {get; set;} = default!;
         public decimal Price {get; set;}
         public float Weight {get; set;}
+        //public int Quantity{get; set;}
     }
 }

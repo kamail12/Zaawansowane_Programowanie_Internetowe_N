@@ -21,6 +21,8 @@ namespace WebStore.Services.ConcreteServices
             {
                 if (filterExpression == null)
                     throw new ArgumentNullException("Filter expression parameter is null");
+                // not implemented yet.
+                throw new NotImplementedException();
                 // var storeEntity = DbContext.
             }
             catch (Exception ex)

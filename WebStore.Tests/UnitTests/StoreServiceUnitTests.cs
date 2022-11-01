@@ -18,7 +18,7 @@ namespace WebStore.Tests.UnitTests {
         
         [Fact] 
         public void GetStoreTest () { 
-            var store = _storeService.GetStore (s => s.ArrangementNumber == 1111); 
+            var store = _storeService.GetStore (s => s.ArrangementNumber == 2222); 
             Assert.NotNull (store); 
         } 
         
@@ -43,8 +43,7 @@ namespace WebStore.Tests.UnitTests {
         
         public void AddNewStoreTest () { 
             var newStoreVm = new AddOrUpdateStoreVm () { 
-                Id = 1,
-                AddressId = 20,
+                
                 ArrangementNumber = 1111
             }; 
                 var createdStore = _storeService.AddOrUpdateStore (newStoreVm); 
@@ -57,8 +56,7 @@ namespace WebStore.Tests.UnitTests {
 
         public void UpdateStoreTest () { 
             var updateStoreVm = new AddOrUpdateStoreVm () { 
-                Id = 1,
-                AddressId = 20,
+                
                 ArrangementNumber = 1111
             }; 
             var editedStoreVm = _storeService.AddOrUpdateStore (updateStoreVm); 

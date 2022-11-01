@@ -137,18 +137,18 @@ namespace WebStore.Tests {
 
             var s1 = new StationaryStore()
             {
-                Id = 1,
-                AddressId = 20,
+                
+                
                 ArrangementNumber = 1111
-                 
+                
                 
             };
             await dbContext.AddAsync(s1);
 
             var s2 = new StationaryStore()
             {
-                Id = 2,
-                AddressId = 30,
+                
+                
                 ArrangementNumber = 2222
             };
             await dbContext.AddAsync(s2);

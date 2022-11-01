@@ -10,7 +10,7 @@ public static class SwaggerConfigExtensions
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebStore API", Version = "v1" });
         });
     }
-    public static void UseSwagger(this IApplicationBuilder app)
+    public static void UseCoreSwagger(this IApplicationBuilder app)
     {
         app.UseSwagger();
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebStore API v1"));

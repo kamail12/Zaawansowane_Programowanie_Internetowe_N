@@ -9,7 +9,7 @@ public static class ApplicationBuilderExtensions
             app.UseHsts();
         }
 
-        app.UseSwagger();
+        app.UseCoreSwagger();
         app.UseHttpsRedirection();
         app.UseStaticFiles();
         app.UseRouting();

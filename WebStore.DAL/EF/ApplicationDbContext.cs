@@ -9,14 +9,14 @@ namespace WebStore.DAL.EF
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderProduct> OrderProducts { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductStock> ProductStocks { get; set; }
-        public virtual DbSet<Address> Adresses { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
-        public virtual DbSet<StationaryStore> StationaryStores { get; set; }
+        public virtual DbSet<Order> Orders { get; set; } = default!;
+        public virtual DbSet<OrderProduct> OrderProducts { get; set; } = default!;
+        public virtual DbSet<Product> Products { get; set; } = default!;
+        public virtual DbSet<ProductStock> ProductStocks { get; set; } = default!;
+        public virtual DbSet<Address> Adresses { get; set; } = default!;
+        public virtual DbSet<Category> Categories { get; set; } = default!;
+        public virtual DbSet<Invoice> Invoices { get; set; } = default!;
+        public virtual DbSet<StationaryStore> StationaryStores { get; set; } = default!;
     
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

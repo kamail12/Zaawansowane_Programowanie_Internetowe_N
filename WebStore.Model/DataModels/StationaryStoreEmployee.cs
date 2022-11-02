@@ -5,12 +5,12 @@ namespace WebStore.Model.DataModels
 {
     public class StationaryStoreEmployee : User
     {
-        public string Position { get; set; }
+        public string Position { get; set; } = default!;
 
-        public StationaryStore StationaryStore { get; set; }
+        public StationaryStore StationaryStore { get; set; } = default!;
 
-        public int StationaryStoreId { get; set; }
+        public int StationaryStoreId { get; set; } = default!;
 
-        public float Salary { get; set; }
+        public float Salary { get; set; } = default!;
     }
 }

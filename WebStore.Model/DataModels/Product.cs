@@ -5,29 +5,21 @@ namespace WebStore.Model.DataModels
 {
     public class Product
     {
-        public Category Category { get; set; }
+        public Category Category { get; set; } = default!;
 
-        public string Description { get; set; }
+        public string Description { get; set; } = default!;
 
-         public int Id { get; set; }
+         public int Id { get; set; } = default!;
 
-         public byte[] ImageBytes { get; set; }
+         public byte[] ImageBytes { get; set; } = default!;
 
-         public string Name { get; set; }
+         public string Name { get; set; } = default!;
 
-         public decimal Price { get; set; }
+         public decimal Price { get; set; } = default!;
 
-         public Supplier Supplier { get; set; }
+         public Supplier Supplier { get; set; } = default!;
 
-         public float Weight { get; set; }
+         public float Weight { get; set; } = default!;
 
-         public Product()
-         {
-            Description = "brak";
-            Id = 0;
-            Name = "brak";
-            Price = 0;
-            Weight = 0;
-         }
     }
 }

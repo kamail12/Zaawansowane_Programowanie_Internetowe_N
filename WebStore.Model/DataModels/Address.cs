@@ -5,20 +5,22 @@ namespace WebStore.Model.DataModels
 {
     public class Address
     {
-        public string City { get; set; }
+        public virtual Customer Customer { get; set; } = default!;
 
-        public string ZipCode { get; set; }
+        public string City { get; set; } = default!;
 
-        public string Street { get; set; }
+        public string ZipCode { get; set; } = default!;
 
-        public string StreetNumber { get; set; }
+        public string Street { get; set; } = default!;
 
-        public string BuildingNumber { get; set; }
+        public string StreetNumber { get; set; } = default!;
 
-        public string ApartmentNumber { get; set; }
+        public string BuildingNumber { get; set; }= default!;
+
+        public string ApartmentNumber { get; set; }= default!;
 
 
-        public Address()
+        /* public Address()
         {
             City = "brak";
             ZipCode = "brak";
@@ -26,6 +28,6 @@ namespace WebStore.Model.DataModels
             StreetNumber = "brak";
             BuildingNumber = "brak";
             ApartmentNumber = "brak";
-        }
+        } */
     }
 }

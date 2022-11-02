@@ -1,5 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\NazwaSolucji.Model\NazwaSolucji.Model.csproj" />
+    <ProjectReference Include="..\NazwaSolucji.DAL\NazwaSolucji.DAL.csproj" />
+    <ProjectReference Include="..\NazwaSolucji.ViewModels\NazwaSolucji.ViewModels.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

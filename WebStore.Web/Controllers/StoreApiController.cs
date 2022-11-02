@@ -5,22 +5,22 @@ using WebStore.ViewModels.VM;
 
 namespace WebStore.Web.Controllers;
 
-public class InvoiceApiController : BaseApiController
+public class StoreApiController : BaseApiController
 { 
-        private readonly IInvoiceService _invoiceService; 
-        public InvoiceApiController(ILogger logger, IMapper mapper, 
-                    IInvoiceService invoiceService) : 
+        private readonly IStoreService _storeService; 
+        public StoreApiController(ILogger logger, IMapper mapper, 
+                    IStoreService storeService) : 
                     base(logger, mapper) 
         { 
-            _invoiceService = invoiceService; 
+            _storeService = storeService; 
         } 
         [HttpGet] 
         public IActionResult Get() 
         { 
             try 
             { 
-                var invoices = _invoiceService.GetInvoices(); 
-                return Ok(invoices); 
+                var stores = _storeService.GetStores(); 
+                return Ok(stores); 
             } 
             catch (Exception ex) 
             { 
@@ -33,8 +33,8 @@ public class InvoiceApiController : BaseApiController
         { 
             try
             { 
-                var invoice = _invoiceService.GetInvoices(i => i.invoiceID == id); 
-                return Ok(invoice); 
+                var store = _storeService.GetStore(s => s.Id == id); 
+                return Ok(store); 
             } 
             catch (Exception ex) 
             { 
@@ -43,21 +43,21 @@ public class InvoiceApiController : BaseApiController
             } 
         } 
         [HttpPut] 
-        public IActionResult Put([FromBody] AddOrUpdateInvoiceVm addOrUpdateInvoiceVm) 
+        public IActionResult Put([FromBody] AddOrUpdateStoreVm addOrUpdateStoreVm) 
         { 
-            return PostOrPutHelper(addOrUpdateInvoiceVm); 
+            return PostOrPutHelper(addOrUpdateStoreVm); 
         } 
         [HttpPost] 
-        public IActionResult Post([FromBody] AddOrUpdateInvoiceVm addOrUpdateInvoiceVm) 
+        public IActionResult Post([FromBody] AddOrUpdateStoreVm addOrUpdateStoreVm) 
         { 
-            return PostOrPutHelper(addOrUpdateInvoiceVm); 
+            return PostOrPutHelper(addOrUpdateStoreVm); 
         } 
         [HttpDelete("{id:int:min(1)}")] 
         public IActionResult Delete(int id) 
         { 
             try 
             { 
-                var result = _invoiceService.DeleteInvoice(i => i.invoiceID == id); 
+                var result = _storeService.DeleteStore(s => s.Id == id); 
                 return Ok(result); 
             } 
             catch (Exception ex) 
@@ -66,13 +66,13 @@ public class InvoiceApiController : BaseApiController
                 return StatusCode(500, "Error occured"); 
             } 
         } 
-        private IActionResult PostOrPutHelper(AddOrUpdateInvoiceVm addOrUpdateInvoiceVm) 
+        private IActionResult PostOrPutHelper(AddOrUpdateStoreVm addOrUpdateStoreVm) 
         { 
             try 
             { 
                 if (!ModelState.IsValid) 
                     return BadRequest(ModelState); 
-                return Ok(_invoiceService.AddorUpdateInvoice(addOrUpdateInvoiceVm)); 
+                return Ok(_storeService.AddOrUpdateStore(addOrUpdateStoreVm)); 
             } 
             catch (Exception ex) 
             { 

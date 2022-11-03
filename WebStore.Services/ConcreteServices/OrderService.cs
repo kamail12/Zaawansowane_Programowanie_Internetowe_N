@@ -35,5 +35,41 @@ namespace WebStore.Services.ConcreteServices
                 throw;
             }
         }
+
+        public OrderVm GetOrder(Expression<Func<Order, bool>> filterExpression)
+        {
+            try
+            {
+                if (filterExpression == null)
+                    throw new ArgumentNullException("Filter expression parameter is null");
+                var orderEntity = DbContext.Orders.FirstOrDefault(filterExpression);
+                var orderVm = Mapper.Map<OrderVm>(orderEntity);
+                return orderVm;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
+        public IEnumerable<OrderVm> GetOrders(Expression<Func<Order, bool>>? filterExpression = null)
+        {
+            try
+            {
+                var ordersQuery = DbContext.Orders.AsQueryable();
+                if (filterExpression != null)
+                    ordersQuery = ordersQuery.Where(filterExpression);
+                var orderVms = Mapper.Map<IEnumerable<OrderVm>>(ordersQuery);
+                return orderVms;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+
+            }
+        }
+
+
     }
 }

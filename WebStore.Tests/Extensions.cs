@@ -78,7 +78,7 @@ namespace WebStore.Tests
                 OrderDate = new DateTime(2010, 1, 1),
                 DeliveryDate = new DateTime(2012, 1, 1),
                 TotalAmount = 10,
-                TractingkNumber = 1234,
+                TrackingNumber = 1234,
                 InvoiceId = 1,
             };
 

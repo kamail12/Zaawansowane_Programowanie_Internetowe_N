@@ -17,6 +17,10 @@ namespace WebStore.Services.Configuration
             CreateMap<OrderVm, Order>();
             CreateMap<Order, OrderVm>();
 
+            CreateMap<AddOrUpdateStoreVm, StationaryStore>();
+            CreateMap<StationaryStoreVm, StationaryStore>();
+            CreateMap<StationaryStore, StationaryStoreVm>();
+
         }
     }
 }

@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebStore.Dal.Data;
+using WebStore.DAL.Data;
 
 #nullable disable
 
-namespace WebStore.Dal.Migrations
+namespace WebStore.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221030143427_Initial")]
-    partial class Initial
+    [Migration("20221103164152_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -319,24 +319,16 @@ namespace WebStore.Dal.Migrations
 
             modelBuilder.Entity("WebStore.Model.Models.ProductStock", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<int>("StationaryStoreId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
-                    b.HasIndex("ProductId");
+                    b.HasKey("ProductId", "StationaryStoreId");
 
                     b.HasIndex("StationaryStoreId");
 
@@ -633,7 +625,7 @@ namespace WebStore.Dal.Migrations
                     b.HasOne("WebStore.Model.Models.Product", "Product")
                         .WithMany("ProductStocks")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("WebStore.Model.Models.StationaryStore", "StationaryStore")

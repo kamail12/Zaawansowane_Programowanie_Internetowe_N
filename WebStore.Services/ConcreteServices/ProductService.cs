@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
-using WebStore.Dal.Data;
+using WebStore.DAL.Data;
 using WebStore.Model.Models;
 using WebStore.Services.Interfaces;
 using WebStore.ViewModels.VM;

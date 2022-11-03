@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WebStore.Model.Models;
 
-namespace WebStore.Dal.Data
+namespace WebStore.DAL.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
@@ -16,8 +16,8 @@ namespace WebStore.Dal.Data
         public virtual DbSet<Category> Categories { get; set; } = default!;
         public virtual DbSet<Invoice> Invoices { get; set; } = default!;
         public virtual DbSet<StationaryStore> StationaryStores { get; set; } = default!;
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options){}
-        
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -31,29 +31,43 @@ namespace WebStore.Dal.Data
 
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
-            builder.Entity<User> ()
-                .ToTable ("AspNetUsers")
-                .HasDiscriminator<int> ("UserType")
-                .HasValue<User> (0)
-                .HasValue<Customer> (1)
-                .HasValue<Supplier> (2)
-                .HasValue<StationaryStoreEmployee> (3);
+            builder.Entity<User>()
+                .ToTable("AspNetUsers")
+                .HasDiscriminator<int>("UserType")
+                .HasValue<User>(0)
+                .HasValue<Customer>(1)
+                .HasValue<Supplier>(2)
+                .HasValue<StationaryStoreEmployee>(3);
 
             builder.Entity<OrderProduct>()
-                .HasKey(sg => new {sg.OrderId, sg.ProductId});
+                .HasKey(x1 => new { x1.OrderId, x1.ProductId });
 
             builder.Entity<OrderProduct>()
-                .HasOne(g => g.Product)
-                .WithMany(sg => sg.OrderProducts)
-                .HasForeignKey(g => g.ProductId);
+                .HasOne(x2 => x2.Product)
+                .WithMany(x1 => x1.OrderProducts)
+                .HasForeignKey(x2 => x2.ProductId);
 
             builder.Entity<OrderProduct>()
-                .HasOne(g => g.Order)
-                .WithMany(sg => sg.OrderProducts)
-                .HasForeignKey(g => g.OrderId)
+                .HasOne(x2 => x2.Order)
+                .WithMany(x1 => x1.OrderProducts)
+                .HasForeignKey(x2 => x2.OrderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<ProductStock>()
+                .HasOne(x2 => x2.StationaryStore)
+                .WithMany(x1 => x1.ProductStocks)
+                .HasForeignKey(x2 => x2.StationaryStoreId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<ProductStock>()
+                .HasOne(x2 => x2.Product)
+                .WithMany(x1 => x1.ProductStocks)
+                .HasForeignKey(x2 => x2.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ProductStock>()
+                .HasKey(x => new { x.ProductId, x.StationaryStoreId });
         }
-    
+
     }
 }

@@ -1,6 +1,6 @@
 using AutoMapper; 
 using Microsoft.Extensions.Logging; 
-using WebStore.Dal.Data; 
+using WebStore.DAL.Data; 
 namespace WebStore.Services.ConcreteServices {
      public abstract class BaseService {
          protected readonly ApplicationDbContext DbContext; 

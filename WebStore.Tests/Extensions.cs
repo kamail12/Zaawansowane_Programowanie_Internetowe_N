@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using WebStore.Dal.Data;
+using WebStore.DAL.Data;
 using WebStore.Model.Models;
 namespace WebStore.Tests
 {
@@ -59,6 +59,31 @@ namespace WebStore.Tests
                 Weight = 0.5f,
             };
             await dbContext.AddAsync(p2);
+
+            // invoices
+            var i1 = new Invoice()
+            {
+                Id = 1,
+                totalPrice = 100,
+            };
+
+            await dbContext.AddAsync(i1);
+
+
+            // orders
+            var o1 = new Order()
+            {
+                Id = 1,
+                CustomerId = 1,
+                OrderDate = new DateTime(2010, 1, 1),
+                DeliveryDate = new DateTime(2012, 1, 1),
+                TotalAmount = 10,
+                TractingkNumber = 1234,
+                InvoiceId = 1,
+            };
+
+            await dbContext.AddAsync(o1);
+
             // save changes
             await dbContext.SaveChangesAsync();
         }

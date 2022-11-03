@@ -1,4 +1,4 @@
-using WebStore.Dal.Data;
+using WebStore.DAL.Data;
 namespace WebStore.Tests.UnitTests
 {
     public abstract class BaseUnitTests

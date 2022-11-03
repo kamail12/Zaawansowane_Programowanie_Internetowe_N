@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace WebStore.Dal.Migrations
+namespace WebStore.DAL.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -375,21 +375,19 @@ namespace WebStore.Dal.Migrations
                 name: "ProductStocks",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     StationaryStoreId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductStocks", x => x.Id);
+                    table.PrimaryKey("PK_ProductStocks", x => new { x.ProductId, x.StationaryStoreId });
                     table.ForeignKey(
                         name: "FK_ProductStocks_Product_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Product",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProductStocks_StationaryStores_StationaryStoreId",
                         column: x => x.StationaryStoreId,
@@ -471,11 +469,6 @@ namespace WebStore.Dal.Migrations
                 name: "IX_Product_SupplierId",
                 table: "Product",
                 column: "SupplierId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductStocks_ProductId",
-                table: "ProductStocks",
-                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductStocks_StationaryStoreId",

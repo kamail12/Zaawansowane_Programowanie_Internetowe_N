@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using WebStore.Dal.Data;
+using WebStore.DAL.Data;
 using WebStore.Model.Models;
 using WebStore.Services.ConcreteServices;
 using WebStore.Services.Configuration;
@@ -31,6 +31,8 @@ namespace WebStore.Tests
             services.AddTransient(typeof(ILogger), typeof(Logger<Startup>));
             // service binding
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IOrderService, OrderService>();
+
             // … other bindings…
             services.SeedData();
         }

@@ -68,7 +68,8 @@ namespace WebStore.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -106,6 +107,10 @@ namespace WebStore.DAL.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserType = table.Column<int>(type: "int", nullable: false),
+                    BillingAddressesId = table.Column<int>(type: "int", nullable: true),
+                    BillingAddress = table.Column<int>(type: "int", nullable: true),
+                    ShippingAddressesId = table.Column<int>(type: "int", nullable: true),
+                    ShippingAddress = table.Column<int>(type: "int", nullable: true),
                     StoreId = table.Column<int>(type: "int", nullable: true),
                     Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -126,6 +131,16 @@ namespace WebStore.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_Addresses_BillingAddressesId",
+                        column: x => x.BillingAddressesId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_Addresses_ShippingAddressesId",
+                        column: x => x.ShippingAddressesId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_AspNetUsers_StationaryStores_StoreId",
                         column: x => x.StoreId,
@@ -220,24 +235,6 @@ namespace WebStore.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BillingAddress",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BillingAddress", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BillingAddress_AspNetUsers_Id",
-                        column: x => x.Id,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
@@ -246,7 +243,7 @@ namespace WebStore.DAL.Migrations
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     DeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TractingkNumber = table.Column<long>(type: "bigint", nullable: false),
+                    TrackingNumber = table.Column<long>(type: "bigint", nullable: false),
                     InvoiceId = table.Column<int>(type: "int", nullable: false),
                     StationaryStoreId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -299,24 +296,6 @@ namespace WebStore.DAL.Migrations
                         name: "FK_Product_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ShippingAddress",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ShippingAddress", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ShippingAddress_AspNetUsers_Id",
-                        column: x => x.Id,
-                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -429,6 +408,16 @@ namespace WebStore.DAL.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_BillingAddressesId",
+                table: "AspNetUsers",
+                column: "BillingAddressesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_ShippingAddressesId",
+                table: "AspNetUsers",
+                column: "ShippingAddressesId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_StoreId",
                 table: "AspNetUsers",
                 column: "StoreId");
@@ -489,9 +478,6 @@ namespace WebStore.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Addresses");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -507,16 +493,10 @@ namespace WebStore.DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BillingAddress");
-
-            migrationBuilder.DropTable(
                 name: "OrderProducts");
 
             migrationBuilder.DropTable(
                 name: "ProductStocks");
-
-            migrationBuilder.DropTable(
-                name: "ShippingAddress");
 
             migrationBuilder.DropTable(
                 name: "StationaryStoreAddress");
@@ -538,6 +518,9 @@ namespace WebStore.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "StationaryStores");

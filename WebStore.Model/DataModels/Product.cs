@@ -12,7 +12,9 @@ public class Product
     public string Description { get; set; }
     public byte[] ImageBytes { get; set; }
     public string Name { get; set; }
+    [Column(TypeName = "decimal(18,2)")]
     public decimal Price { get; set; }
+    
     [ForeignKey("Supplier")]
     public int? SupplierId { get; set; }
     public virtual Supplier Supplier { get; set; }

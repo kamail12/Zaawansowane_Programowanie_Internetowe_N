@@ -6,10 +6,11 @@ namespace WebStore.Model.DataModels
     {
         [Key]
         public int Id { get; set; }
-        public Customer Customer { get; set; }
+        [NotMapped]
+        public virtual Customer Customer { get; set; }
         [ForeignKey("Customer")]
         public int? CustomerId { get; set; }
-        public StationaryStore Store { get; set; }
+        public virtual StationaryStore Store { get; set; }
         [ForeignKey("Store")]
         public int? StoreId { get; set; }
         public int PostalCode { get; set; }

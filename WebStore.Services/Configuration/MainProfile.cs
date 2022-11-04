@@ -21,6 +21,14 @@ namespace WebStore.Services.Configuration
             CreateMap<StationaryStoreVm, StationaryStore>();
             CreateMap<StationaryStore, StationaryStoreVm>();
 
+            CreateMap<AddOrUpdateInvoiceVm, Invoice>();
+            CreateMap<InvoiceVm, Invoice>();
+            CreateMap<Invoice, InvoiceVm>();
+
+            CreateMap<AddOrUpdateAddressVm, Address>();
+            CreateMap<AddressVm, Address>();
+            CreateMap<Address, AddressVm>();
+
         }
     }
 }

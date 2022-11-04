@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WebStore.DAL.DatabaseContext;
 using WebStore.Services.Interfaces;
 using WebStore.ViewModels.VM;
@@ -59,5 +60,18 @@ namespace WebStore.Tests.UnitTests
             Assert.NotNull(store);
             Assert.True(store.Id > 0);
         }
+
+        // [Fact]
+        // public async Task DeleteStoreTest()
+        // {
+        //     int storeId = 1;
+
+        //     bool doesStoreExistsBefore = await _context.StationaryStore.AnyAsync(x => x.Id == storeId);
+        //     await _storeService.DeleteStationaryStore(storeId);
+        //     bool doesStoreExistsAfter = await _context.StationaryStore.AnyAsync(x => x.Id == storeId);
+
+        //     Assert.True(doesStoreExistsBefore);
+        //     Assert.False(doesStoreExistsAfter);
+        // }
     }
 }

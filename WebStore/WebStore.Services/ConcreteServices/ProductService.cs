@@ -75,4 +75,27 @@ public class ProductService : BaseService, IProductService
             throw;
         }
     }
+
+    public async Task DeleteProduct(int productId)
+    {
+        try
+        {
+            var productEntity = DbContext.Product
+                .FirstOrDefault(x => x.Id == productId);
+
+            if (productEntity == null)
+            {
+                throw new Exception("Product not found");
+            }
+
+            DbContext.Product.Remove(productEntity);
+
+            await DbContext.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, ex.Message);
+            throw;
+        }
+    }
 }

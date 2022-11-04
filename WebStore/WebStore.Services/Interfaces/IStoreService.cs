@@ -6,4 +6,5 @@ public interface IStoreService
     public Task<StationaryStoreVm> GetStationaryStoreById(int id);
     public Task<IEnumerable<StationaryStoreVm>> GetStationaryStores();
     public Task<StationaryStoreVm> AddStationaryStore(AddStationaryStoreVm request);
+    public Task DeleteStationaryStore(int storeId);
 }

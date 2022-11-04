@@ -117,7 +117,7 @@ public static class Extensions
         await dbContext.AddRangeAsync(st1, st2);
 
         // store addresses
-        var stA1 = new StationaryStoreAddress()
+        var stA1 = new Address()
         {
             Id = 1,
             StationaryStoreId = 1,
@@ -127,7 +127,7 @@ public static class Extensions
             PostCode = "42-200"
         };
 
-        var stA2 = new StationaryStoreAddress()
+        var stA2 = new Address()
         {
             Id = 2,
             StationaryStoreId = 2,

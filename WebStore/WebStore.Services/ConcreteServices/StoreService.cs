@@ -86,5 +86,28 @@ namespace WebStore.Services.ConcreteServices
                 throw;
             }
         }
+
+        public async Task DeleteStationaryStore(int storeId)
+        {
+            try
+            {
+                var storeEntity = await _context.StationaryStore
+                    .FirstOrDefaultAsync(x => x.Id == storeId);
+
+                if (storeEntity == null)
+                {
+                    throw new Exception("Store not found");
+                }
+
+                _context.StationaryStore.Remove(storeEntity);
+
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
     }
 }

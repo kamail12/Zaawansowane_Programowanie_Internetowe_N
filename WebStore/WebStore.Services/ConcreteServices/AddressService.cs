@@ -19,13 +19,13 @@ public class AddressService : BaseService, IAddressService
         _logger = logger;
     }
 
-    public async Task<StationaryStoreAddressVm> AddOrUpdateStoreAdress(AddOrUpdateStoreAddressVm request)
+    public async Task<AddressVm> AddOrUpdateAddress(AddOrUpdateAddressVm request)
     {
         try
         {
             if (request.Id != null && request.Id > 0)
             {
-                var addressEntity = await _context.StationaryStoreAddress
+                var addressEntity = await _context.Address
                     .AsNoTracking()
                     .FirstOrDefaultAsync(x => x.Id == request.Id);
 
@@ -34,30 +34,50 @@ public class AddressService : BaseService, IAddressService
                     throw new Exception(message: "Address not found");
                 }
 
-                if (addressEntity.StationaryStoreId != request.StationaryStoreId)
+                if (request.StationaryStoreId != null && addressEntity.StationaryStoreId != request.StationaryStoreId)
                 {
                     throw new Exception(message: "Invalid store Id");
                 }
 
-                var newAddress = _mapper.Map<StationaryStoreAddress>(request);
-                _context.StationaryStoreAddress.Update(newAddress);
+                if (request.CustomerId != null && addressEntity.CustomerId != request.CustomerId)
+                {
+                    throw new Exception(message: "Invalid customer Id");
+                }
 
-                return _mapper.Map<StationaryStoreAddressVm>(newAddress);
+                var newAddress = _mapper.Map<Address>(request);
+                _context.Address.Update(newAddress);
+
+                return _mapper.Map<AddressVm>(newAddress);
             }
             else
             {
-                var storeEntity = await _context.StationaryStore
-                    .FirstOrDefaultAsync(x => x.Id == request.StationaryStoreId);
-
-                if (storeEntity == null)
+                if (request.StationaryStoreId != null)
                 {
-                    throw new Exception(message: "Invalid store Id");
+                    var storeEntity = await _context.StationaryStore
+                        .FirstOrDefaultAsync(x => x.Id == request.StationaryStoreId);
+
+                    if (storeEntity == null)
+                    {
+                        throw new Exception(message: "Invalid store Id");
+                    }
                 }
-                var newAddress = _mapper.Map<StationaryStoreAddress>(request);
-                _context.StationaryStoreAddress.Add(newAddress);
+
+                if (request.CustomerId != null)
+                {
+                    var storeEntity = await _context.User.OfType<Customer>()
+                        .FirstOrDefaultAsync(x => x.Id == request.StationaryStoreId);
+
+                    if (storeEntity == null)
+                    {
+                        throw new Exception(message: "Invalid customer Id");
+                    }
+                }
+
+                var newAddress = _mapper.Map<Address>(request);
+                _context.Address.Add(newAddress);
                 _context.SaveChanges();
 
-                return _mapper.Map<StationaryStoreAddressVm>(newAddress);
+                return _mapper.Map<AddressVm>(newAddress);
             }
 
         }
@@ -68,101 +88,5 @@ public class AddressService : BaseService, IAddressService
         }
     }
 
-    public async Task<ShippingAddressVm> AddOrUpdateShippingAdress(AddOrUpdateShippingAddressVm request)
-    {
-        try
-        {
-            if (request.Id != null && request.Id > 0)
-            {
-                var addressEntity = await _context.ShippingAddress
-                    .AsNoTracking()
-                    .FirstOrDefaultAsync(x => x.Id == request.Id);
 
-                if (addressEntity == null)
-                {
-                    throw new Exception(message: "Address not found");
-                }
-
-                if (addressEntity.CustomerId != request.CustomerId)
-                {
-                    throw new Exception(message: "Invalid customer Id");
-                }
-
-                var newAddress = _mapper.Map<ShippingAddress>(request);
-                _context.ShippingAddress.Update(newAddress);
-                _context.SaveChanges();
-
-                return _mapper.Map<ShippingAddressVm>(newAddress);
-            }
-            else
-            {
-                var storeEntity = await _context.User
-                    .FirstOrDefaultAsync(x => x.Id == request.CustomerId);
-
-                if (storeEntity == null)
-                {
-                    throw new Exception(message: "Invalid customer Id");
-                }
-                var newAddress = _mapper.Map<ShippingAddress>(request);
-                _context.ShippingAddress.Add(newAddress);
-
-                return _mapper.Map<ShippingAddressVm>(newAddress);
-            }
-
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, ex.Message);
-            throw;
-        }
-    }
-
-    public async Task<BillingAddressVm> AddOrUpdateBillingAddress(AddOrUpdateBillingAddressVm request)
-    {
-        try
-        {
-            if (request.Id != null && request.Id > 0)
-            {
-                var addressEntity = await _context.BillingAddress
-                    .AsNoTracking()
-                    .FirstOrDefaultAsync(x => x.Id == request.Id);
-
-                if (addressEntity == null)
-                {
-                    throw new Exception(message: "Address not found");
-                }
-
-                if (addressEntity.CustomerId != request.CustomerId)
-                {
-                    throw new Exception(message: "Invalid customer Id");
-                }
-
-                var newAddress = _mapper.Map<BillingAddress>(request);
-                _context.BillingAddress.Update(newAddress);
-                _context.SaveChanges();
-
-                return _mapper.Map<BillingAddressVm>(newAddress);
-            }
-            else
-            {
-                var storeEntity = await _context.User
-                    .FirstOrDefaultAsync(x => x.Id == request.CustomerId);
-
-                if (storeEntity == null)
-                {
-                    throw new Exception(message: "Invalid customer Id");
-                }
-                var newAddress = _mapper.Map<BillingAddress>(request);
-                _context.BillingAddress.Add(newAddress);
-
-                return _mapper.Map<BillingAddressVm>(newAddress);
-            }
-
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, ex.Message);
-            throw;
-        }
-    }
 }

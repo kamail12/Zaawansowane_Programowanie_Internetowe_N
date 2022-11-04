@@ -12,7 +12,6 @@ public class AutoMapperProfile : Profile
         CreateMap<OrderVm, Order>();
         CreateMap<ProductStockVm, ProductStock>();
         CreateMap<ProductVm, Product>();
-        CreateMap<ShippingAddressVm, ShippingAddress>();
         CreateMap<SupplierVm, Supplier>();
         CreateMap<Category, CategoryVm>();
         CreateMap<Customer, CustomerVm>();
@@ -32,7 +31,6 @@ public class AutoMapperProfile : Profile
 
         CreateMap<Product, AddOrUpdateProductVm>();
         CreateMap<AddOrUpdateProductVm, Product>();
-        CreateMap<ShippingAddress, ShippingAddressVm>();
 
         CreateMap<StationaryStoreEmployee, StationaryStoreEmployeeVm>();
 
@@ -46,16 +44,11 @@ public class AutoMapperProfile : Profile
             .ForMember(dest => dest.Orders, x => x
             .MapFrom(src => src.Orders));
 
-        CreateMap<StationaryStoreAddress, StationaryStoreAddressVm>();
+        CreateMap<Address, AddressVm>();
+        CreateMap<AddressVm, Address>();
+        CreateMap<AddOrUpdateAddressVm, Address>();
 
         CreateMap<AddStationaryStoreVm, StationaryStore>();
 
-        CreateMap<AddOrUpdateStoreAddressVm, StationaryStoreAddress>();
-        CreateMap<StationaryStoreAddressVm, StationaryStoreAddress>();
-        CreateMap<AddOrUpdateBillingAddressVm, BillingAddress>();
-        CreateMap<AddOrUpdateShippingAddressVm, ShippingAddress>();
-        CreateMap<AddOrUpdateBillingAddressVm, BillingAddressVm>();
-        CreateMap<AddOrUpdateShippingAddressVm, ShippingAddressVm>();
-        CreateMap<BillingAddress, BillingAddressVm>();
     }
 }

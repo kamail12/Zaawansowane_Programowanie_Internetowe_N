@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WebStore.DAL.DatabaseContext;
 using WebStore.Services.Interfaces;
 using WebStore.ViewModels.VM;
@@ -7,10 +8,12 @@ namespace WebStore.Tests.UnitTests;
 public class ProductServiceUnitTests : BaseUnitTests
 {
     private readonly IProductService _productService;
+    private readonly WSDbContext _context;
     public ProductServiceUnitTests(WSDbContext dbContext,
         IProductService productService) : base(dbContext)
     {
         _productService = productService;
+        _context = dbContext;
     }
 
     [Fact]
@@ -80,4 +83,17 @@ public class ProductServiceUnitTests : BaseUnitTests
         Assert.Equal("Monitor Dell 32", editedProductVm.Name);
         Assert.Equal(2000, editedProductVm.Price);
     }
+
+    // [Fact]
+    // public async Task DeleteProductTest()
+    // {
+    //     int productId = 2;
+
+    //     bool doesProductExistsBefore = await _context.Product.AnyAsync(x => x.Id == productId);
+    //     await _productService.DeleteProduct(productId);
+    //     bool doesProductExistsAfter = await _context.Product.AnyAsync(x => x.Id == productId);
+
+    //     Assert.True(doesProductExistsBefore);
+    //     Assert.False(doesProductExistsAfter);
+    // }
 }

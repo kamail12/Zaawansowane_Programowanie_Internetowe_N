@@ -19,26 +19,26 @@ public class StoreServiceUnitTests : BaseUnitTests
     [Fact]
     public void GetStationaryStoreTest()
     {
-        var StationaryStore = _service.GetStationaryStore(p => p.Name == "Store 3");
-        Assert.NotNull(StationaryStore);
+        var stationaryStore = _service.GetStationaryStore(p => p.Name == "Store 3");
+        Assert.NotNull(stationaryStore);
     }
 
     [Fact]
     public void GetMultipleStationaryStoresTest()
     {
-        var StationaryStores = _service.GetStationaryStores(p => p.Id >= 1 && p.Id <= 2);
-        Assert.NotNull(StationaryStores);
-        Assert.NotEmpty(StationaryStores);
-        Assert.Equal(2, StationaryStores.Count());
+        var stationaryStores = _service.GetStationaryStores(p => p.Id >= 1 && p.Id <= 2);
+        Assert.NotNull(stationaryStores);
+        Assert.NotEmpty(stationaryStores);
+        Assert.Equal(2, stationaryStores.Count());
     }
 
     [Fact]
     public void GetAllStationaryStoresTest()
     {
-        var StationaryStores = _service.GetStationaryStores();
-        Assert.NotNull(StationaryStores);
-        Assert.NotEmpty(StationaryStores);
-        Assert.Equal(StationaryStores.Count(), StationaryStores.Count());
+        var stationaryStores = _service.GetStationaryStores();
+        Assert.NotNull(stationaryStores);
+        Assert.NotEmpty(stationaryStores);
+        Assert.Equal(stationaryStores.Count(), stationaryStores.Count());
     }
 
     [Fact]
@@ -70,11 +70,11 @@ public class StoreServiceUnitTests : BaseUnitTests
     [Fact]
     public async Task DeleteStationaryStoreTest()
     {
-        int StationaryStoreId = 3;
+        int stationaryStoreId = 3;
 
-        bool doesStationaryStoreExistsBefore = await _context.StationaryStore.AnyAsync(x => x.Id == StationaryStoreId);
-        await _service.DeleteStationaryStore(StationaryStoreId);
-        bool doesStationaryStoreExistsAfter = await _context.StationaryStore.AnyAsync(x => x.Id == StationaryStoreId);
+        bool doesStationaryStoreExistsBefore = await _context.StationaryStore.AnyAsync(x => x.Id == stationaryStoreId);
+        await _service.DeleteStationaryStore(x => x.Id == stationaryStoreId);
+        bool doesStationaryStoreExistsAfter = await _context.StationaryStore.AnyAsync(x => x.Id == stationaryStoreId);
 
         Assert.True(doesStationaryStoreExistsBefore);
         Assert.False(doesStationaryStoreExistsAfter);

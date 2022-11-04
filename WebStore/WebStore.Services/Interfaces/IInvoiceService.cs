@@ -8,5 +8,5 @@ public interface IInvoiceService
     public InvoiceVm AddOrUpdateInvoice(AddOrUpdateInvoiceVm addOrUpdateInvoiceVm);
     public InvoiceVm GetInvoice(Expression<Func<Invoice, bool>> filterExpression);
     public IEnumerable<InvoiceVm> GetInvoices(Expression<Func<Invoice, bool>>? filterExpression = null);
-    public Task DeleteInvoice(int InvoiceId);
+    public Task DeleteInvoice(Expression<Func<Invoice, bool>> filterExpression);
 }

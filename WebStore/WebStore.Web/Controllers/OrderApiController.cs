@@ -5,12 +5,12 @@ using WebStore.ViewModels.VM;
 
 namespace WebStore.Web.Controllers;
 
-public class ProductApiController : BaseApiController
+public class OrderApiController : BaseApiController
 {
-    private readonly IProductService _productService;
-    public ProductApiController(ILogger logger, IMapper mapper, IProductService productService) : base(logger, mapper)
+    private readonly IOrderService _service;
+    public OrderApiController(ILogger logger, IMapper mapper, IOrderService orderService) : base(logger, mapper)
     {
-        _productService = productService;
+        _service = orderService;
     }
 
     [HttpGet]
@@ -18,8 +18,8 @@ public class ProductApiController : BaseApiController
     {
         try
         {
-            var products = _productService.GetProducts();
-            return Ok(products);
+            var orders = _service.GetOrders();
+            return Ok(orders);
         }
         catch (Exception ex)
         {
@@ -33,8 +33,8 @@ public class ProductApiController : BaseApiController
     {
         try
         {
-            var product = _productService.GetProduct(p => p.Id == id);
-            return Ok(product);
+            var order = _service.GetOrder(p => p.Id == id);
+            return Ok(order);
         }
         catch (Exception ex)
         {
@@ -44,15 +44,15 @@ public class ProductApiController : BaseApiController
     }
 
     [HttpPut]
-    public IActionResult Put([FromBody] AddOrUpdateProductVm addOrUpdateProductVm)
+    public IActionResult Put([FromBody] AddOrUpdateOrderVm addOrUpdateOrderVm)
     {
-        return PostOrPutHelper(addOrUpdateProductVm);
+        return PostOrPutHelper(addOrUpdateOrderVm);
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] AddOrUpdateProductVm addOrUpdateProductVm)
+    public IActionResult Post([FromBody] AddOrUpdateOrderVm addOrUpdateOrderVm)
     {
-        return PostOrPutHelper(addOrUpdateProductVm);
+        return PostOrPutHelper(addOrUpdateOrderVm);
     }
 
     [HttpDelete("{id:int:min(1)}")]
@@ -60,7 +60,7 @@ public class ProductApiController : BaseApiController
     {
         try
         {
-            var result = _productService.DeleteProduct(p => p.Id == id);
+            var result = _service.DeleteOrder(p => p.Id == id);
             return Ok(result);
         }
         catch (Exception ex)
@@ -70,13 +70,13 @@ public class ProductApiController : BaseApiController
         }
     }
 
-    private IActionResult PostOrPutHelper(AddOrUpdateProductVm addOrUpdateProductVm)
+    private IActionResult PostOrPutHelper(AddOrUpdateOrderVm addOrUpdateOrderVm)
     {
         try
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            return Ok(_productService.AddOrUpdateProduct(addOrUpdateProductVm));
+            return Ok(_service.AddOrUpdateOrder(addOrUpdateOrderVm));
         }
         catch (Exception ex)
         {

@@ -18,18 +18,18 @@ public class AddressService : BaseService, IAddressService
             if (addOrUpdateAddressVm == null)
                 throw new ArgumentNullException("View model parameter is null");
 
-            var AddressEntity = Mapper.Map<Address>(addOrUpdateAddressVm);
+            var addressEntity = Mapper.Map<Address>(addOrUpdateAddressVm);
 
             if (addOrUpdateAddressVm.Id.HasValue || addOrUpdateAddressVm.Id == 0)
-                DbContext.Address.Update(AddressEntity);
+                DbContext.Address.Update(addressEntity);
             else
-                DbContext.Address.Add(AddressEntity);
+                DbContext.Address.Add(addressEntity);
 
             DbContext.SaveChanges();
 
-            var AddressVm = Mapper.Map<AddressVm>(AddressEntity);
+            var addressVm = Mapper.Map<AddressVm>(addressEntity);
 
-            return AddressVm;
+            return addressVm;
         }
         catch (Exception ex)
         {
@@ -43,9 +43,9 @@ public class AddressService : BaseService, IAddressService
         {
             if (filterExpression == null)
                 throw new ArgumentNullException("Filter expression parameter is null");
-            var AddressEntity = DbContext.Address.FirstOrDefault(filterExpression);
-            var AddressVm = Mapper.Map<AddressVm>(AddressEntity);
-            return AddressVm;
+            var addressEntity = DbContext.Address.FirstOrDefault(filterExpression);
+            var addressVm = Mapper.Map<AddressVm>(addressEntity);
+            return addressVm;
         }
 
         catch (Exception ex)
@@ -60,12 +60,12 @@ public class AddressService : BaseService, IAddressService
     {
         try
         {
-            var AddresssQuery = DbContext.Address.AsQueryable();
+            var addresssQuery = DbContext.Address.AsQueryable();
             if (filterExpression != null)
-                AddresssQuery = AddresssQuery.Where(filterExpression);
-            var AddressVms = Mapper.Map<IEnumerable<AddressVm>>(AddresssQuery);
+                addresssQuery = addresssQuery.Where(filterExpression);
+            var addressVms = Mapper.Map<IEnumerable<AddressVm>>(addresssQuery);
 
-            return AddressVms;
+            return addressVms;
         }
 
         catch (Exception ex)
@@ -75,19 +75,22 @@ public class AddressService : BaseService, IAddressService
         }
     }
 
-    public async Task DeleteAddress(int AddressId)
+    public async Task DeleteAddress(Expression<Func<Address, bool>> filterExpression)
     {
         try
         {
-            var AddressEntity = DbContext.Address
-                .FirstOrDefault(x => x.Id == AddressId);
+            if (filterExpression == null)
+                throw new ArgumentNullException("Filter expression parameter is null");
 
-            if (AddressEntity == null)
+            var addressEntity = DbContext.Address
+                .FirstOrDefault(filterExpression);
+
+            if (addressEntity == null)
             {
                 throw new Exception("Address not found");
             }
 
-            DbContext.Address.Remove(AddressEntity);
+            DbContext.Address.Remove(addressEntity);
 
             await DbContext.SaveChangesAsync();
         }

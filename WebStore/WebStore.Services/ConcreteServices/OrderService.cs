@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebStore.DAL.DatabaseContext;
 using WebStore.Model.Models;
@@ -48,9 +43,9 @@ public class OrderService : BaseService, IOrderService
         {
             if (filterExpression == null)
                 throw new ArgumentNullException("Filter expression parameter is null");
-            var OrderEntity = DbContext.Order.FirstOrDefault(filterExpression);
-            var OrderVm = Mapper.Map<OrderVm>(OrderEntity);
-            return OrderVm;
+            var orderEntity = DbContext.Order.FirstOrDefault(filterExpression);
+            var orderVm = Mapper.Map<OrderVm>(orderEntity);
+            return orderVm;
         }
 
         catch (Exception ex)
@@ -65,12 +60,12 @@ public class OrderService : BaseService, IOrderService
     {
         try
         {
-            var OrdersQuery = DbContext.Order.AsQueryable();
+            var ordersQuery = DbContext.Order.AsQueryable();
             if (filterExpression != null)
-                OrdersQuery = OrdersQuery.Where(filterExpression);
-            var OrderVms = Mapper.Map<IEnumerable<OrderVm>>(OrdersQuery);
+                ordersQuery = ordersQuery.Where(filterExpression);
+            var orderVms = Mapper.Map<IEnumerable<OrderVm>>(ordersQuery);
 
-            return OrderVms;
+            return orderVms;
         }
 
         catch (Exception ex)
@@ -80,19 +75,22 @@ public class OrderService : BaseService, IOrderService
         }
     }
 
-    public async Task DeleteOrder(int OrderId)
+    public async Task DeleteOrder(Expression<Func<Order, bool>> filterExpression)
     {
         try
         {
-            var OrderEntity = DbContext.Order
-                .FirstOrDefault(x => x.Id == OrderId);
+            if (filterExpression == null)
+                throw new ArgumentNullException("Filter expression parameter is null");
 
-            if (OrderEntity == null)
+            var orderEntity = DbContext.Order
+                .FirstOrDefault(filterExpression);
+
+            if (orderEntity == null)
             {
                 throw new Exception("Order not found");
             }
 
-            DbContext.Order.Remove(OrderEntity);
+            DbContext.Order.Remove(orderEntity);
 
             await DbContext.SaveChangesAsync();
         }

@@ -18,18 +18,18 @@ public class InvoiceService : BaseService, IInvoiceService
             if (addOrUpdateInvoiceVm == null)
                 throw new ArgumentNullException("View model parameter is null");
 
-            var InvoiceEntity = Mapper.Map<Invoice>(addOrUpdateInvoiceVm);
+            var invoiceEntity = Mapper.Map<Invoice>(addOrUpdateInvoiceVm);
 
             if (addOrUpdateInvoiceVm.Id.HasValue || addOrUpdateInvoiceVm.Id == 0)
-                DbContext.Invoice.Update(InvoiceEntity);
+                DbContext.Invoice.Update(invoiceEntity);
             else
-                DbContext.Invoice.Add(InvoiceEntity);
+                DbContext.Invoice.Add(invoiceEntity);
 
             DbContext.SaveChanges();
 
-            var InvoiceVm = Mapper.Map<InvoiceVm>(InvoiceEntity);
+            var invoiceVm = Mapper.Map<InvoiceVm>(invoiceEntity);
 
-            return InvoiceVm;
+            return invoiceVm;
         }
         catch (Exception ex)
         {
@@ -43,9 +43,9 @@ public class InvoiceService : BaseService, IInvoiceService
         {
             if (filterExpression == null)
                 throw new ArgumentNullException("Filter expression parameter is null");
-            var InvoiceEntity = DbContext.Invoice.FirstOrDefault(filterExpression);
-            var InvoiceVm = Mapper.Map<InvoiceVm>(InvoiceEntity);
-            return InvoiceVm;
+            var invoiceEntity = DbContext.Invoice.FirstOrDefault(filterExpression);
+            var invoiceVm = Mapper.Map<InvoiceVm>(invoiceEntity);
+            return invoiceVm;
         }
 
         catch (Exception ex)
@@ -60,12 +60,12 @@ public class InvoiceService : BaseService, IInvoiceService
     {
         try
         {
-            var InvoicesQuery = DbContext.Invoice.AsQueryable();
+            var invoicesQuery = DbContext.Invoice.AsQueryable();
             if (filterExpression != null)
-                InvoicesQuery = InvoicesQuery.Where(filterExpression);
-            var InvoiceVms = Mapper.Map<IEnumerable<InvoiceVm>>(InvoicesQuery);
+                invoicesQuery = invoicesQuery.Where(filterExpression);
+            var invoiceVms = Mapper.Map<IEnumerable<InvoiceVm>>(invoicesQuery);
 
-            return InvoiceVms;
+            return invoiceVms;
         }
 
         catch (Exception ex)
@@ -75,19 +75,22 @@ public class InvoiceService : BaseService, IInvoiceService
         }
     }
 
-    public async Task DeleteInvoice(int InvoiceId)
+    public async Task DeleteInvoice(Expression<Func<Invoice, bool>> filterExpression)
     {
         try
         {
-            var InvoiceEntity = DbContext.Invoice
-                .FirstOrDefault(x => x.Id == InvoiceId);
+            if (filterExpression == null)
+                throw new ArgumentNullException("Filter expression parameter is null");
 
-            if (InvoiceEntity == null)
+            var invoiceEntity = DbContext.Invoice
+                .FirstOrDefault(filterExpression);
+
+            if (invoiceEntity == null)
             {
                 throw new Exception("Invoice not found");
             }
 
-            DbContext.Invoice.Remove(InvoiceEntity);
+            DbContext.Invoice.Remove(invoiceEntity);
 
             await DbContext.SaveChangesAsync();
         }

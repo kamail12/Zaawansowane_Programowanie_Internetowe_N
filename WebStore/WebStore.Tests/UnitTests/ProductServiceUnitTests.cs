@@ -7,26 +7,26 @@ using Xunit;
 namespace WebStore.Tests.UnitTests;
 public class ProductServiceUnitTests : BaseUnitTests
 {
-    private readonly IProductService _productService;
+    private readonly IProductService _service;
     private readonly WSDbContext _context;
     public ProductServiceUnitTests(WSDbContext dbContext,
         IProductService productService) : base(dbContext)
     {
-        _productService = productService;
+        _service = productService;
         _context = dbContext;
     }
 
     [Fact]
     public void GetProductTest()
     {
-        var product = _productService.GetProduct(p => p.Name == "Monitor Dell 32");
+        var product = _service.GetProduct(p => p.Name == "Monitor Dell 32");
         Assert.NotNull(product);
     }
 
     [Fact]
     public void GetMultipleProductsTest()
     {
-        var products = _productService.GetProducts(p => p.Id >= 1 && p.Id <= 2);
+        var products = _service.GetProducts(p => p.Id >= 1 && p.Id <= 2);
         Assert.NotNull(products);
         Assert.NotEmpty(products);
         Assert.Equal(2, products.Count());
@@ -35,7 +35,7 @@ public class ProductServiceUnitTests : BaseUnitTests
     [Fact]
     public void GetAllProductsTest()
     {
-        var products = _productService.GetProducts();
+        var products = _service.GetProducts();
         Assert.NotNull(products);
         Assert.NotEmpty(products);
         Assert.Equal(products.Count(), products.Count());
@@ -59,7 +59,7 @@ public class ProductServiceUnitTests : BaseUnitTests
             Weight = 1.1f,
             Description = "MacBook Pro z procesorem M1 8GB RAM, Dysk 256 GB"
         };
-        var createdProduct = _productService.AddOrUpdateProduct(newProductVm);
+        var createdProduct = _service.AddOrUpdateProduct(newProductVm);
         Assert.NotNull(createdProduct);
         Assert.Equal("MacBook Pro", "MacBook Pro");
     }
@@ -78,7 +78,7 @@ public class ProductServiceUnitTests : BaseUnitTests
             CategoryId = 1,
             SupplierId = 1
         };
-        var editedProductVm = _productService.AddOrUpdateProduct(updateProductVm);
+        var editedProductVm = _service.AddOrUpdateProduct(updateProductVm);
         Assert.NotNull(editedProductVm);
         Assert.Equal("Monitor Dell 32", editedProductVm.Name);
         Assert.Equal(2000, editedProductVm.Price);
@@ -90,7 +90,7 @@ public class ProductServiceUnitTests : BaseUnitTests
         int productId = 2;
 
         bool doesProductExistsBefore = await _context.Product.AnyAsync(x => x.Id == productId);
-        await _productService.DeleteProduct(productId);
+        await _service.DeleteProduct(x => x.Id == productId);
         bool doesProductExistsAfter = await _context.Product.AnyAsync(x => x.Id == productId);
 
         Assert.True(doesProductExistsBefore);

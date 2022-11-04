@@ -80,12 +80,15 @@ public class ProductService : BaseService, IProductService
         }
     }
 
-    public async Task DeleteProduct(int productId)
+    public async Task DeleteProduct(Expression<Func<Product, bool>> filterExpression)
     {
         try
         {
+            if (filterExpression == null)
+                throw new ArgumentNullException("Filter expression parameter is null");
+
             var productEntity = DbContext.Product
-                .FirstOrDefault(x => x.Id == productId);
+                .FirstOrDefault(filterExpression);
 
             if (productEntity == null)
             {

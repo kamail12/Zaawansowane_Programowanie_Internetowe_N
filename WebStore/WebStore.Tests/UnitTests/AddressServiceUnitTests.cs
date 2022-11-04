@@ -19,26 +19,26 @@ public class AddressServiceUnitTests : BaseUnitTests
     [Fact]
     public void GetAddressTest()
     {
-        var Address = _service.GetAddress(p => p.StreetName == "Szkolna");
-        Assert.NotNull(Address);
+        var address = _service.GetAddress(p => p.StreetName == "Szkolna");
+        Assert.NotNull(address);
     }
 
     [Fact]
     public void GetMultipleAddresssTest()
     {
-        var Addresss = _service.GetAddresss(p => p.Id >= 1 && p.Id <= 2);
-        Assert.NotNull(Addresss);
-        Assert.NotEmpty(Addresss);
-        Assert.Equal(2, Addresss.Count());
+        var addresss = _service.GetAddresss(p => p.Id >= 1 && p.Id <= 2);
+        Assert.NotNull(addresss);
+        Assert.NotEmpty(addresss);
+        Assert.Equal(2, addresss.Count());
     }
 
     [Fact]
     public void GetAllAddresssTest()
     {
-        var Addresss = _service.GetAddresss();
-        Assert.NotNull(Addresss);
-        Assert.NotEmpty(Addresss);
-        Assert.Equal(Addresss.Count(), Addresss.Count());
+        var addresss = _service.GetAddresss();
+        Assert.NotNull(addresss);
+        Assert.NotEmpty(addresss);
+        Assert.Equal(addresss.Count(), addresss.Count());
     }
 
     [Fact]
@@ -80,11 +80,11 @@ public class AddressServiceUnitTests : BaseUnitTests
     [Fact]
     public async Task DeleteAddressTest()
     {
-        int AddressId = 3;
+        int addressId = 3;
 
-        bool doesAddressExistsBefore = await _context.Address.AnyAsync(x => x.Id == AddressId);
-        await _service.DeleteAddress(AddressId);
-        bool doesAddressExistsAfter = await _context.Address.AnyAsync(x => x.Id == AddressId);
+        bool doesAddressExistsBefore = await _context.Address.AnyAsync(x => x.Id == addressId);
+        await _service.DeleteAddress(x => x.Id == addressId);
+        bool doesAddressExistsAfter = await _context.Address.AnyAsync(x => x.Id == addressId);
 
         Assert.True(doesAddressExistsBefore);
         Assert.False(doesAddressExistsAfter);

@@ -7,38 +7,38 @@ using Xunit;
 namespace WebStore.Tests.UnitTests;
 public class InvoiceServiceUnitTests : BaseUnitTests
 {
-    private readonly IInvoiceService _InvoiceService;
+    private readonly IInvoiceService _service;
     private readonly WSDbContext _context;
     public InvoiceServiceUnitTests(WSDbContext dbContext,
         IInvoiceService InvoiceService) : base(dbContext)
     {
-        _InvoiceService = InvoiceService;
+        _service = InvoiceService;
         _context = dbContext;
     }
 
     [Fact]
     public void GetInvoiceTest()
     {
-        var Invoice = _InvoiceService.GetInvoice(p => p.TotalPrice == 1423);
-        Assert.NotNull(Invoice);
+        var invoice = _service.GetInvoice(p => p.TotalPrice == 1423);
+        Assert.NotNull(invoice);
     }
 
     [Fact]
     public void GetMultipleInvoicesTest()
     {
-        var Invoices = _InvoiceService.GetInvoices(p => p.Id >= 1 && p.Id <= 2);
-        Assert.NotNull(Invoices);
-        Assert.NotEmpty(Invoices);
-        Assert.Equal(2, Invoices.Count());
+        var invoices = _service.GetInvoices(p => p.Id >= 1 && p.Id <= 2);
+        Assert.NotNull(invoices);
+        Assert.NotEmpty(invoices);
+        Assert.Equal(2, invoices.Count());
     }
 
     [Fact]
     public void GetAllInvoicesTest()
     {
-        var Invoices = _InvoiceService.GetInvoices();
-        Assert.NotNull(Invoices);
-        Assert.NotEmpty(Invoices);
-        Assert.Equal(Invoices.Count(), Invoices.Count());
+        var invoices = _service.GetInvoices();
+        Assert.NotNull(invoices);
+        Assert.NotEmpty(invoices);
+        Assert.Equal(invoices.Count(), invoices.Count());
     }
 
     [Fact]
@@ -50,7 +50,7 @@ public class InvoiceServiceUnitTests : BaseUnitTests
             Date = new DateTime(2010, 12, 11),
             StationaryStoreId = 1,
         };
-        var createdInvoice = _InvoiceService.AddOrUpdateInvoice(newInvoiceVm);
+        var createdInvoice = _service.AddOrUpdateInvoice(newInvoiceVm);
         Assert.NotNull(createdInvoice);
         Assert.Equal(200, newInvoiceVm.TotalPrice);
     }
@@ -65,7 +65,7 @@ public class InvoiceServiceUnitTests : BaseUnitTests
             Date = new DateTime(2013, 10, 5),
             StationaryStoreId = 1,
         };
-        var editedInvoiceVm = _InvoiceService.AddOrUpdateInvoice(updateInvoiceVm);
+        var editedInvoiceVm = _service.AddOrUpdateInvoice(updateInvoiceVm);
         Assert.NotNull(editedInvoiceVm);
         Assert.Equal(new DateTime(2013, 10, 5), editedInvoiceVm.Date);
         Assert.Equal(200, editedInvoiceVm.TotalPrice);
@@ -74,11 +74,11 @@ public class InvoiceServiceUnitTests : BaseUnitTests
     [Fact]
     public async Task DeleteInvoiceTest()
     {
-        int InvoiceId = 3;
+        int invoiceId = 3;
 
-        bool doesInvoiceExistsBefore = await _context.Invoice.AnyAsync(x => x.Id == InvoiceId);
-        await _InvoiceService.DeleteInvoice(InvoiceId);
-        bool doesInvoiceExistsAfter = await _context.Invoice.AnyAsync(x => x.Id == InvoiceId);
+        bool doesInvoiceExistsBefore = await _context.Invoice.AnyAsync(x => x.Id == invoiceId);
+        await _service.DeleteInvoice(x => x.Id == invoiceId);
+        bool doesInvoiceExistsAfter = await _context.Invoice.AnyAsync(x => x.Id == invoiceId);
 
         Assert.True(doesInvoiceExistsBefore);
         Assert.False(doesInvoiceExistsAfter);

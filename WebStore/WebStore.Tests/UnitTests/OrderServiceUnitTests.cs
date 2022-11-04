@@ -7,38 +7,38 @@ using Xunit;
 namespace WebStore.Tests.UnitTests;
 public class OrderServiceUnitTests : BaseUnitTests
 {
-    private readonly IOrderService _orderService;
+    private readonly IOrderService _service;
     private readonly WSDbContext _context;
     public OrderServiceUnitTests(WSDbContext dbContext,
         IOrderService orderService) : base(dbContext)
     {
-        _orderService = orderService;
+        _service = orderService;
         _context = dbContext;
     }
 
     [Fact]
     public void GetOrderTest()
     {
-        var Order = _orderService.GetOrder(p => p.TrackingNumber == 1244);
-        Assert.NotNull(Order);
+        var order = _service.GetOrder(p => p.TrackingNumber == 1244);
+        Assert.NotNull(order);
     }
 
     [Fact]
     public void GetMultipleOrdersTest()
     {
-        var Orders = _orderService.GetOrders(p => p.Id >= 1 && p.Id <= 2);
-        Assert.NotNull(Orders);
-        Assert.NotEmpty(Orders);
-        Assert.Equal(2, Orders.Count());
+        var orders = _service.GetOrders(p => p.Id >= 1 && p.Id <= 2);
+        Assert.NotNull(orders);
+        Assert.NotEmpty(orders);
+        Assert.Equal(2, orders.Count());
     }
 
     [Fact]
     public void GetAllOrdersTest()
     {
-        var Orders = _orderService.GetOrders();
-        Assert.NotNull(Orders);
-        Assert.NotEmpty(Orders);
-        Assert.Equal(Orders.Count(), Orders.Count());
+        var orders = _service.GetOrders();
+        Assert.NotNull(orders);
+        Assert.NotEmpty(orders);
+        Assert.Equal(orders.Count(), orders.Count());
     }
 
     [Fact]
@@ -52,7 +52,7 @@ public class OrderServiceUnitTests : BaseUnitTests
             StationaryStoreId = 1
         };
 
-        var createdOrder = _orderService.AddOrUpdateOrder(newOrderVm);
+        var createdOrder = _service.AddOrUpdateOrder(newOrderVm);
         Assert.NotNull(createdOrder);
         Assert.Equal(createdOrder.DeliveryDate, new DateTime(2020, 10, 10));
     }
@@ -67,7 +67,7 @@ public class OrderServiceUnitTests : BaseUnitTests
             Invoiceid = 1,
             StationaryStoreId = 1
         };
-        var editedOrderVm = _orderService.AddOrUpdateOrder(updateOrderVm);
+        var editedOrderVm = _service.AddOrUpdateOrder(updateOrderVm);
         Assert.NotNull(editedOrderVm);
         Assert.Equal(2, editedOrderVm.CustomerId);
         Assert.Equal(new DateTime(2020, 5, 5), editedOrderVm.DeliveryDate);
@@ -76,11 +76,11 @@ public class OrderServiceUnitTests : BaseUnitTests
     [Fact]
     public async Task DeleteOrderTest()
     {
-        int OrderId = 3;
+        int orderId = 3;
 
-        bool doesOrderExistsBefore = await _context.Order.AnyAsync(x => x.Id == OrderId);
-        await _orderService.DeleteOrder(OrderId);
-        bool doesOrderExistsAfter = await _context.Order.AnyAsync(x => x.Id == OrderId);
+        bool doesOrderExistsBefore = await _context.Order.AnyAsync(x => x.Id == orderId);
+        await _service.DeleteOrder(x => x.Id == orderId);
+        bool doesOrderExistsAfter = await _context.Order.AnyAsync(x => x.Id == orderId);
 
         Assert.True(doesOrderExistsBefore);
         Assert.False(doesOrderExistsAfter);

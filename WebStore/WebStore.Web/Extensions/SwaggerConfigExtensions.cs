@@ -3,9 +3,9 @@ using Microsoft.OpenApi.Models;
 namespace WebStore.Web.Extensions;
 public static class SwaggerConfigExtensions
 {
-    public static void AddSwagger(this IServiceCollection service)
+    public static void AddSwagger(this IServiceCollection services)
     {
-        service.AddSwaggerGen(c =>
+        services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebStore API", Version = "v1" });
         });

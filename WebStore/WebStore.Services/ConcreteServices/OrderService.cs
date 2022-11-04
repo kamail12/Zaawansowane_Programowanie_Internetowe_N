@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -10,56 +14,92 @@ using WebStore.ViewModels.VM;
 namespace WebStore.Services.ConcreteServices;
 public class OrderService : BaseService, IOrderService
 {
-    private readonly WSDbContext _context;
-    private readonly IMapper _mapper;
-    private readonly ILogger _logger;
+    public OrderService(WSDbContext context, IMapper mapper, ILogger logger) : base(context, mapper, logger) { }
 
-    public OrderService(WSDbContext context, IMapper mapper, ILogger logger) : base(context, mapper, logger)
+    public OrderVm AddOrUpdateOrder(AddOrUpdateOrderVm addOrUpdateOrderVm)
     {
-        _context = context;
-        _mapper = mapper;
-        _logger = logger;
-    }
+        try
+        {
+            if (addOrUpdateOrderVm == null)
+                throw new ArgumentNullException("View model parameter is null");
 
+            var OrderEntity = Mapper.Map<Order>(addOrUpdateOrderVm);
+
+            if (addOrUpdateOrderVm.Id.HasValue || addOrUpdateOrderVm.Id == 0)
+                DbContext.Order.Update(OrderEntity);
+            else
+                DbContext.Order.Add(OrderEntity);
+
+            DbContext.SaveChanges();
+
+            var OrderVm = Mapper.Map<OrderVm>(OrderEntity);
+
+            return OrderVm;
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, ex.Message);
+            throw;
+        }
+    }
+    public OrderVm GetOrder(Expression<Func<Order, bool>> filterExpression)
+    {
+        try
+        {
+            if (filterExpression == null)
+                throw new ArgumentNullException("Filter expression parameter is null");
+            var OrderEntity = DbContext.Order.FirstOrDefault(filterExpression);
+            var OrderVm = Mapper.Map<OrderVm>(OrderEntity);
+            return OrderVm;
+        }
+
+        catch (Exception ex)
+        {
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
+    }
     public IEnumerable<OrderVm> GetOrders(Expression<Func<Order, bool>>? filterExpression = null)
     {
         try
         {
-            var ordersQuery = _context.Order.AsQueryable();
+            var OrdersQuery = DbContext.Order.AsQueryable();
             if (filterExpression != null)
-                ordersQuery = ordersQuery.Where(filterExpression);
-            var orderVms = _mapper.Map<IEnumerable<OrderVm>>(ordersQuery);
+                OrdersQuery = OrdersQuery.Where(filterExpression);
+            var OrderVms = Mapper.Map<IEnumerable<OrderVm>>(OrdersQuery);
 
-            return orderVms;
+            return OrderVms;
         }
 
         catch (Exception ex)
         {
-            _logger.LogError(ex, ex.Message);
+            Logger.LogError(ex, ex.Message);
             throw;
         }
     }
 
-    public async Task<OrderVm> GetOrderById(int id)
+    public async Task DeleteOrder(int OrderId)
     {
         try
         {
-            var order = await _context.Order
-                .FirstOrDefaultAsync(x => x.Id == id);
+            var OrderEntity = DbContext.Order
+                .FirstOrDefault(x => x.Id == OrderId);
 
-            if (order == null)
+            if (OrderEntity == null)
             {
-                throw new Exception(message: "Order not found");
+                throw new Exception("Order not found");
             }
 
-            return Mapper.Map<OrderVm>(order);
-        }
+            DbContext.Order.Remove(OrderEntity);
 
+            await DbContext.SaveChangesAsync();
+        }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ex.Message);
+            Logger.LogError(ex, ex.Message);
             throw;
         }
     }
-
 }

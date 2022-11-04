@@ -1,10 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using WebStore.Model.Models;
 using WebStore.ViewModels.VM;
 
 namespace WebStore.Services.Interfaces;
 public interface IStoreService
 {
-    public Task<StationaryStoreVm> GetStationaryStoreById(int id);
-    public Task<IEnumerable<StationaryStoreVm>> GetStationaryStores();
-    public Task<StationaryStoreVm> AddStationaryStore(AddStationaryStoreVm request);
-    public Task DeleteStationaryStore(int storeId);
+    public StationaryStoreVm AddOrUpdateStationaryStore(AddOrUpdateStationaryStoreVm addOrUpdateStationaryStoreVm);
+    public StationaryStoreVm GetStationaryStore(Expression<Func<StationaryStore, bool>> filterExpression);
+    public IEnumerable<StationaryStoreVm> GetStationaryStores(Expression<Func<StationaryStore, bool>>? filterExpression = null);
+    public Task DeleteStationaryStore(int StationaryStoreId);
 }

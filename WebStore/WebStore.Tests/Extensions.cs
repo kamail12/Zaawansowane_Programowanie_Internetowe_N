@@ -62,45 +62,17 @@ public static class Extensions
         };
         await dbContext.AddAsync(p2);
 
-        // orders
-        var o1 = new Order()
-        {
-            Id = 1,
-            TotalAmount = 1,
-            TrackingNumber = 1233,
-            DeliveryDate = new DateTime(2010, 1, 1),
-            OrderDate = new DateTime(2010, 1, 2),
-            StationaryStoreId = 1,
-            CustomerId = 1,
-            Invoiceid = 1
-        };
-        await dbContext.AddAsync(o1);
 
-        var o2 = new Order()
+        // customers
+        var c1 = new Customer()
         {
-            Id = 2,
-            TotalAmount = 3,
-            TrackingNumber = 1244,
-            DeliveryDate = new DateTime(2010, 1, 1),
-            OrderDate = new DateTime(2010, 1, 2),
-            StationaryStoreId = 1,
-            CustomerId = 1,
-            Invoiceid = 1
+            FirstName = "Jan",
+            LastName = "Client",
+            UserName = "cs1@eg.eg",
+            Email = "cs1@eg.eg",
+            RegistrationDate = new DateTime(2020, 1, 1),
         };
-        await dbContext.AddAsync(o2);
-
-        var o3 = new Order()
-        {
-            Id = 3,
-            TotalAmount = 1,
-            TrackingNumber = 1234,
-            DeliveryDate = new DateTime(2023, 1, 1),
-            OrderDate = new DateTime(2020, 1, 1),
-            StationaryStoreId = 1,
-            CustomerId = 3,
-            Invoiceid = 1,
-        };
-        await dbContext.AddAsync(o3);
+        await userManager.CreateAsync(c1, "pasS123");
 
         // stationary stores
         var st1 = new StationaryStore()
@@ -114,9 +86,79 @@ public static class Extensions
             Id = 2,
             Name = "Store 2"
         };
-        await dbContext.AddRangeAsync(st1, st2);
 
-        // store addresses
+        var st3 = new StationaryStore()
+        {
+            Id = 3,
+            Name = "Store 3"
+        };
+        await dbContext.AddRangeAsync(st1, st2, st3);
+
+        // invoices 
+        var i1 = new Invoice()
+        {
+            Id = 1,
+            TotalPrice = 223,
+            Date = new DateTime(2020, 10, 10),
+            StationaryStoreId = 1,
+        };
+
+        var i2 = new Invoice()
+        {
+            Id = 2,
+            TotalPrice = 1423,
+            Date = new DateTime(2021, 2, 2),
+            StationaryStoreId = 1,
+        };
+
+        var i3 = new Invoice()
+        {
+            Id = 3,
+            TotalPrice = 123,
+            Date = new DateTime(2022, 3, 1),
+            StationaryStoreId = 2,
+        };
+        await dbContext.AddRangeAsync(i1, i2, i3);
+
+        // orders
+        var o1 = new Order()
+        {
+            Id = 1,
+            TotalAmount = 1,
+            TrackingNumber = 1233,
+            DeliveryDate = new DateTime(2010, 1, 1),
+            OrderDate = new DateTime(2010, 1, 2),
+            StationaryStoreId = 1,
+            CustomerId = 1,
+            Invoiceid = 1
+        };
+
+        var o2 = new Order()
+        {
+            Id = 2,
+            TotalAmount = 3,
+            TrackingNumber = 1244,
+            DeliveryDate = new DateTime(2010, 1, 1),
+            OrderDate = new DateTime(2010, 1, 2),
+            StationaryStoreId = 1,
+            CustomerId = 1,
+            Invoiceid = 1
+        };
+
+        var o3 = new Order()
+        {
+            Id = 3,
+            TotalAmount = 1,
+            TrackingNumber = 1234,
+            DeliveryDate = new DateTime(2023, 1, 1),
+            OrderDate = new DateTime(2020, 1, 1),
+            StationaryStoreId = 1,
+            CustomerId = 3,
+            Invoiceid = 1,
+        };
+        await dbContext.AddRangeAsync(o1, o2, o3);
+
+        // addresses
         var stA1 = new Address()
         {
             Id = 1,
@@ -136,19 +178,17 @@ public static class Extensions
             StreetNumber = 15,
             PostCode = "42-201"
         };
-        await dbContext.AddRangeAsync(stA1, stA2);
 
-        // customers
-        var c1 = new Customer()
+        var cA1 = new Address()
         {
-            FirstName = "Jan",
-            LastName = "Client",
-            UserName = "cs1@eg.eg",
-            Email = "cs1@eg.eg",
-            RegistrationDate = new DateTime(2020, 1, 1),
+            Id = 3,
+            CustomerId = 1,
+            City = "CustomerCity",
+            StreetName = "Słoneczna",
+            StreetNumber = 151,
+            PostCode = "42-221"
         };
-        var a = userManager.CreateAsync(c1, "pasS123").Result.Errors.ToList();
-
+        await dbContext.AddRangeAsync(stA1, stA2, cA1);
 
         // store employees
         var stE1 = new StationaryStoreEmployee()
@@ -178,14 +218,6 @@ public static class Extensions
             RegistrationDate = new DateTime(2020, 1, 1),
         };
         await userManager.CreateAsync(stE2, "pasS123");
-
-        // invoices 
-        var i1 = new Invoice()
-        {
-            Id = 1,
-            Date = new DateTime(2022, 3, 1),
-        };
-        await dbContext.AddAsync(i1);
 
         // save changes
         await dbContext.SaveChangesAsync();

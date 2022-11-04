@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WebStore.DAL.DatabaseContext;
 using WebStore.Services.Interfaces;
 using WebStore.ViewModels.VM;
@@ -6,65 +7,86 @@ using Xunit;
 namespace WebStore.Tests.UnitTests;
 public class AddressServiceUnitTests : BaseUnitTests
 {
-    protected WSDbContext _context;
-    private readonly IAddressService _addressService;
-    public AddressServiceUnitTests(WSDbContext context, IAddressService addressService) : base(context)
+    private readonly IAddressService _service;
+    private readonly WSDbContext _context;
+    public AddressServiceUnitTests(WSDbContext dbContext,
+        IAddressService AddressService) : base(dbContext)
     {
-        _context = context;
-        _addressService = addressService;
+        _service = AddressService;
+        _context = dbContext;
     }
 
     [Fact]
-    public async Task ShouldAddAddress()
+    public void GetAddressTest()
     {
-        var request = new AddOrUpdateAddressVm()
+        var Address = _service.GetAddress(p => p.StreetName == "Szkolna");
+        Assert.NotNull(Address);
+    }
+
+    [Fact]
+    public void GetMultipleAddresssTest()
+    {
+        var Addresss = _service.GetAddresss(p => p.Id >= 1 && p.Id <= 2);
+        Assert.NotNull(Addresss);
+        Assert.NotEmpty(Addresss);
+        Assert.Equal(2, Addresss.Count());
+    }
+
+    [Fact]
+    public void GetAllAddresssTest()
+    {
+        var Addresss = _service.GetAddresss();
+        Assert.NotNull(Addresss);
+        Assert.NotEmpty(Addresss);
+        Assert.Equal(Addresss.Count(), Addresss.Count());
+    }
+
+    [Fact]
+    public void AddNewAddressTest()
+    {
+        var newAddressVm = new AddOrUpdateAddressVm()
         {
-            City = "Częstochowa",
-            StreetName = "Szkolna",
-            StreetNumber = 34,
-            PostCode = "12-345"
+            CustomerId = 1,
+            City = "OtherCity",
+            StreetName = "MainStreet",
+            StreetNumber = 112,
+            PostCode = "20-221"
         };
 
-        var address = await _addressService.AddOrUpdateAddress(request);
-
-        Assert.True(address.Id > 0);
-        Assert.Equal(address.City, request.City);
-        Assert.Equal(address.StreetName, request.StreetName);
-        Assert.Equal(address.PostCode, request.PostCode);
-        Assert.Equal(address.StationaryStoreId, request.StationaryStoreId);
+        var createdAddress = _service.AddOrUpdateAddress(newAddressVm);
+        Assert.NotNull(createdAddress);
+        Assert.Equal("MainStreet", createdAddress.StreetName);
+        Assert.Equal(112, createdAddress.StreetNumber);
     }
 
     [Fact]
-    public async void ShouldUpdateAdress()
+    public void UpdateAddressTest()
     {
-        var request = new AddOrUpdateAddressVm()
+        var updateAddressVm = new AddOrUpdateAddressVm()
         {
             Id = 2,
             StationaryStoreId = 2,
-            City = "NewCity",
-            StreetName = "Ogrodowa",
-            StreetNumber = 12,
-            PostCode = "11-232"
+            City = "StoreCityEdited",
+            StreetName = "Boczna",
+            StreetNumber = 1,
+            PostCode = "42-999"
         };
-
-        var address = await _addressService.AddOrUpdateAddress(request);
-
-        Assert.Equal(request.Id, address.Id);
-        Assert.Equal(request.City, address.City);
-        Assert.Equal(request.StationaryStoreId, address.StationaryStoreId);
-        Assert.Equal(request.StreetName, address.StreetName);
+        var editedAddressVm = _service.AddOrUpdateAddress(updateAddressVm);
+        Assert.NotNull(editedAddressVm);
+        Assert.Equal(1, editedAddressVm.StreetNumber);
+        Assert.Equal("Boczna", editedAddressVm.StreetName);
     }
 
-    // [Theory]
-    // [InlineData(1)]
-    // [InlineData(2)]
-    // public async Task DeleteStoreAddressTest(int addressId)
-    // {
-    //     bool doesAddressExistsBefore = await _context.Address.AnyAsync(x => x.Id == addressId);
-    //     Assert.True(doesAddressExistsBefore);
-    //     await _addressService.DeleteStoreAddress(addressId);
-    //     bool doesAddressExistsAfter = await _context.Address.AnyAsync(x => x.Id == addressId);
+    [Fact]
+    public async Task DeleteAddressTest()
+    {
+        int AddressId = 3;
 
-    //     Assert.False(doesAddressExistsAfter);
-    // }
+        bool doesAddressExistsBefore = await _context.Address.AnyAsync(x => x.Id == AddressId);
+        await _service.DeleteAddress(AddressId);
+        bool doesAddressExistsAfter = await _context.Address.AnyAsync(x => x.Id == AddressId);
+
+        Assert.True(doesAddressExistsBefore);
+        Assert.False(doesAddressExistsAfter);
+    }
 }

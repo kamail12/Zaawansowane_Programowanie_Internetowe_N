@@ -84,16 +84,16 @@ public class ProductServiceUnitTests : BaseUnitTests
         Assert.Equal(2000, editedProductVm.Price);
     }
 
-    // [Fact]
-    // public async Task DeleteProductTest()
-    // {
-    //     int productId = 2;
+    [Fact]
+    public async Task DeleteProductTest()
+    {
+        int productId = 2;
 
-    //     bool doesProductExistsBefore = await _context.Product.AnyAsync(x => x.Id == productId);
-    //     await _productService.DeleteProduct(productId);
-    //     bool doesProductExistsAfter = await _context.Product.AnyAsync(x => x.Id == productId);
+        bool doesProductExistsBefore = await _context.Product.AnyAsync(x => x.Id == productId);
+        await _productService.DeleteProduct(productId);
+        bool doesProductExistsAfter = await _context.Product.AnyAsync(x => x.Id == productId);
 
-    //     Assert.True(doesProductExistsBefore);
-    //     Assert.False(doesProductExistsAfter);
-    // }
+        Assert.True(doesProductExistsBefore);
+        Assert.False(doesProductExistsAfter);
+    }
 }

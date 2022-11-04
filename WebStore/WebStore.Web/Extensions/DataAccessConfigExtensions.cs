@@ -9,6 +9,7 @@ public static class DataAccessConfigExtensions
         services.AddDbContext<WSDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("WSDatabaseConntection"));
+                options.EnableSensitiveDataLogging(true);
             });
     }
 }

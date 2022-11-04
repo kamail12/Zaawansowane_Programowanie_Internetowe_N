@@ -1,113 +1,105 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebStore.DAL.DatabaseContext;
 using WebStore.Model.Models;
 using WebStore.Services.Interfaces;
 using WebStore.ViewModels.VM;
 
-namespace WebStore.Services.ConcreteServices
+namespace WebStore.Services.ConcreteServices;
+public class StoreService : BaseService, IStoreService
 {
-    public class StoreService : BaseService, IStoreService
+    public StoreService(WSDbContext dbContext, IMapper mapper, ILogger logger)
+        : base(dbContext, mapper, logger) { }
+
+    public StationaryStoreVm AddOrUpdateStationaryStore(AddOrUpdateStationaryStoreVm addOrUpdateStationaryStoreVm)
     {
-        private readonly WSDbContext _context;
-        private readonly IMapper _mapper;
-        private readonly ILogger _logger;
-
-        public StoreService(WSDbContext context, IMapper mapper, ILogger logger) : base(context, mapper, logger)
+        try
         {
-            _context = context;
-            _mapper = mapper;
-            _logger = logger;
+            if (addOrUpdateStationaryStoreVm == null)
+                throw new ArgumentNullException("View model parameter is null");
+
+            var StationaryStoreEntity = Mapper.Map<StationaryStore>(addOrUpdateStationaryStoreVm);
+
+            if (addOrUpdateStationaryStoreVm.Id.HasValue || addOrUpdateStationaryStoreVm.Id == 0)
+                DbContext.StationaryStore.Update(StationaryStoreEntity);
+            else
+                DbContext.StationaryStore.Add(StationaryStoreEntity);
+
+            DbContext.SaveChanges();
+
+            var StationaryStoreVm = Mapper.Map<StationaryStoreVm>(StationaryStoreEntity);
+
+            return StationaryStoreVm;
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, ex.Message);
+            throw;
+        }
+    }
+    public StationaryStoreVm GetStationaryStore(Expression<Func<StationaryStore, bool>> filterExpression)
+    {
+        try
+        {
+            if (filterExpression == null)
+                throw new ArgumentNullException("Filter expression parameter is null");
+            var StationaryStoreEntity = DbContext.StationaryStore.FirstOrDefault(filterExpression);
+            var StationaryStoreVm = Mapper.Map<StationaryStoreVm>(StationaryStoreEntity);
+            return StationaryStoreVm;
         }
 
-        public async Task<StationaryStoreVm> GetStationaryStoreById(int id)
+        catch (Exception ex)
         {
-            try
             {
-                var stationaryStore = await _context.StationaryStore
-                    .Include(x => x.Addresses)
-                    .Include(x => x.Invoices)
-                    .Include(x => x.Orders)
-                    .Include(x => x.StationaryStoreEmployees)
-                    .FirstOrDefaultAsync(x => x.Id == id);
-
-                if (stationaryStore == null)
-                {
-                    throw new Exception(message: "Stationary store not found");
-                }
-
-                return _mapper.Map<StationaryStoreVm>(stationaryStore);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
+                Logger.LogError(ex, ex.Message);
                 throw;
             }
         }
-
-        public async Task<IEnumerable<StationaryStoreVm>> GetStationaryStores()
+    }
+    public IEnumerable<StationaryStoreVm> GetStationaryStores(Expression<Func<StationaryStore, bool>>? filterExpression = null)
+    {
+        try
         {
-            try
-            {
-                var stationaryStores = await _context.StationaryStore
-                    .Include(x => x.Addresses)
-                    .Include(x => x.Invoices)
-                    .Include(x => x.StationaryStoreEmployees)
-                    .ToListAsync();
+            var StationaryStoresQuery = DbContext.StationaryStore.AsQueryable();
+            if (filterExpression != null)
+                StationaryStoresQuery = StationaryStoresQuery.Where(filterExpression);
+            var StationaryStoreVms = Mapper.Map<IEnumerable<StationaryStoreVm>>(StationaryStoresQuery);
 
-                if (stationaryStores == null || stationaryStores.Count() == 0)
-                {
-                    throw new Exception(message: "Not found");
-                }
-
-                return _mapper.Map<IEnumerable<StationaryStoreVm>>(stationaryStores);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
-                throw;
-            }
+            return StationaryStoreVms;
         }
 
-        public async Task<StationaryStoreVm> AddStationaryStore(AddStationaryStoreVm request)
+        catch (Exception ex)
         {
-            try
-            {
-                StationaryStore store = _mapper.Map<StationaryStore>(request);
-
-                await _context.AddAsync(store);
-                return _mapper.Map<StationaryStoreVm>(store);
-            }
-
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
-                throw;
-            }
+            Logger.LogError(ex, ex.Message);
+            throw;
         }
+    }
 
-        public async Task DeleteStationaryStore(int storeId)
+    public async Task DeleteStationaryStore(int StationaryStoreId)
+    {
+        try
         {
-            try
+            var StationaryStoreEntity = DbContext.StationaryStore
+                .FirstOrDefault(x => x.Id == StationaryStoreId);
+
+            if (StationaryStoreEntity == null)
             {
-                var storeEntity = await _context.StationaryStore
-                    .FirstOrDefaultAsync(x => x.Id == storeId);
-
-                if (storeEntity == null)
-                {
-                    throw new Exception("Store not found");
-                }
-
-                _context.StationaryStore.Remove(storeEntity);
-
-                await _context.SaveChangesAsync();
+                throw new Exception("StationaryStore not found");
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
-                throw;
-            }
+
+            DbContext.StationaryStore.Remove(StationaryStoreEntity);
+
+            await DbContext.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, ex.Message);
+            throw;
         }
     }
 }

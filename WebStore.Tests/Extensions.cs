@@ -97,6 +97,15 @@ namespace WebStore.Tests
 
             await dbContext.AddAsync(inv1);
 
+            var ord1 = new Order()
+            {
+                CustomerId = 1,
+                InvoiceId = 2,
+                TotalAmount = 3
+            };
+
+            await dbContext.AddRangeAsync(o1);
+
             var st1 = new StationaryStore()
             {
                 Id = 1,

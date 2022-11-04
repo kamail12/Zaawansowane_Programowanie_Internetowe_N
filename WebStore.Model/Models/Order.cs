@@ -6,7 +6,7 @@ namespace WebStore.Model.Models;
 public class Order
 {
     [ForeignKey("Customer")]
-    public int? CustomerId { get; set; }
+    public int CustomerId { get; set; }
     public virtual Customer Customer { get; set; } = default!;
     public DateTime DeliveryDate { get; set; } = default!;
     [Key]

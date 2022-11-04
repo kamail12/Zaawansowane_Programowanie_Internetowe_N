@@ -9,9 +9,9 @@ namespace WebStore.Model.Models
     public class StationaryStoreEmployee : User
     {
         [ForeignKey("StationaryStore")]
-        public int StoreId { get; set; }
-        public virtual StationaryStore Store {get; set;} = default!; 
+        public int StationaryStoreId { get; set; }
+        public virtual StationaryStore StationaryStore { get; set; } = default!;
         [Column(TypeName = "decimal(18,2)")]
-        public decimal Salary {get; set;}
+        public decimal Salary { get; set; }
     }
 }

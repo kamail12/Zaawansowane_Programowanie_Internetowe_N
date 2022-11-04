@@ -10,6 +10,6 @@ namespace WebStore.Model.Models
     {
         [Key]
         public int Id { get; set; }
-         public virtual IList<Product> Products { get; set; } = default!;
+        public virtual IList<Product> Products { get; set; } = default!;
     }
 }

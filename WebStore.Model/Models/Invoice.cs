@@ -11,9 +11,12 @@ namespace WebStore.Model.Models
     {
         [Key]
         public int Id { get; set; }
-        
+
         [Column(TypeName = "decimal(18,2)")]
-        public decimal totalPrice {get; set;} 
+        public decimal TotalPrice { get; set; }
         public virtual IList<Order> Orders { get; set; } = default!;
+        public DateTime Date { get; set; }
+        public virtual StationaryStore StationaryStore { get; set; } = default!;
+        public int? StationaryStoreId { get; set; }
     }
 }

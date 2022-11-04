@@ -26,19 +26,9 @@ namespace WebStore.Tests
                 RegistrationDate = new DateTime(2010, 1, 1),
             };
             await userManager.CreateAsync(supplier1, "User1234");
-            //Categories
-            // var category1 = new Category()
-            // {
-            //     Id = 1,
-            //     Name = "Computers",
-            //     Tag = "#computer"
-            // };
-            // await dbContext.AddAsync(category1);
-            //Products
             var p1 = new Product()
             {
                 Id = 1,
-                //CategoryId = category1.Id,
                 SupplierId = supplier1.Id,
                 Description = "Bardzo praktyczny monitor 32 cale",
                 ImageBytes = new byte[] { 0xff, 0xff, 0xff, 0x80 },
@@ -50,7 +40,6 @@ namespace WebStore.Tests
             var p2 = new Product()
             {
                 Id = 2,
-                //CategoryId = category1.Id,
                 SupplierId = supplier1.Id,
                 Description = "Precyzyjna mysz do pracy",
                 ImageBytes = new byte[] { 0xff, 0xff, 0xff, 0x70 },
@@ -64,7 +53,7 @@ namespace WebStore.Tests
             var i1 = new Invoice()
             {
                 Id = 1,
-                totalPrice = 100,
+                TotalPrice = 100,
             };
 
             await dbContext.AddAsync(i1);
@@ -83,6 +72,38 @@ namespace WebStore.Tests
             };
 
             await dbContext.AddAsync(o1);
+
+            var a1 = new Address()
+            {
+                Id = 1,
+                City = "Lubliniec",
+                StreetName = "Lubliniecka"
+            };
+
+            var a2 = new Address()
+            {
+                Id = 2,
+                City = "Czestochowa",
+                StreetName = "Czestochowska"
+            };
+
+            await dbContext.AddRangeAsync(a1, a2);
+
+            var inv1 = new Invoice()
+            {
+                Id = 3,
+                TotalPrice = 747
+            };
+
+            await dbContext.AddAsync(inv1);
+
+            var st1 = new StationaryStore()
+            {
+                Id = 1,
+                Name = "Store1"
+            };
+
+            await dbContext.AddAsync(st1);
 
             // save changes
             await dbContext.SaveChangesAsync();

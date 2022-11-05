@@ -35,6 +35,23 @@ namespace WebStore.DAL.EF
             modelBuilder.Entity<User>()
             .ToTable("AspNetUsers")
             .HasDiscriminator<int>("UserType");
+
+            ModelBuilder.Entity<OrderProduct>()
+            .HasKey(po => new { po.OrderId, po.ProductId });
+
+            ModelBuilder.Entity<OrderProduct>()
+            .HasOne(p => p.Product)
+            .WithMany(po => po.ProductOrder)
+            .HasForeignKey(p => p.ProductId);
+
+            ModelBuilder.Entity<OrderProduct>()
+            .HasOne(o => o.Order)
+            .WithMany(po => po.ProductOrder)
+            .HasForeignKey(o => o.OrderId)
+            .OnDelete(DeleteBehavior.Restrict);
+
         }
+
+
     }
 }

@@ -1,11 +1,19 @@
  using Microsoft.AspNetCore.Identity;
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebStore.Model.DataModels
 {
     public class Address
     {
         public virtual Customer Customer { get; set; } = default!;
+        [ForeignKey("Customer")]
+        public int? CustomerId { get; set; }
+
+        public virtual StationaryStore StationaryStore { get; set; } = default!;
+        [ForeignKey("StationaryStore")]
+        public int? StationaryStoreId { get; set; }
 
         public string City { get; set; } = default!;
 
@@ -19,15 +27,5 @@ namespace WebStore.Model.DataModels
 
         public string ApartmentNumber { get; set; }= default!;
 
-
-        /* public Address()
-        {
-            City = "brak";
-            ZipCode = "brak";
-            Street = "brak";
-            StreetNumber = "brak";
-            BuildingNumber = "brak";
-            ApartmentNumber = "brak";
-        } */
     }
 }

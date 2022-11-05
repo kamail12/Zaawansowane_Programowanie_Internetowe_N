@@ -5,13 +5,10 @@ namespace WebStore.Model.DataModels
 {
     public class Category
     {
-        public string Name { get; set; }
-        public int Id { get; set; }
+        public string Name { get; set; } = default!;
+        public int Id { get; set; } = default!;
 
-        public Category()
-        {
-            Name = "brak";
-            Id = 0;
-        }
+        public virtual IList<Product> Products { get; set; } = default!;
+
     }
 }

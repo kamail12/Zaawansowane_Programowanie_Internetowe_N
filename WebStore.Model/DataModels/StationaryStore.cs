@@ -5,9 +5,9 @@ namespace WebStore.Model.DataModels
 {
     public class StationaryStore
     {
-        public Address StoreAddress { get; set; } = default!;
+        public virtual IList<Address> Address { get; set; } = default!;
 
-        virtual public IList<StationaryStoreEmployee> Employees { get; set; } = default!;
+        public virtual IList<StationaryStoreEmployee> Employees { get; set; } = default!;
 
     }
 }

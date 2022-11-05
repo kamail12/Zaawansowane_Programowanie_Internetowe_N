@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebStore.Model\Webstore.Model.csproj" />
+    <ProjectReference Include="..\WebStore.DAL\Webstore.DAL.csproj" />
+    <ProjectReference Include="..\WebStore.ViewModels\Webstore.ViewModels.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

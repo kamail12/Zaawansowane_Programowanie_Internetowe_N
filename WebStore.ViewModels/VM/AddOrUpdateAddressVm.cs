@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-namespace WebStore.Model.DataModels
+namespace WebStore.ViewModels.Vm
 {
     public class AddOrUpdateAddressVm
     {       

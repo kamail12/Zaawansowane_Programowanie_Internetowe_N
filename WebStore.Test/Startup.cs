@@ -35,6 +35,7 @@ namespace WebStore.Test
             services.AddTransient<IOrderService, OrderService> ();
             services.AddTransient<IInvoiceService, InvoiceService> ();
             services.AddTransient<IStationaryStoreService, StationaryStoreService> ();
+            services.AddTransient<IAddressService, AddressService>();
             // ... other bindings..
             services.SeedData();
         }

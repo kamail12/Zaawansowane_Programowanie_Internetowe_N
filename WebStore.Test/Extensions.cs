@@ -80,9 +80,18 @@ namespace WebStore.Test
             var i1 = new Invoice()
             {
                 Id = 1,
-                TotalAmount = 20
+                TotalAmount = 20,
+                //Orders = {new Order(), new Order()}
             } ;
             await dbContext.AddAsync (i1);
+
+            var i2 = new Invoice()
+            {
+                Id = 2,
+                TotalAmount = 400,
+                //Orders = {new Order(), new Order()}
+            } ;
+            await dbContext.AddAsync (i2);
 
             //Orders
             var o1 = new Order()

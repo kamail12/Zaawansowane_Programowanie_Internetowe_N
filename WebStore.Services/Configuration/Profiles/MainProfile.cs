@@ -14,9 +14,14 @@ namespace WebStore.Services.Configuration.Profiles
             CreateMap<ProductVm, AddOrUpdateProductVm>();    
             
             //Order maps
-            CreateMap<Order, OrderVm>(); //map from Product(src) to ProductVm(dst)
+            CreateMap<Order, OrderVm>(); //map from Order(src) to OrderVm(dst)
             CreateMap<AddOrUpdateOrderVm, Order>();
             CreateMap<OrderVm, AddOrUpdateOrderVm>();    
+
+            //Invoice maps
+            CreateMap<Invoice, InvoiceVm>(); //map from Invoice(src) to InvoiceVm(dst)
+            CreateMap<AddOrUpdateInvoiceVm, Invoice>();
+            CreateMap<InvoiceVm, AddOrUpdateInvoiceVm>();  
         }
     }
 }

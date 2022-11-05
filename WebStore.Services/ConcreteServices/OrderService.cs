@@ -24,19 +24,19 @@ namespace WebStore.Services.ConcreteServices
                     throw new ArgumentException ("View model parameter is null");
                 }
                     
-                var productEntity = Mapper.Map<Order> (addOrUpdateOrderVm);
+                var orderEntity = Mapper.Map<Order> (addOrUpdateOrderVm);
 
                 if(addOrUpdateOrderVm.Id.HasValue || addOrUpdateOrderVm.Id == 0)
                 {
-                    DbContext.Orders.Update (productEntity);
+                    DbContext.Orders.Update (orderEntity);
                 }
                 else
                 {
-                    DbContext.Orders.Add (productEntity);
+                    DbContext.Orders.Add (orderEntity);
                 }
 
                 DbContext.SaveChanges();
-                var orderVm = Mapper.Map<OrderVm> (productEntity);
+                var orderVm = Mapper.Map<OrderVm> (orderEntity);
                 return orderVm;
 
             } 

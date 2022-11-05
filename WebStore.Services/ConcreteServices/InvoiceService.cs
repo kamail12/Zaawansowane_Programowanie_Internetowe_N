@@ -25,19 +25,19 @@ namespace WebStore.Services.ConcreteServices
                     throw new ArgumentException("View model parameter is NULL");
                 }
 
-                var productEntity = Mapper.Map<Invoice> (addOrUpdateInvoiceVm);
+                var invoiceEntity = Mapper.Map<Invoice> (addOrUpdateInvoiceVm);
 
                 if(addOrUpdateInvoiceVm.Id.HasValue || addOrUpdateInvoiceVm.Id == 0)
                 {
-                    DbContext.Invoices.Update (productEntity);
+                    DbContext.Invoices.Update (invoiceEntity);
                 }
                 else
                 {
-                    DbContext.Invoices.Add (productEntity);
+                    DbContext.Invoices.Add (invoiceEntity);
                 }
 
                 DbContext.SaveChanges();
-                var invoiceVm = Mapper.Map<InvoiceVm> (productEntity);
+                var invoiceVm = Mapper.Map<InvoiceVm> (invoiceEntity);
                 return invoiceVm;
             }
             catch (Exception ex)

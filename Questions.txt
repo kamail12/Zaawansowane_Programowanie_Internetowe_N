@@ -7,3 +7,5 @@
 7. Do items there are in Extensions.cs save to DataBase or not;
 8. What do the "AddTransient" do?
 9. Is nesseccery to create new migration if I want to modify database?
+10. What is a different between userMenager and dbContext in Extension file?
+11. Why in method "GetAllStationaryStoreTest" are use two the same argument?

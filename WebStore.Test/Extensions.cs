@@ -115,6 +115,23 @@ namespace WebStore.Test
                 TrackingNumber = 78654321
             };
             await dbContext.AddAsync (o2);
+
+            //StarionaryStores
+            var store1 = new StationaryStore()
+            {
+                Id = 1,
+                Name = "Kabelki i nie tylko"
+                //TODO Add adrress and Employes lists
+            };
+            await dbContext.AddAsync (store1);
+
+            var store2 = new StationaryStore()
+            {
+                Id = 2,
+                Name = "Tylko w SOFTWARE"
+                //TODO Add adrress and Employes lists
+            };
+            await dbContext.AddAsync (store2);
             
             // save changes 
             await dbContext.SaveChangesAsync ();

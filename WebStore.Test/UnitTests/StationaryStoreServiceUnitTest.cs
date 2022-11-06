@@ -19,7 +19,7 @@ namespace WebStore.Test.UnitTest
         public void GetStationaryStoreTest()
         {
             
-            var stationaryStore = _stationaryStoreService.GetStationaryStore(s => s.Name  == "Tylko w SOFTWARE");
+            var stationaryStore = _stationaryStoreService.GetStationaryStore(s => s.Id  == 2);
             Assert.NotNull (stationaryStore); 
         }
 

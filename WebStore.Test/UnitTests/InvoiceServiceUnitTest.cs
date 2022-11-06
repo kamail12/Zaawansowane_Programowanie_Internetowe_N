@@ -38,6 +38,7 @@ namespace WebStore.Test.UnitTest
             var invoices = _invoiceService.GetInvoices();
             Assert.NotNull(invoices);
             Assert.NotEmpty(invoices);
+            //TODO: zmiana 
             Assert.Equal(invoices.Count(), invoices.Count());
         }
 

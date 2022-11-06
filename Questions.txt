@@ -9,3 +9,5 @@
 9. Is nesseccery to create new migration if I want to modify database?
 10. What is a different between userMenager and dbContext in Extension file?
 11. Why in method "GetAllStationaryStoreTest" are use two the same argument?
+
+DI or DIC

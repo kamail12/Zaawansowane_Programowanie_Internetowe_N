@@ -17,12 +17,12 @@ namespace WebStore.Model.DataModels
 
         public DateTime DeliveryDate { get; set; } = default!;
 
-         public int Id { get; set; } = default!;
+        public int Id { get; set; } = default!;
 
-         public DateTime OrderDate { get; set; } = default!;
+        public DateTime OrderDate { get; set; } = default!;
 
-         public long TrackingNumber { get; set; } = default!;
+        public long TrackingNumber { get; set; } = default!;
 
-         
+        public virtual IList<OrderProduct> ProductOrders {get; set; } =default!;
     }
 }

@@ -36,17 +36,17 @@ namespace WebStore.DAL.EF
             .ToTable("AspNetUsers")
             .HasDiscriminator<int>("UserType");
 
-            ModelBuilder.Entity<OrderProduct>()
+            modelBuilder.Entity<OrderProduct>()
             .HasKey(po => new { po.OrderId, po.ProductId });
 
-            ModelBuilder.Entity<OrderProduct>()
+            modelBuilder.Entity<OrderProduct>()
             .HasOne(p => p.Product)
-            .WithMany(po => po.ProductOrder)
+            .WithMany(po => po.ProductOrders)
             .HasForeignKey(p => p.ProductId);
 
-            ModelBuilder.Entity<OrderProduct>()
+            modelBuilder.Entity<OrderProduct>()
             .HasOne(o => o.Order)
-            .WithMany(po => po.ProductOrder)
+            .WithMany(po => po.ProductOrders)
             .HasForeignKey(o => o.OrderId)
             .OnDelete(DeleteBehavior.Restrict);
 

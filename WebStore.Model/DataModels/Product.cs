@@ -15,6 +15,8 @@ namespace WebStore.Model.DataModels
         [ForeignKey("Category")]
         public int? CategoryId { get; set; }
 
+        public virtual IList<OrderProduct> ProductOrders {get; set; } =default!;
+        
         public virtual IList<ProductStock> ProductStocks { get; set; } = default!;
 
         public string Description { get; set; } = default!;

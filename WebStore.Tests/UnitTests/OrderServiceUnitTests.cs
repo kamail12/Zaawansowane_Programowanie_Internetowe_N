@@ -26,7 +26,7 @@ namespace WebStore.Tests.UnitTests {
                 TotalAmount = 100.00M,
             }; 
             var createdOrder = _orderService.AddOrUpdateOrder (newOrderVm); 
-            Assert.NotNull (createdOrder); 
+            Assert.NotNull (createdOrder);
         }
     }
 }

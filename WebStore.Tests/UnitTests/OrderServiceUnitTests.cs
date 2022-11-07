@@ -28,5 +28,28 @@ namespace WebStore.Tests.UnitTests {
             var createdOrder = _orderService.AddOrUpdateOrder (newOrderVm); 
             Assert.NotNull (createdOrder);
         }
+
+        [Fact]
+        public void UpdateOrderTest () { 
+            var updateOrderVm = new AddOrUpdateOrderVm () { 
+                CustomerId = 1,
+                DeliveryDate = new DateTime(),
+                OrderDate = new DateTime(),
+                TotalAmount = 100.00M,
+            }; 
+            var editedOrderVm = _orderService.AddOrUpdateOrder (updateOrderVm); 
+            Assert.NotNull (editedOrderVm); 
+            Assert.Equal (1, editedOrderVm.Id); 
+            Assert.Equal (100.00M, editedOrderVm.TotalAmount); 
+        } 
+
+        [Fact]
+        public void DeleteOrderTest () { 
+            var deleteOrderVar = new DeleteOrderVm () { 
+                Id = 1,
+            }; 
+            var editedOrderVm = _orderService.DeleteOrder (deleteOrderVar); 
+            Assert.NotNull (editedOrderVm); 
+        } 
     }
 }

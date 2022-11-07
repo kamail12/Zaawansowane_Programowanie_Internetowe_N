@@ -14,15 +14,17 @@ namespace WebStore.Services.Configuration.Profiles {
             CreateMap<ProductVm, Product>();
             CreateMap<Product, ProductVm>();
 
-            // CreateMap<AddOrUpdateInvoiceVm, Invoice>();
-            // CreateMap<InvoiceVm, Invoice>();
-            // CreateMap<Invoice, InvoiceVm>();
+            CreateMap<AddOrUpdateInvoiceVm, Invoice>();
+            CreateMap<GetInvoiceVm, Invoice>();
+            CreateMap<InvoiceVm, Invoice>();
+            CreateMap<Invoice, InvoiceVm>();
 
             // CreateMap<AddOrUpdateAddressVm, Address>();
             // CreateMap<AddressVm, Address>();
             // CreateMap<Address, AddressVm>();
 
             CreateMap<AddOrUpdateOrderVm, Order>();
+            CreateMap<DeleteOrderVm, Order>();
             CreateMap<OrderVm, Order>();
             CreateMap<Order, OrderVm>();
 

@@ -6,9 +6,7 @@ using WebStore.ViewModels.VM;
 
 namespace WebStore.Services.Interfaces { 
     public interface IOrderService {
-        // OrderVm
-        // ProductVm AddOrUpdateProduct (AddOrUpdateProductVm addOrUpdateProductVm);
-        // ProductVm GetProduct (Expression<Func<Product, bool>> filterExpression);
-        // IEnumerable<ProductVm> GetProducts (Expression<Func<Product, bool>> ? filterExpression = null);
+        OrderVm AddOrUpdateOrder (AddOrUpdateOrderVm addOrUpdateOrderVm);
+        OrderVm DeleteOrder (DeleteOrderVm deleteOrderVm);
     }
 }

@@ -18,7 +18,7 @@ public class InvoiceService : BaseService, IInvoiceService
 
             var invoiceEntity = Mapper.Map<Invoice> (addOrUpdateInvoiceVm);
 
-            if (addOrUpdateInvoiceVm.InvoiceId.HasValue || addOrUpdateInvoiceVm.InvoiceId == 0)
+            if (addOrUpdateInvoiceVm.Id.HasValue || addOrUpdateInvoiceVm.Id == 0)
                 DbContext.Invoices.Update (invoiceEntity);
             else
                 DbContext.Invoices.Add (invoiceEntity);

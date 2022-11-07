@@ -20,26 +20,28 @@ namespace WebStore.Tests.UnitTests {
         [Fact]
         public void AddInvoiceTest () {
             var newInvoice = new AddOrUpdateInvoiceVm () { 
-                InvoiceId = 1,
+                Id = 1,
                 TotalPrice = 100.00M,
                 InvoiceDate = new DateTime(),
                 Orders = {},
             }; 
             var createdInvoice = _invoiceService.AddOrUpdateInvoice (newInvoice); 
             Assert.NotNull (createdInvoice);
+            Assert.Equal (1, createdInvoice.InvoiceId);
+            Assert.Equal (100.00M, createdInvoice.TotalPrice);
         }
 
         [Fact]
         public void UpdateInvoice () { 
             var editedInvoiceVm = new AddOrUpdateInvoiceVm () { 
-                InvoiceId = 1,
+                Id = 1,
                 TotalPrice = 100.00M,
                 InvoiceDate = new DateTime(),
                 Orders = {},
             }; 
             var editedOrderVm = _invoiceService.AddOrUpdateInvoice (editedInvoiceVm); 
             Assert.NotNull (editedInvoiceVm); 
-            Assert.Equal (1, editedInvoiceVm.InvoiceId); 
+            Assert.Equal (1, editedInvoiceVm.Id); 
             Assert.Equal (100.00M, editedOrderVm.TotalPrice); 
         } 
 

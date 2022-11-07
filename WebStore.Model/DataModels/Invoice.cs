@@ -6,7 +6,6 @@ namespace WebStore.Model.DataModels;
 
 public class Invoice
 {
-    [Key]
     public int InvoiceId {get; set;}
     
     [Column(TypeName = "decimal(18,2)")]

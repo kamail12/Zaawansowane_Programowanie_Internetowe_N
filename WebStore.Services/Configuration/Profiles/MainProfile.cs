@@ -19,19 +19,20 @@ namespace WebStore.Services.Configuration.Profiles {
             CreateMap<InvoiceVm, Invoice>();
             CreateMap<Invoice, InvoiceVm>();
 
-            // CreateMap<AddOrUpdateAddressVm, Address>();
-            // CreateMap<AddressVm, Address>();
-            // CreateMap<Address, AddressVm>();
-
             CreateMap<AddOrUpdateOrderVm, Order>();
             CreateMap<DeleteOrderVm, Order>();
             CreateMap<OrderVm, Order>();
             CreateMap<Order, OrderVm>();
 
-            // CreateMap<AddOrUpdateStoreVm, StationaryStore>();
-            // CreateMap<StoreVm, StationaryStore>();
-            // CreateMap<StationaryStore, StoreVm>();
+            CreateMap<AddOrUpdateStoreVm, StationaryStore>();
+            CreateMap<GetStoreVm, StationaryStore>();
+            CreateMap<AddressVm, Address>();
+            CreateMap<Address, AddressVm>();
 
+            CreateMap<StationaryStoreEmployeeVm, StationaryStoreEmployee>();
+            CreateMap<StationaryStoreEmployee, StationaryStoreEmployeeVm>();
+
+            CreateMap<AddOrUpdateAddressVm, Address>();
         }
     }
 }

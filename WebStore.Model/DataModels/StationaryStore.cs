@@ -8,7 +8,6 @@ namespace Webstore.Model
         
         //Relation 'One-to-Many' - StationaryStore => StationaryStoreEmployee
         public virtual IList<StationaryStoreEmployee> Employees {get; set;} = default!;
-
         [Key]
         public int? Id {get; set;}
         public string Name {get; set;} = default!; 

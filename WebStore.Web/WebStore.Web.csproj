@@ -8,13 +8,22 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-    <SpaProxyServerUrl>https://localhost:44427</SpaProxyServerUrl>
+    <SpaProxyServerUrl>https://localhost:44412</SpaProxyServerUrl>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.OpenApi" Version="1.4.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,13 +33,13 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\WebStore.Model\Webstore.Model.csproj" />
-    <ProjectReference Include="..\WebStore.DAL\Webstore.DAL.csproj" />
-    <ProjectReference Include="..\WebStore.ViewModels\Webstore.ViewModels.csproj" />
-    <ProjectReference Include="..\WebStore.Services\Webstore.Services.csproj" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9" />
-  </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\WebStore.Model\WebStore.Model.csproj" />
+      <ProjectReference Include="..\WebStore.DAL\WebStore.DAL.csproj" />
+      <ProjectReference Include="..\WebStore.ViewModels\WebStore.ViewModels.csproj" />
+      <ProjectReference Include="..\WebStore.Services\WebStore.Services.csproj" />
+    </ItemGroup>
+
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->

@@ -1,9 +1,12 @@
 namespace Webstore.Model;
 
 public class OrderProduct {
-    public Order Order {get; set;} = default!;
-    public virtual Product Product {get; set;} = default!;
-    public int Quantity  {get; set;}
-    public int? OrderId {get; set;}
-    public int? ProductId {get; set;}
+     //Properties of relatiorn 'Many-to-Many' - 'Order-to-Product' 
+        public virtual Order Order {get; set;} = default!;
+        public int? OrderId {get; set;}
+        public virtual Product Product {get; set;} = default!;
+        public int? ProductId {get; set;}
+
+        //Model properties
+        public int Quantity {get; set;}
 }

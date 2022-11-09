@@ -29,6 +29,7 @@
     <ProjectReference Include="..\WebStore.DAL\Webstore.DAL.csproj" />
     <ProjectReference Include="..\WebStore.ViewModels\Webstore.ViewModels.csproj" />
     <ProjectReference Include="..\WebStore.Services\Webstore.Services.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

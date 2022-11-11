@@ -11,6 +11,7 @@ namespace WebStore.ViewModels.VM
         public SupplierVm Supplier { get; set; } = default!;
         public int? SupplierId { get; set; }
         public CategoryVm Category { get; set; } = default!;
+        public int? CategoryId { get; set; }
         public IList<ProductStockVm> ProductStocks { get; set; } = default!;
         public IList<OrderVm> Orders { get; set; } = default!;
     }

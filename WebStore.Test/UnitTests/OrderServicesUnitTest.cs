@@ -37,7 +37,7 @@ namespace WebStore.Test.UnitTest
             var orders = _orderService.GetOrders();
             Assert.NotNull(orders);
             Assert.NotEmpty(orders);
-            Assert.Equal(orders.Count(), orders.Count());
+            Assert.Equal(DbContext.Orders.Count(), orders.Count());
         }
 
         [Fact]

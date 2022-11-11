@@ -39,7 +39,7 @@ namespace WebStore.Test.UnitTest
             Assert.NotNull(invoices);
             Assert.NotEmpty(invoices);
             //TODO: zmiana 
-            Assert.Equal(invoices.Count(), invoices.Count());
+            Assert.Equal(DbContext.Invoices.Count(), invoices.Count());
         }
 
         [Fact]

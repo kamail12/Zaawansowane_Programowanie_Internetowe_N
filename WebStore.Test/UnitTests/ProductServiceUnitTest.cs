@@ -43,7 +43,7 @@ namespace WebStore.Test.UnitTest
             var products = _productService.GetProducts();
             Assert.NotNull(products);
             Assert.NotEmpty(products);
-            Assert.Equal(products.Count(), products.Count());
+            Assert.Equal(DbContext.Products.Count(), products.Count());
         }
 
         [Fact]

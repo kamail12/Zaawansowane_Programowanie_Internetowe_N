@@ -24,7 +24,7 @@ namespace WebStore.Model.DataModels
         //Model Properties
         public DateTime DeliveryDate {get; set;}
         [Key]
-        public int? Id {get; set;}                                          //"Main key"
+        public int Id {get; set;}                                          //"Main key"
         public DateTime OrderDate {get; set;}
         public long TrackingNumber {get; set;}
     }

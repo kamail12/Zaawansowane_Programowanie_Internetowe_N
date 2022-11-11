@@ -10,7 +10,6 @@ namespace WebStore.ViewModels.Vm
         [Required]
         public decimal TotalAmount {get; set;}
 
-        //[Required]
-        // public IList<Order> Orders {get; set;} = default!;
+         public IList<Order> Orders {get; set;} = default!;
     }
 }

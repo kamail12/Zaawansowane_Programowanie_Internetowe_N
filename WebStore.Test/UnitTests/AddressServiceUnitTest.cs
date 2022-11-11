@@ -36,7 +36,7 @@ namespace WebStore.Test.UnitTest
             var addresses = _addressService.GetAddresses();
             Assert.NotNull(addresses);
             Assert.NotEmpty(addresses);
-            Assert.Equal(addresses.Count(), addresses.Count());
+            Assert.Equal(DbContext.Addresses.Count(), addresses.Count());
         }
 
         [Fact]

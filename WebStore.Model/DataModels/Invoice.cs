@@ -8,7 +8,7 @@ namespace WebStore.Model.DataModels
 
         //Model propreties
         [Key]
-        public int? Id {get; set;}
+        public int Id {get; set;}
         public decimal TotalAmount {get; set;}
     }
 }

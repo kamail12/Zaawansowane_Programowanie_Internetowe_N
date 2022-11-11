@@ -85,8 +85,5 @@ namespace WebStore.Services.ConcreteServices
                 throw;
             }
         }
-
-        //TODO: Add service - Add order to list
-        //TODO: Add service - Add order to list
     }
 }

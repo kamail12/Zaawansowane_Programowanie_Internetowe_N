@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using WebStore.Model.DataModels;
 
 namespace WebStore.ViewModels.Vm
 {
@@ -9,8 +10,8 @@ namespace WebStore.ViewModels.Vm
         [Required]
         public string Name {get; set;} = default!;
 
-        //[Required]
-        //public IList<Address>Addresses {get; set;}
-        //public IList<Employee>Employees {get; set;}
+        [Required]
+        public IList<StationaryStoreAddress>Addresses {get; set;} = default!;
+        public IList<StationaryStoreEmployee>Employees {get; set;} = default!;
     }
 }

@@ -38,7 +38,7 @@ namespace WebStore.Test.UnitTest
             var stationaryStores = _stationaryStoreService.GetStationaryStores();
             Assert.NotNull(stationaryStores);
             Assert.NotEmpty(stationaryStores);
-            Assert.Equal(stationaryStores.Count(), stationaryStores.Count());
+            Assert.Equal(DbContext.StationaryStores.Count(), stationaryStores.Count());
         }
 
         [Fact]

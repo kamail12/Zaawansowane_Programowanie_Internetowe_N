@@ -45,7 +45,7 @@ namespace WebStore.Test
             var category1 = new Category () 
             { 
                 Id = 1, Name = "Computers",
-                //Tag = "#computer" 
+                Tag = "#computer" 
             };
             await dbContext.AddAsync (category1);
 
@@ -81,15 +81,13 @@ namespace WebStore.Test
             {
                 Id = 1,
                 TotalAmount = 20,
-                //Orders = {new Order(), new Order()}
             } ;
             await dbContext.AddAsync (i1);
 
             var i2 = new Invoice()
             {
                 Id = 2,
-                TotalAmount = 400,
-                //Orders = {new Order(), new Order()}
+                TotalAmount = 400
             } ;
             await dbContext.AddAsync (i2);
 
@@ -121,7 +119,6 @@ namespace WebStore.Test
             {
                 Id = 1,
                 Name = "Kabelki i nie tylko"
-                //TODO Add adrress and Employes lists
             };
             await dbContext.AddAsync (store1);
 
@@ -129,7 +126,6 @@ namespace WebStore.Test
             {
                 Id = 2,
                 Name = "Tylko w SOFTWARE"
-                //TODO Add adrress and Employes lists
             };
             await dbContext.AddAsync (store2);
 

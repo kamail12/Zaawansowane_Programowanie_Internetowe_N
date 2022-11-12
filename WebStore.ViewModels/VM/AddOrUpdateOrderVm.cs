@@ -4,7 +4,9 @@ namespace WebStore.ViewModels.Vm
     public class AddOrUpdateOrderVm
     {
         public int? Id {get; set;}       
-       
+        public int? CustomerId {get; set;}
+        public int? InvoiceId {get; set;}
+
         [Required]       
         public DateTime DeliveryDate {get; set;}
 
@@ -13,12 +15,7 @@ namespace WebStore.ViewModels.Vm
 
         [Required]
         public long TrackingNumber {get; set;}
-
-        [Required]
-        public int? CustomerId {get; set;}
-
-        [Required]
-        public int? InvoiceId {get; set;}
+        
          
     }
 }

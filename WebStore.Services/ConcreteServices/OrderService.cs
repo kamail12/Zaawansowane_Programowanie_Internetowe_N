@@ -55,8 +55,8 @@ namespace WebStore.Services.ConcreteServices
                 {
                     throw new ArgumentNullException("Filter expression parameter is null");
                 }
-                var productEntity = DbContext.Orders.FirstOrDefault (filterExpression);
-                var orderVm = Mapper.Map<OrderVm> (productEntity);
+                var OrderEntity = DbContext.Orders.FirstOrDefault (filterExpression);
+                var orderVm = Mapper.Map<OrderVm> (OrderEntity);
                 return orderVm;
             }
             catch (Exception ex)
@@ -77,6 +77,31 @@ namespace WebStore.Services.ConcreteServices
                 }
                 var orderVms = Mapper.Map<IEnumerable<OrderVm>> (orderQuery);
                 return orderVms;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
+        public IEnumerable<OrderVm> DeleteOrder(Expression<Func<Order, bool>> filterExpression)
+        {
+            try
+            {
+                if(filterExpression == null)
+                {
+                    throw new ArgumentNullException("Filter expression parameter is null");
+                }
+                var orderEntity = DbContext.Orders.FirstOrDefault (filterExpression);
+                
+                if(orderEntity == null)
+                {
+                    throw new ArgumentException("Incorrect filter expression");
+                }
+
+                DbContext.Orders.Remove(orderEntity);
+                DbContext.SaveChanges();
+                return GetOrders();
             }
             catch (Exception ex)
             {

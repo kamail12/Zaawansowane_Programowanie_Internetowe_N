@@ -1,21 +1,25 @@
-global using WebStore.DAL.EF;
-global using Microsoft.EntityFrameworkCore;
+using WebStore.DAL.EF;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using WebStore.Model.DataModels;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WebStore.ViewModels.Vm;
+using WebStore.Services.Configuration.Profiles;
+using WebStore.Services.Interface;
+using WebStore.Services.ConcreteServices;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAutoMapper(typeof(MainProfile));
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-//ogarnac
 builder.Services.Configure<JwtOptionsVm>(options => builder.Configuration.GetSection("JwtOptions").Bind(options));
 builder.Services.AddIdentity<User, IdentityRole<int>>(o =>
 {
@@ -29,7 +33,11 @@ builder.Services.AddIdentity<User, IdentityRole<int>>(o =>
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-//ogarnac
+builder.Services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN"); 
+builder.Services.AddTransient(typeof(ILogger), typeof(Logger<Program>)); 
+builder.Services.AddScoped<IProductService, ProductService>(); 
+builder.Services.AddScoped<IAddressService, AddressService>();
+
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -50,24 +58,31 @@ builder.Services.AddAuthentication(options =>
     });
 
 builder.Services.AddControllersWithViews()
-//ogarnac
     .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
 
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebStore API", Version = "v1"});
+});
+
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebStore API v1"));
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseDeveloperExceptionPage();
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-//ogarnac
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -77,5 +92,4 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");;
-
 app.Run();

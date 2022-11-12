@@ -84,5 +84,12 @@ namespace WebStore.Test.UnitTest
             Assert.Equal("Monitor Dell 32", editedProductVm.Name);
             Assert.Equal(2000, editedProductVm.Price);
         }
+
+        [Fact]
+        public void DeleteProductTest()
+        {
+            var changeProducts = _productService.DeleteProduct(p => p.Id == 1);
+            Assert.Equal(1, changeProducts.Count());
+        }
     }
 }

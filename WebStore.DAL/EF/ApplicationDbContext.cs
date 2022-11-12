@@ -57,6 +57,10 @@ namespace WebStore.DAL.EF
                 .WithMany(op => op.OrderProducts)
                 .HasForeignKey(p => p.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Product>().Property(p => p.CategoryId).IsRequired(false);
+            modelBuilder.Entity<Product>().Property(p => p.SupplierId).IsRequired(false);
+
         }
     }
 }

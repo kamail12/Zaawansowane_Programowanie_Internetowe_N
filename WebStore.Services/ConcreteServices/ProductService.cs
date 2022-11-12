@@ -87,5 +87,31 @@ namespace WebStore.Services.ConcreteServices
                 throw;
             }
         }
+
+        public IEnumerable<ProductVm> DeleteProduct(Expression<Func<Product, bool>> filterExpression)
+        {
+            try
+            {
+                if(filterExpression == null)
+                {
+                    throw new ArgumentNullException("Filter expression parameter is null");
+                }
+                var productEntity = DbContext.Products.FirstOrDefault (filterExpression);
+                
+                if(productEntity == null)
+                {
+                    throw new ArgumentException("Incorrect filter expression");
+                }
+
+                DbContext.Products.Remove(productEntity);
+                DbContext.SaveChanges();
+                return GetProducts();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        } 
     }
 }

@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace WebStore.Model.DataModels
 {
     public class Invoice
@@ -9,6 +11,8 @@ namespace WebStore.Model.DataModels
         //Model propreties
         [Key]
         public int Id {get; set;}
+        
+        [Column(TypeName = "decimal(12, 2)")]
         public decimal TotalAmount {get; set;}
     }
 }

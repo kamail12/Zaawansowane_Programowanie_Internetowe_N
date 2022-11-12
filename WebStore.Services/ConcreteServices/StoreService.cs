@@ -43,32 +43,6 @@ namespace WebStore.Services.ConcreteServices
             }
         }
 
-        public async Task DeleteStationaryStore(Expression<Func<StationaryStore, bool>> filterExpression)
-        {
-            try
-            {
-                if (filterExpression == null)
-                {
-                    throw new ArgumentNullException("Filter expression parameter is null");
-                }
-
-                var stationaryStoreEntity = DbContext.StationaryStore.FirstOrDefault(filterExpression);
-
-                if (stationaryStoreEntity == null)
-                {
-                    throw new Exception("StationaryStore not found");
-                }
-                DbContext.StationaryStore.Remove(stationaryStoreEntity);
-                await DbContext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex, ex.Message);
-                throw;
-            }
-
-        }
-
         public StationaryStoreVm GetStationaryStore(Expression<Func<StationaryStore, bool>> filterExpression)
         {
             if (filterExpression == null)
@@ -100,6 +74,30 @@ namespace WebStore.Services.ConcreteServices
                 throw;
             }
         }
+        public async Task DeleteStationaryStore(Expression<Func<StationaryStore, bool>> filterExpression)
+        {
+            try
+            {
+                if (filterExpression == null)
+                {
+                    throw new ArgumentNullException("Filter expression parameter is null");
+                }
 
+                var stationaryStoreEntity = DbContext.StationaryStore.FirstOrDefault(filterExpression);
+
+                if (stationaryStoreEntity == null)
+                {
+                    throw new Exception("StationaryStore not found");
+                }
+                DbContext.StationaryStore.Remove(stationaryStoreEntity);
+                await DbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+
+        }
     }
 }

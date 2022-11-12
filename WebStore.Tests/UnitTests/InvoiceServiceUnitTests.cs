@@ -71,16 +71,16 @@ public class InvoiceServiceUnitTests : BaseUnitTests
         Assert.Equal(200, editedInvoiceVm.TotalPrice);
     }
 
-    [Fact]
-    public async Task DeleteInvoiceTest()
-    {
-        int invoiceId = 3;
+    // [Fact]
+    // public async Task DeleteInvoiceTest()
+    // {
+    //     int invoiceId = 3;
 
-        bool doesInvoiceExistsBefore = await _context.Invoice.AnyAsync(x => x.Id == invoiceId);
-        await _service.DeleteInvoice(x => x.Id == invoiceId);
-        bool doesInvoiceExistsAfter = await _context.Invoice.AnyAsync(x => x.Id == invoiceId);
+    //     bool doesInvoiceExistsBefore = await _context.Invoice.AnyAsync(x => x.Id == invoiceId);
+    //     await _service.DeleteInvoice(x => x.Id == invoiceId);
+    //     bool doesInvoiceExistsAfter = await _context.Invoice.AnyAsync(x => x.Id == invoiceId);
 
-        Assert.True(doesInvoiceExistsBefore);
-        Assert.False(doesInvoiceExistsAfter);
-    }
+    //     Assert.True(doesInvoiceExistsBefore);
+    //     Assert.False(doesInvoiceExistsAfter);
+    // }
 }

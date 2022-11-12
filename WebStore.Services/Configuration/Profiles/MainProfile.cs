@@ -24,7 +24,8 @@ public class MainProfile : Profile
         CreateMap<CategoryVm, Category>();
         CreateMap<Category, CategoryVm>();
 
-        //CreateMap<CustomerVm, Customer>();
+        CreateMap<CustomerVm, Customer>();
+        CreateMap<Customer, CustomerVm>();
 
         CreateMap<InvoiceVm, Invoice>();
         CreateMap<Invoice, InvoiceVm>();

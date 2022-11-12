@@ -73,16 +73,16 @@ public class OrderServiceUnitTests : BaseUnitTests
         Assert.Equal(new DateTime(2020, 5, 5), editedOrderVm.DeliveryDate);
     }
 
-    [Fact]
-    public async Task DeleteOrderTest()
-    {
-        int orderId = 3;
+    // [Fact]
+    // public async Task DeleteOrderTest()
+    // {
+    //     int orderId = 3;
 
-        bool doesOrderExistsBefore = await _context.Order.AnyAsync(x => x.Id == orderId);
-        await _service.DeleteOrder(x => x.Id == orderId);
-        bool doesOrderExistsAfter = await _context.Order.AnyAsync(x => x.Id == orderId);
+    //     bool doesOrderExistsBefore = await _context.Order.AnyAsync(x => x.Id == orderId);
+    //     await _service.DeleteOrder(x => x.Id == orderId);
+    //     bool doesOrderExistsAfter = await _context.Order.AnyAsync(x => x.Id == orderId);
 
-        Assert.True(doesOrderExistsBefore);
-        Assert.False(doesOrderExistsAfter);
-    }
+    //     Assert.True(doesOrderExistsBefore);
+    //     Assert.False(doesOrderExistsAfter);
+    // }
 }

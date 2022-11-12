@@ -28,6 +28,7 @@ options.Password.RequireNonAlphanumeric = false;
 services.AddTransient (typeof (ILogger), typeof (Logger<Startup>));
 // service binding
 services.AddTransient<IProductService, ProductService> ();
+ services.AddTransient<IOrderService, OrderService> ();
 // … other bindings…
 services.SeedData ();
 }

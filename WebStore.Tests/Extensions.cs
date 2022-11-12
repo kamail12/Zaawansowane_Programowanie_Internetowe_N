@@ -22,6 +22,18 @@ Email = "supp1@eg.eg",
 RegistrationDate = new DateTime (2010, 1, 1),
 };
 await userManager.CreateAsync (supplier1, "User1234");
+
+ //Customers
+            var customer1 = new Customer () 
+            {
+                Id = 2,
+                FirstName = "Cezary",
+                LastName = "Kubek",
+                UserName = "cust1@eg.eg", 
+                Email = "cust1@eg.eg", 
+                RegistrationDate = new DateTime (2020, 2, 2),
+            };
+            await userManager.CreateAsync (customer1, "User4321");
 //Categories
 var category1 = new Category () {
 Id = 1,
@@ -51,6 +63,38 @@ Price = 500,
 Weight = 0.5f,
 };
 await dbContext.AddAsync (p2);
+
+ //Invoices
+            var i1 = new Invoice()
+            {
+                Id = 1,
+                TotalAmount = 20
+            } ;
+            await dbContext.AddAsync (i1);
+
+            //Orders
+            var o1 = new Order()
+            {
+                Id = 1,
+                CustomerId = customer1.Id,
+                InvoiceId = i1.Id,
+                DeliveryDate = new DateTime(2021, 5, 1),
+                OrderDate = new DateTime(2021, 5, 10),
+                TrackingNumber = 1234567890
+            };
+            await dbContext.AddAsync (o1);
+
+            var o2 = new Order()
+            {
+                Id = 2,
+                CustomerId = customer1.Id,
+                InvoiceId = i1.Id,
+                DeliveryDate = new DateTime(2022, 5, 2),
+                OrderDate = new DateTime(2022, 5, 20),
+                TrackingNumber = 78654321
+            };
+            await dbContext.AddAsync (o2);
+
 // save changes
 await dbContext.SaveChangesAsync ();
 }

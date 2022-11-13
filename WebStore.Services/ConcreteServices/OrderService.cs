@@ -52,6 +52,25 @@ namespace WebStore.Services.ConcreteServices
                 throw;
             }
         }
+        public OrderVm DeleteOrder(Expression<Func<Order, bool>> filterExpression)
+        {
+            try 
+            {
+                if (filterExpression == null)
+                    throw new ArgumentNullException("Filter expression parameter is null");
+                var order = DbContext.Orders.FirstOrDefault(filterExpression);
+                var OrderEntity = Mapper.Map<Order>(order);
+                DbContext.Orders.Remove(OrderEntity);
+                DbContext.SaveChanges();
+                var orderVm = Mapper.Map<OrderVm>(OrderEntity);
+                return orderVm; 
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
         public IEnumerable<OrderVm> GetOrders(Expression<Func<Order, bool>>? filterExpression = null)
         {
             try

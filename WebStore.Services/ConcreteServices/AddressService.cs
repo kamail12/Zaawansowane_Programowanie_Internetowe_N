@@ -68,5 +68,24 @@ namespace WebStore.Services.ConcreteServices
                 throw;
             }
         }
+        public AddressVm DeleteAddress(Expression<Func<Address, bool>> filterExpression)
+        {
+            try
+            {
+                if (filterExpression == null)
+                    throw new ArgumentNullException("Filter expression parameter is null");
+                var address = DbContext.Addresses.FirstOrDefault(filterExpression);
+                var addressEntity = Mapper.Map<Address>(address);
+                DbContext.Addresses.Remove(addressEntity);
+                DbContext.SaveChanges();
+                var addressVm = Mapper.Map<AddressVm>(addressEntity);
+                return addressVm;
+            }
+            catch (Exception ex) 
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
     }
 }

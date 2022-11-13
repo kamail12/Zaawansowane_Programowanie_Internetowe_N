@@ -1,35 +1,71 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using AutoMapper;
-using Microsoft.Extensions.Logging;
-using WebStore.DAL.EF;
-using WebStore.Model.DataModels;
-using WebStore.Services.Interfaces;
-using WebStore.ViewModels.VM;
+// using System;
+// using System.Collections.Generic;
+// using System.Linq;
+// using System.Linq.Expressions;
+// using AutoMapper;
+// using Microsoft.Extensions.Logging;
+// using WebStore.DAL.EF;
+// using WebStore.Model.DataModels;
+// using WebStore.Services.Interfaces;
+// using WebStore.ViewModels.VM;
 
-namespace WebStore.Services.ConcreteServices
-{
-    public class StoreService : BaseService, IStoreService
-    {
-        public StoreService(ApplicationDbContext dbContext, IMapper mapper, ILogger logger) : base(dbContext, mapper, logger) { }
+// namespace WebStore.Services.ConcreteServices
+// {
+//     public class StoreService : BaseService, IStoreService
+//     {
+//         public StoreService(ApplicationDbContext dbContext, IMapper mapper, ILogger logger) : base(dbContext, mapper, logger) { }
 
-        // public StoreVm GetStore(Expression<Func<StationaryStore, bool>> filterExpression)
-        // {
-        //     try
-        //     {
-        //         if (filterExpression == null)
-        //             throw new ArgumentNullException("Filter expression parameter is null");
+//         public StoreVm GetStore(Expression<Func<StationaryStore, bool>> filterExpression)
+//         {
+//             try
+//             {
+//                 if (filterExpression == null)
+//                     throw new ArgumentNullException("Filter expression parameter is null");
+//                 var storeEntity = DbContext.StationaryStores.FirstOrDefault(filterExpression);
+//                 var storeVm = Mapper.Map(StoreVm)<storeEntity>;
+//                 return storeVm;
+//             }
+//             catch (Exception ex)
+//             {
+//                 Logger.LogError(ex, ex.Message);
+//                 throw;
+//             }
+//         }
+//         public IEnumerable<StoreVm> GetStores(Expression<Func<StationaryStore, bool>>? filterExpression =null)
+//         {
+//             try
+//             {
+//                 var storesQuery = DbContext.StationaryStores.AsQueryable();
+//                 if(filterExpression !=null)
+//                     storesQuery = storesQuery.Where(filterExpression);
+//                 var storesVm = Mapper.Map<IEnumerable<StoreVm>>(storesQuery);
+//                 return storesVm;
+//             }
+//             catch (Exception ex)
+//             {
+//                 Logger.LogError(ex, ex.Message);
+//                 throw;
+//             }
+//         }
+//         public StoreVm DeleteStore(Exception<Func<StationaryStore,bool>> filterExpression)
+//         {
+//             try
+//             {
+//                 if (filterExpression == null)
+//                     throw new ArgumentNullException("Filter expression parameter is null");
+//                 var store = DbContext.StationaryStores.FirstOrDefault(filterExpression);
+//                 var storeEntity = Mapper.Map<StationaryStore>(store);
+//                 DbContext.StationaryStores.Remove(storeEntity);
+//                 DbContext.SaveChanges();
+//                 var storeVm = Mapper.Map<StoreVm>(storeEntity);
+//                 return storeVm;
+//             }
+//             catch (Exception ex)
+//             {
+//                 Logger.LogError(ex, ex.Message);
+//                 throw;
+//             }
+//         }
 
-        //          var storeEntity = DbContext.St
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         Logger.LogError(ex, ex.Message);
-        //         throw;
-        //     }
-        // }
-
-    }
-}
+//     }
+// }

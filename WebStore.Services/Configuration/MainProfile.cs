@@ -1,5 +1,6 @@
 using AutoMapper;
 using Webstore.Model;
+using WebStore.Model.DataModels;
 using WebStore.ViewModels.Vm;
 namespace WebStore.Services.Configuration.Profiles
 {
@@ -21,6 +22,11 @@ namespace WebStore.Services.Configuration.Profiles
             CreateMap<StationaryStore, StationaryStoreVm>(); //map from StationaryStore(src) to StationaryStoreVm(dst)
             CreateMap<AddOrUpdateStationaryStoreVm, StationaryStore>();
             CreateMap<StationaryStoreVm, AddOrUpdateStationaryStoreVm>();  
+
+              //Address maps
+            CreateMap<StationaryStoreAddress, AddressVm>(); //map from Address(src) to AddressVm(dst)
+            CreateMap<AddOrUpdateAddressVm, StationaryStoreAddress>();
+            CreateMap<AddressVm, AddOrUpdateAddressVm>();  
         }
     }
 }

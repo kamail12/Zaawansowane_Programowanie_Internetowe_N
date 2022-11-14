@@ -30,6 +30,7 @@ services.AddTransient (typeof (ILogger), typeof (Logger<Startup>));
 services.AddTransient<IProductService, ProductService> ();
  services.AddTransient<IOrderService, OrderService> ();
  services.AddTransient<IStationaryStoreService, StationaryStoreService> ();
+   services.AddTransient<IAddressService, AddressService>();
 // … other bindings…
 services.SeedData ();
 }

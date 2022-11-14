@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Webstore.Model;
 using WebStore.DAL.EF;
+using WebStore.Model.DataModels;
+
 namespace WebStore.Tests {
 public static class Extensions {
 // Create sample data
@@ -109,6 +111,25 @@ await dbContext.AddAsync (p2);
                 Name = "Tylko w SOFTWARE"
             };
             await dbContext.AddAsync (store2);
+
+             //Addresses
+            var addr1 = new StationaryStoreAddress()
+            {
+                Id = 1,
+                City = "Warszawa",
+                Street = "Programowa",
+                ZipCode = 32198
+            };
+            await dbContext.AddAsync(addr1);
+
+            var addr2 = new StationaryStoreAddress()
+            {
+                Id = 2,
+                City = "Wisla",
+                Street = "Hardwarowa",
+                ZipCode = 63221
+            };
+            await dbContext.AddAsync(addr2);
 
 // save changes
 await dbContext.SaveChangesAsync ();

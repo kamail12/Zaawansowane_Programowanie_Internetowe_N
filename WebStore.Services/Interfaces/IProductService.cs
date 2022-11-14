@@ -9,5 +9,8 @@ namespace WebStore.Services.Interface
         ProductVm AddOrUpdateProduct (AddOrUpdateProductVm addOrUpdateProductVm);
         ProductVm GetProduct (Expression<Func<Product,bool>> filterExpression);
         IEnumerable<ProductVm> GetProducts (Expression<Func<Product,bool>> ? filterExpression = null);
+
+        IEnumerable<ProductVm> DeleteProduct(Expression<Func<Product, bool>> filterExpression);
+
     }
 }

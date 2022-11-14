@@ -95,6 +95,21 @@ await dbContext.AddAsync (p2);
             };
             await dbContext.AddAsync (o2);
 
+             //StarionaryStores
+            var store1 = new StationaryStore()
+            {
+                Id = 1,
+                Name = "Kabelki i nie tylko"
+            };
+            await dbContext.AddAsync (store1);
+
+            var store2 = new StationaryStore()
+            {
+                Id = 2,
+                Name = "Tylko w SOFTWARE"
+            };
+            await dbContext.AddAsync (store2);
+
 // save changes
 await dbContext.SaveChangesAsync ();
 }

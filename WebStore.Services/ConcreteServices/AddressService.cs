@@ -70,5 +70,10 @@ namespace WebStore.Services.ConcreteServices
 
             }
         }
+
+        public bool DeleteAddress(Expression<Func<Address, bool>> filterExpression)
+        {
+            return true;
+        }
     }
 }

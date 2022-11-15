@@ -69,7 +69,10 @@ namespace WebStore.Services.ConcreteServices
 
             }
         }
-
+        public bool DeleteOrder(Expression<Func<Order, bool>> filterExpression)
+        {
+            return true;
+        }
 
     }
 }

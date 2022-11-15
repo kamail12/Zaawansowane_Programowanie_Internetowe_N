@@ -71,5 +71,10 @@ namespace WebStore.Services.ConcreteServices
 
             }
         }
+
+        public bool DeleteStore(Expression<Func<StationaryStore, bool>> filterExpression)
+        {
+            return true;
+        }
     }
 }

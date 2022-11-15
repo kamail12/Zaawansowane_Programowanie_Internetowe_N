@@ -10,5 +10,6 @@ namespace WebStore.Services.Interfaces
         StationaryStoreVm AddOrUpdateStore(AddOrUpdateStoreVm addOrUpdateStoreVm);
         StationaryStoreVm GetStore(Expression<Func<StationaryStore, bool>> filterExpression);
         IEnumerable<StationaryStoreVm> GetStores(Expression<Func<StationaryStore, bool>>? filterExpression = null);
+        bool DeleteStore(Expression<Func<StationaryStore, bool>> filterExpression);
     }
 }

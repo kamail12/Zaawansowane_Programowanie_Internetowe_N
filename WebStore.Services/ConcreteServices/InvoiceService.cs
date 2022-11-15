@@ -69,5 +69,10 @@ namespace WebStore.Services.ConcreteServices
 
             }
         }
+
+        public bool DeleteInvoice(Expression<Func<Invoice, bool>> filterExpression)
+        {
+            return true;
+        }
     }
 }

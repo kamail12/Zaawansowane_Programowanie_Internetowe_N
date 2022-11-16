@@ -84,5 +84,31 @@ namespace WebStore.Services.ConcreteServices
                 throw;
             }
         }
+
+        public IEnumerable<StationaryStoreVm> DeleteStationaryStore(Expression<Func<StationaryStore, bool>> filterExpression)
+        {
+            try
+            {
+                if(filterExpression == null)
+                {
+                    throw new ArgumentNullException("Filter expression parameter is null");
+                }
+                var stationaryStoreEntity = DbContext.StationaryStores.FirstOrDefault (filterExpression);
+                
+                if(stationaryStoreEntity == null)
+                {
+                    throw new ArgumentException("Incorrect filter expression");
+                }
+
+                DbContext.StationaryStores.Remove(stationaryStoreEntity);
+                DbContext.SaveChanges();
+                return GetStationaryStores();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, ex.Message);
+                throw;
+            }
+        }
     }
 }

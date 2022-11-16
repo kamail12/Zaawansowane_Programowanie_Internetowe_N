@@ -66,5 +66,12 @@ namespace WebStore.Test.UnitTest
             Assert.NotNull(editedStationaryStoreVm);
             Assert.Equal("Tylko HARDWARE", editedStationaryStoreVm.Name);
         }
+
+        [Fact]
+        public void DeleteStationaryStoreTest()
+        {
+            var changeStationaryStore = _stationaryStoreService.DeleteStationaryStore(s => s.Id == 1);
+            Assert.Equal(1, changeStationaryStore.Count());
+        }
     }
 }

@@ -1,2 +1,4 @@
 1. In method PostOrPutHelper arguments in logger is opposite than other places.
 2. Why I must add method .IsRequired(false) to set variable on NullAble?
+3. What is differents between Transit and Scope?
+4. How does work IList type in Date Base?

@@ -34,7 +34,7 @@ namespace WebStore.Web.Controllers
         {
             try
             {
-                var product = _productService.GetProduct(p => p.Id ==id);
+                var product = _productService.GetProduct(p => p.Id == id);
                 return Ok(product);
             }
             catch(Exception ex)

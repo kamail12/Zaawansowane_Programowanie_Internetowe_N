@@ -30,6 +30,8 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
 
         builder.Entity<Address>().Property<bool>("IsDeleted");
         builder.Entity<Address>().HasQueryFilter(m => EF.Property<bool>(m, "IsDeleted") == false);
+        builder.Entity<Category>().Property<bool>("IsDeleted");
+        builder.Entity<Category>().HasQueryFilter(m => EF.Property<bool>(m, "IsDeleted") == false);
         builder.Entity<Invoice>().Property<bool>("IsDeleted");
         builder.Entity<Invoice>().HasQueryFilter(m => EF.Property<bool>(m, "IsDeleted") == false);
         builder.Entity<Order>().Property<bool>("IsDeleted");
@@ -38,6 +40,8 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
         builder.Entity<Product>().HasQueryFilter(m => EF.Property<bool>(m, "IsDeleted") == false);
         builder.Entity<StationaryStore>().Property<bool>("IsDeleted");
         builder.Entity<StationaryStore>().HasQueryFilter(m => EF.Property<bool>(m, "IsDeleted") == false);
+        builder.Entity<User>().Property<bool>("IsDeleted");
+        builder.Entity<User>().HasQueryFilter(m => EF.Property<bool>(m, "IsDeleted") == false);
 
         builder.Entity<User>()
             .ToTable("AspNetUsers")

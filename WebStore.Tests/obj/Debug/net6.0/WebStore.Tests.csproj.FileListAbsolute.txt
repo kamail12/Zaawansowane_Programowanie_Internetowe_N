@@ -154,12 +154,12 @@ C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Pr
 C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\obj\Debug\net6.0\WebStore.Tests.genruntimeconfig.cache
 C:\Studia\Zaawansowane programowanie internetowe\Adam_Dunajewski\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\obj\Debug\net6.0\ref\WebStore.Tests.dll
 C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\CoverletSourceRootsMapping
-C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\testhost.exe
 C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\testhost.dll
+C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\testhost.exe
+C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\xunit.runner.reporters.netcoreapp10.dll
 C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\xunit.runner.utility.netcoreapp10.dll
-C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\WebStore.Tests.deps.json
 C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\WebStore.Tests.runtimeconfig.json
 C:\Users\Adam\ZPI\Zaawansowane_Programowanie_Internetowe_N\WebStore.Tests\bin\Debug\net6.0\WebStore.Tests.dll

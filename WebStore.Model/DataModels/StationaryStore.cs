@@ -7,6 +7,7 @@ public class StationaryStore
 {
     [Key]
     public int Id { get; set; }
+    bool IsDeleted { get; set; }
     public string Name { get; set; } = default!;
     [NotMapped]
     public virtual Address Address { get; set; } = default!;

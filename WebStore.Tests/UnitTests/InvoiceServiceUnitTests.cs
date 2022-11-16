@@ -19,7 +19,7 @@ public class InvoiceServiceUnitTests : BaseUnitTests
     [Fact]
     public void GetInvoiceTest()
     {
-        var invoice = _service.GetInvoice(p => p.TotalPrice == 1423);
+        var invoice = _service.GetInvoice(p => p.TotalPrice == 2222);
         Assert.NotNull(invoice);
     }
 
@@ -71,16 +71,16 @@ public class InvoiceServiceUnitTests : BaseUnitTests
         Assert.Equal(200, editedInvoiceVm.TotalPrice);
     }
 
-    // [Fact]
-    // public async Task DeleteInvoiceTest()
-    // {
-    //     int invoiceId = 3;
+    [Fact]
+    public async Task DeleteInvoiceTest()
+    {
+        int invoiceId = 3;
 
-    //     bool doesInvoiceExistsBefore = await _context.Invoice.AnyAsync(x => x.Id == invoiceId);
-    //     await _service.DeleteInvoice(x => x.Id == invoiceId);
-    //     bool doesInvoiceExistsAfter = await _context.Invoice.AnyAsync(x => x.Id == invoiceId);
+        bool doesInvoiceExistsBefore = await _context.Invoice.AnyAsync(x => x.Id == invoiceId);
+        await _service.DeleteInvoice(x => x.Id == invoiceId);
+        bool doesInvoiceExistsAfter = await _context.Invoice.AnyAsync(x => x.Id == invoiceId);
 
-    //     Assert.True(doesInvoiceExistsBefore);
-    //     Assert.False(doesInvoiceExistsAfter);
-    // }
+        Assert.True(doesInvoiceExistsBefore);
+        Assert.False(doesInvoiceExistsAfter);
+    }
 }

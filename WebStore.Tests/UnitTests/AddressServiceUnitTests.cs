@@ -18,7 +18,7 @@ public class AddressServiceUnitTests : BaseUnitTests
     [Fact]
     public void GetAddressTest()
     {
-        var address = _addressService.GetAddress(p => p.StreetName == "Główna");
+        var address = _addressService.GetAddress(p => p.StreetName == "Street2");
         Assert.NotNull(address);
     }
 
@@ -74,20 +74,20 @@ public class AddressServiceUnitTests : BaseUnitTests
         var editedAddressVm = _addressService.AddOrUpdateAddress(updateAddressVm);
         Assert.NotNull(editedAddressVm);
         Assert.Equal(2, editedAddressVm.ApartmentNumber);
-        Assert.Equal("Town", editedAddressVm.StreetName);
+        Assert.Equal("Road", editedAddressVm.StreetName);
         Assert.Equal("32A", editedAddressVm.BuildingNumber);
     }
 
-    // [Fact]
-    // public async Task DeleteAddressTest()
-    // {
-    //     int addressId = 3;
+    [Fact]
+    public async Task DeleteAddressTest()
+    {
+        int addressId = 3;
 
-    //     bool doesAddressExistsBefore = await _dbContext.Address.AnyAsync(x => x.Id == addressId);
-    //     await _addressService.DeleteAddress(x => x.Id == addressId);
-    //     bool doesAddressExistsAfter = await _dbContext.Address.AnyAsync(x => x.Id == addressId);
+        bool doesAddressExistsBefore = await _dbContext.Address.AnyAsync(x => x.Id == addressId);
+        await _addressService.DeleteAddress(x => x.Id == addressId);
+        bool doesAddressExistsAfter = await _dbContext.Address.AnyAsync(x => x.Id == addressId);
 
-    //     Assert.True(doesAddressExistsBefore);
-    //     Assert.False(doesAddressExistsAfter);
-    // }
+        Assert.True(doesAddressExistsBefore);
+        Assert.False(doesAddressExistsAfter);
+    }
 }

@@ -8,6 +8,7 @@ public class Order
 {
     [Key]
     public int Id { get; set; }
+    bool IsDeleted { get; set; }
     public DateTime DeliveryDate { get; set; }
     public DateTime OrderDate { get; set; }
     [NotMapped]

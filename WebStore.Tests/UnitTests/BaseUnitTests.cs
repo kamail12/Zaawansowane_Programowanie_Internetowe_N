@@ -3,9 +3,9 @@ using WebStore.DAL.EF;
 namespace WebStore.Tests.UnitTests{
     public class BaseUnitTests
     {
-        protected readonly ApplicationDbContext dbContext;
+        protected readonly ApplicationDbContext DbContext;
         public BaseUnitTests (ApplicationDbContext dbContext){
-            DbContext = dbContext;
+            DbContext = dbContext;;
         }
     }
 }

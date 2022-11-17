@@ -10,14 +10,15 @@ namespace WebStore.DAL.EF;
 
 public class ApplicationDbContext : IdentityDbContext<User,IdentityRole<int>,int>
 {
-    public virtual DbSet<Order> Orders { get; set; } = default!;
-    public virtual DbSet<Address> Addresses { get; set; } = default!;
-    public virtual DbSet<Category> Categories { get; set; } = default!;
-    public virtual DbSet<Invoice> Invoices { get; set; } = default!;
-    public virtual DbSet<OrderProduct> OrderProduct { get; set; } = default!;
-    public virtual DbSet<Product> Products { get; set; } = default!;
-    public virtual DbSet<ProductStock> ProductStock { get; set; } = default!;
-    public virtual DbSet<StationaryStore> StationaryStores { get; set; } = default!;
+    public DbSet<User> User => Set<User>();
+        public DbSet<CustomerAddress> CustomerAddresses => Set<CustomerAddress>();
+        public DbSet<OrderProduct> OrderProduct => Set<OrderProduct>();
+        public DbSet<Product> Product => Set<Product>()!;
+        public DbSet<ProductStock> ProductStock => Set<ProductStock>();
+        public DbSet<Order> Order => Set<Order>();
+        public DbSet<Category> Category => Set<Category>();
+        public DbSet<Invoice> Invoice => Set<Invoice>();
+        public DbSet<StationaryStore> StationaryStores => Set<StationaryStore>();
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
         : base(options)
@@ -25,7 +26,7 @@ public class ApplicationDbContext : IdentityDbContext<User,IdentityRole<int>,int
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseLazyLoadingProxies();
+        
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder){
         base.OnModelCreating(modelBuilder);
@@ -38,9 +39,27 @@ public class ApplicationDbContext : IdentityDbContext<User,IdentityRole<int>,int
             .HasValue<StationaryStoreEmployee>(3);
 
         modelBuilder.Entity<OrderProduct>()
-            .HasOne(o => o.Order)
-            .WithMany(op => op.OrderProducts)
-            .HasForeignKey(ord => ord.OrderId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .ToTable("OrderProduct")
+            .HasKey(x => new { x.OrderId, x.ProductId });
+        modelBuilder.Entity<OrderProduct>()
+            .HasOne(x => x.Order)
+            .WithMany(y => y.OrderProducts)
+            .HasForeignKey(x => x.OrderId)
+            .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<OrderProduct>()
+            .HasOne(x => x.Product)
+            .WithMany(y => y.OrderProducts)
+            .HasForeignKey(x => x.OrderId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+
+
+            // .HasOne(o => o.Order)
+            // .WithMany(op => op.OrderProducts)
+            // .HasForeignKey(ord => ord.OrderId)
+            // .OnDelete(DeleteBehavior.Restrict);
     }
+
+
+                
 }

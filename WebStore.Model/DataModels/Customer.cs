@@ -6,12 +6,8 @@ namespace WebStore.Model.DataModels;
 
 public class Customer : User
 {
-    public virtual Address BillingAddress { get; set; }
-    [ForeignKey("BillingAddress")]
-    public int? BillingAddressId { get; set; }
     public virtual IList<Order> Orders { get; set; }
-    public virtual Address ShippingAddress { get; set; }
-    [ForeignKey("ShippingAddress")]
-    public int? ShippingAddressId { get; set; }
+    public virtual IList<CustomerAddress> CustomerAddresses { get; set; }
+    
     
 }

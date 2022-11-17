@@ -64,6 +64,12 @@ namespace WebStore.Tests.UnitTests
             Assert.NotNull(editetInvoiceVm);
             Assert.Equal(new DateTime(2022, 10, 25, 12, 00, 00), updateInvoiceVm.DateOfIssue);
         }
+        [Fact]
+        public void DeleteInvoiceTest()
+        {
+            var deleteInvoice = _invoiceService.DeleteInvoice(i => i.Id == 3);
+            Assert.NotNull(deleteInvoice);
+        }
 
     }
 }

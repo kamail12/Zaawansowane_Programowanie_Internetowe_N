@@ -69,6 +69,12 @@ namespace WebStore.Tests.UnitTests
             Assert.NotNull(updateAddress);
             Assert.Equal("Stolec", updateAddress.City);
         }
+        [Fact]
+        public void DeleteAddressTest()
+        {
+            var deleteAddress = _addressService.DeleteAddress(a => a.Id == 3);
+            Assert.NotNull(deleteAddress);
+        }
 
     }
 }

@@ -112,6 +112,16 @@ namespace WebStore.Tests
 
             };
             await dbContext.AddAsync(a3);
+                        var a4 = new Address()
+            {
+                Id = 4,
+                City = "NWM",
+                Country = "Polska",
+                BuildingNumber = 1,
+                PostalCode = "90-322"
+
+            };
+            await dbContext.AddAsync(a4);
             //Invoice
             var i1 = new Invoice()
             {
@@ -125,6 +135,12 @@ namespace WebStore.Tests
                 DateOfIssue = new DateTime()
             };
             await dbContext.AddAsync(i2);
+            var i3 = new Invoice()
+            {
+                Id = 3,
+                DateOfIssue = new DateTime()
+            };
+            await dbContext.AddAsync(i3);
 
             //Order
 
@@ -149,6 +165,16 @@ namespace WebStore.Tests
                 CustomerId = 2
             };
             await dbContext.AddAsync(o2);
+            var o3 = new Order()
+            {
+                Id = 3,
+                OrderDate = new DateTime(),
+                TotalAmount = 887.99m,
+                TrackingNumber = 88888,
+                InvoiceId = 2,
+                CustomerId = 2
+            };
+            await dbContext.AddAsync(o3);
 
 
             // save changes 

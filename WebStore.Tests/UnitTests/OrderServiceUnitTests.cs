@@ -71,5 +71,11 @@ namespace WebStore.Tests.UnitTests
             Assert.NotNull(updateOrder);
             Assert.Equal(8333, updateOrder.TrackingNumber);
         }
+                [Fact]
+        public void DeleteOrderTest()
+        {
+            var deleteOrder = _orderService.DeleteOrder(o => o.Id == 3);
+            Assert.NotNull(deleteOrder);
+        }
     }
 }

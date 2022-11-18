@@ -1,15 +1,21 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace WebStore.Model.DataModel
-{
-    public class Customer : User
-    {
+namespace WebStore.Model.DataModels;
 
-        public virtual IList<BillingAddress> BillingAddresses { get; set; } = default!;
-        public virtual IList<ShippingAddress> ShippingAddresses { get; set; } = default!;
-        public virtual IList<Order> Orders { get; set; } = default!;
+public class Customer : User {
 
-    }
+   public virtual IList<Order> Orders { get; set; } = default !;
+   public virtual IList<Address> Addresses { get; set; } = default !;
+
+   public virtual Address? BillingAddress { get; set; }
+
+   [ForeignKey ("BillingAddress")]
+   public int? BillingAddressId { get; set; }
+
+   public virtual Address ShippingAddress { get; set; } = default !;
+
+   [ForeignKey ("ShippingAddress")]
+   public int ShippingAddressId { get; set; }
+
 }

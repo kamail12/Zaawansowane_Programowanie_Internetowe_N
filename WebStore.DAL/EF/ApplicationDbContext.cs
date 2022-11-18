@@ -11,14 +11,14 @@ namespace WebStore.DAL.EF;
 public class ApplicationDbContext : IdentityDbContext<User,IdentityRole<int>,int>
 {
     public DbSet<User> User => Set<User>();
-        public DbSet<CustomerAddress> CustomerAddresses => Set<CustomerAddress>();
-        public DbSet<OrderProduct> OrderProduct => Set<OrderProduct>();
-        public DbSet<Product> Product => Set<Product>()!;
-        public DbSet<ProductStock> ProductStock => Set<ProductStock>();
-        public DbSet<Order> Order => Set<Order>();
-        public DbSet<Category> Category => Set<Category>();
-        public DbSet<Invoice> Invoice => Set<Invoice>();
-        public DbSet<StationaryStore> StationaryStores => Set<StationaryStore>();
+    public DbSet<Address> Addresses => Set<Address>();
+    public DbSet<OrderProduct> OrderProduct => Set<OrderProduct>();
+    public DbSet<Product> Product => Set<Product>()!;
+    public DbSet<ProductStock> ProductStock => Set<ProductStock>();
+    public DbSet<Order> Order => Set<Order>();
+    public DbSet<Category> Category => Set<Category>();
+    public DbSet<Invoice> Invoice => Set<Invoice>();
+    public DbSet<StationaryStore> StationaryStore => Set<StationaryStore>();
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
         : base(options)
@@ -30,6 +30,8 @@ public class ApplicationDbContext : IdentityDbContext<User,IdentityRole<int>,int
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder){
         base.OnModelCreating(modelBuilder);
+        
+
         modelBuilder.Entity<User>()
             .ToTable("AspNetUsers")
             .HasDiscriminator<int>("UserType")

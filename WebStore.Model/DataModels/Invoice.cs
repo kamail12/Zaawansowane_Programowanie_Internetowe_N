@@ -9,8 +9,8 @@ namespace WebStore.Model.DataModels
         
         public decimal TotalAmount { get; set; } = default!;
 
-        public Customer Customer { get; set; } = default!;
+        public virtual Customer Customer { get; set; } = default!;
 
-        public IList<Order> Orders { get; set;} = default!;
+        public virtual IList<Order> Orders { get; set;} = default!;
     }
 }

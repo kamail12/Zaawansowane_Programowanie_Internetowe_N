@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebStore.Model.DataModels;
 
 namespace WebStore.DAL.EF
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public virtual DbSet<Order> Orders { get; set; } = default!;
         public virtual DbSet<OrderProduct> OrderProducts { get; set; } = default!;
